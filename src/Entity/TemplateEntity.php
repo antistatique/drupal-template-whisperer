@@ -18,7 +18,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *   label = @Translation("Template Entity"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "views_data" = "Drupal\template_whisperer\Entity\TemplateEntityViewsData",
+ *     "views_data" = "Drupal\views\EntityViewsData",
  *
  *     "form" = {
  *       "default" = "Drupal\Core\Entity\ContentEntityForm",

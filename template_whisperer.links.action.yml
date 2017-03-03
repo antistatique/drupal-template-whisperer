@@ -1,0 +1,5 @@
+entity.whisperer.add_form:
+  route_name: entity.template_whisperer.add_form
+  title: 'Add un zizi mou'
+  appears_on:
+    - entity.template_whisperer.collection
