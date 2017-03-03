@@ -20,9 +20,10 @@ class TemplateEntityAccessControlHandler extends EntityAccessControlHandler {
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
     /** @var \Drupal\template_whisperer\Entity\TemplateEntityInterface $entity */
     switch ($operation) {
-      case 'view':
-      case 'update':
-      case 'delete':
+    case 'view':
+    case 'update':
+    case 'edit':
+    case 'delete':
         return AccessResult::allowedIfHasPermission($account, 'administer template_whisperer entities');
     }
 
@@ -34,6 +35,8 @@ class TemplateEntityAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
+      dump($account);
+      die();
     return AccessResult::allowedIfHasPermission($account, 'administer template_whisperer entities');
   }
 

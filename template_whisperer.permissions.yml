@@ -1,4 +1,3 @@
 administer template_whisperer entities:
-  title: 'Administer Template Entity entities'
+  title: 'Administer Template Whisperer entities'
   description: 'Allow to access the administration form to configure Template Entity entities.'
-  restrict access: true

@@ -11,9 +11,6 @@ use Drupal\Core\Entity\EntityChangedInterface;
  * @ingroup template_whisperer
  */
 interface TemplateEntityInterface extends  ContentEntityInterface, EntityChangedInterface {
-
-  // Add get/set methods for your configuration properties here.
-
   /**
    * Gets the Template Entity name.
    *

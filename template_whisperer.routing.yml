@@ -8,11 +8,11 @@ template_whisperer:
 
 # actions.
 entity.template_whisperer.canonical:
-  path: '/admin/structure/template_whisperer/{whisperer}'
+  path: '/admin/structure/template_whisperer/{template_whisperer}'
   defaults:
     # Calls the view controller, defined in the annotation of the
     # template_whisperer entity.
-    _entity_view: 'whisperer'
+    _entity_view: 'template_whisperer'
     _title: 'Template Whisperer'
   requirements:
     # Calls the access controller of the entity, $operation 'view'

@@ -14,30 +14,30 @@ use Drupal\Core\Entity\EntityTypeInterface;
  * @ingroup template_whisperer
  *
  * @ContentEntityType(
- *   id = "whisperer",
+ *   id = "template_whisperer",
  *   label = @Translation("Template Entity"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "views_data" = "Drupal\template_whisperer\Entity\TemplateEntityViewsData",
  *
  *     "form" = {
- *       "default" = "Drupal\template_whisperer\Form\TemplateEntityForm",
+ *       "default" = "Drupal\Core\Entity\ContentEntityForm",
  *       "add" = "Drupal\Core\Entity\ContentEntityForm",
  *       "edit" = "Drupal\Core\Entity\ContentEntityForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *     "access" = "Drupal\template_whisperer\TemplateEntityAccessControlHandler",
  *   },
- *   base_table = "whisperer",
- *   admin_permission = "administer template entity entities",
+ *   base_table = "template_whisperer",
+ *   admin_permission = "administer template_whisperer entities",
  *   entity_keys = {
  *     "id" = "id",
- *     "label" = "name",
  *   },
  *   links = {
- *     "canonical" = "/admin/structure/template_whisperer/{whisperer}",
+ *     "canonical" = "/admin/structure/template_whisperer/{template_whisperer}",
  *     "add-form" = "/admin/structure/template_whisperer/add",
- *     "edit-form" = "/admin/structure/template_whisperer/{whisperer}/edit",
+ *     "edit-form" = "/admin/structure/template_whisperer/{template_whisperer}/edit",
+ *     "delete-form" = "/admin/structure/template_whisperer/{template_whisperer}/delete",
  *     "collection" = "/admin/structure/template_whisperer/list",
  *   },
  * )
