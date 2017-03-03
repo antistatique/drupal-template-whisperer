@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains template_whisperer.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function template_whisperer_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the template_whisperer module.
+    case 'help.page.template_whisperer':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds a field that allows you to choose a template to render the node with. Think Wordpress templates.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

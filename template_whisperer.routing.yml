@@ -1,0 +1,19 @@
+template_whisperer:
+  path: '/admin/structure/template_whisperer'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Template Whisperer'
+  requirements:
+    _permission: 'administer template_whisperer entities'
+
+# actions.
+entity.template_whisperer.canonical:
+  path: '/admin/structure/template_whisperer/{whisperer}'
+  defaults:
+    # Calls the view controller, defined in the annotation of the
+    # template_whisperer entity.
+    _entity_view: 'whisperer'
+    _title: 'Template Whisperer'
+  requirements:
+    # Calls the access controller of the entity, $operation 'view'
+    _entity_access: 'template_whisperer.view'

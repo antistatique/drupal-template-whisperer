@@ -1,0 +1,9 @@
+name: Template Whisperer
+type: module
+description: Adds a field that allows you to choose a template to render the node with. Think Wordpress page models.
+core: 8.x
+package: Fields types
+
+dependencies:
+  - field
+  - drupal:views
