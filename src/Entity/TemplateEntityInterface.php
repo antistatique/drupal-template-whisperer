@@ -10,7 +10,8 @@ use Drupal\Core\Entity\EntityChangedInterface;
  *
  * @ingroup template_whisperer
  */
-interface TemplateEntityInterface extends  ContentEntityInterface, EntityChangedInterface {
+interface TemplateEntityInterface extends ContentEntityInterface, EntityChangedInterface {
+
   /**
    * Gets the Template Entity name.
    *

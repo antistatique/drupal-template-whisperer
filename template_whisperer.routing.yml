@@ -1,5 +1,5 @@
 template_whisperer:
-  path: '/admin/structure/template_whisperer'
+  path: '/admin/structure/template-whisperer'
   defaults:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
     _title: 'Template Whisperer'
@@ -8,7 +8,7 @@ template_whisperer:
 
 # actions.
 entity.template_whisperer.canonical:
-  path: '/admin/structure/template_whisperer/{template_whisperer}'
+  path: '/admin/structure/template-whisperer/{template_whisperer}'
   defaults:
     # Calls the view controller, defined in the annotation of the
     # template_whisperer entity.
@@ -19,7 +19,7 @@ entity.template_whisperer.canonical:
     _entity_access: 'template_whisperer.view'
 
 entity.template_whisperer.add_form:
-  path: '/admin/structure/template_whisperer/add'
+  path: '/admin/structure/template-whisperer/add'
   defaults:
   # Calls the form.add controller, defined in the contact entity.
     _entity_form: template_whisperer.add
@@ -28,7 +28,7 @@ entity.template_whisperer.add_form:
     _entity_create_access: 'template_whisperer'
 
 entity.template_whisperer.edit_form:
-  path: '/admin/structure/template_whisperer/{template_whisperer}/edit'
+  path: '/admin/structure/template-whisperer/{template_whisperer}/edit'
   defaults:
   # Calls the form.edit controller, defined in the contact entity.
     _entity_form: template_whisperer.edit
@@ -37,7 +37,7 @@ entity.template_whisperer.edit_form:
     _entity_access: 'template_whisperer.edit'
 
 entity.template_whisperer.delete_form:
-  path: '/admin/structure/template_whisperer/{template_whisperer}/delete'
+  path: '/admin/structure/template-whisperer/{template_whisperer}/delete'
   defaults:
     # Calls the form.delete controller, defined in the contact entity.
     _entity_form: template_whisperer.delete

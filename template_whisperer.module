@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains template_whisperer.module.
+ * Legacy Drupal 7 code to implements hooks.
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -21,4 +21,17 @@ function template_whisperer_help($route_name, RouteMatchInterface $route_match) 
 
     default:
   }
+}
+
+/**
+ * Implements hook_theme_suggestions_node_alter().
+ */
+function template_whisperer_theme_suggestions_node_alter(array &$suggestions, array $variables, $hook) {
+  dump($hook);
+
+  // if (isset($variables['elements']['#node']->field_theme_model)
+  //     && !empty($variables['elements']['#node']->field_theme_model->entity->field_theme_suggestion->value)
+  // ) {
+  //     $suggestions[] = 'node' . '__' . $variables['elements']['#node']->getType() . '__' . $variables['elements']['#node']->field_theme_model->entity->field_theme_suggestion->value;
+  // }
 }

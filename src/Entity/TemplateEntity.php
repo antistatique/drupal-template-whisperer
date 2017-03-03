@@ -34,11 +34,11 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *     "id" = "id",
  *   },
  *   links = {
- *     "canonical" = "/admin/structure/template_whisperer/{template_whisperer}",
- *     "add-form" = "/admin/structure/template_whisperer/add",
- *     "edit-form" = "/admin/structure/template_whisperer/{template_whisperer}/edit",
- *     "delete-form" = "/admin/structure/template_whisperer/{template_whisperer}/delete",
- *     "collection" = "/admin/structure/template_whisperer/list",
+ *     "canonical" = "/admin/structure/template-whisperer/{template_whisperer}",
+ *     "add-form" = "/admin/structure/template-whisperer/add",
+ *     "edit-form" = "/admin/structure/template-whisperer/{template_whisperer}/edit",
+ *     "delete-form" = "/admin/structure/template-whisperer/{template_whisperer}/delete",
+ *     "collection" = "/admin/structure/template-whisperer/list",
  *   },
  * )
  */
@@ -106,7 +106,7 @@ class TemplateEntity extends ContentEntityBase implements TemplateEntityInterfac
 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))
-      ->setDescription(t('The name of the Template Entity entity.'))
+      ->setDescription(t('The name of the Template Whisperer.'))
       ->setSettings(array(
         'max_length' => 50,
         'text_processing' => 0,
@@ -126,7 +126,7 @@ class TemplateEntity extends ContentEntityBase implements TemplateEntityInterfac
 
     $fields['suggestion'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Template Suggestion'))
-      ->setDescription(t('The machine name of the Template Suggestion that should be used.'))
+      ->setDescription(t("The  Template Whisperer's Suggestion that should be used."))
       ->setSettings(array(
         'max_length' => 50,
         'text_processing' => 0,
