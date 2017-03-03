@@ -1,0 +1,28 @@
+{
+  "name": "drupal/disrupt_tools",
+  "description": "Provides a number of utility, service and helper APIs for Drupal developers and site builders.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/sandbox/wengerk/2857588",
+  "authors": [
+    {
+      "name": "Antistatique",
+      "email": "info@antistaique.net",
+      "homepage": "https://www.antistatique.net",
+      "role": "Sponsor"
+    },
+    {
+      "name": "Kevin Wenger",
+      "email": "contact@kevin-wenger.ch",
+      "homepage": "https://www.drupal.org/u/wengerk",
+      "role": "Author & Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/2857588"
+  },
+  "license": "GPL-2.0+",
+  "require-dev": {
+      "squizlabs/php_codesniffer": "^2.7",
+      "drupal/coder": "^8.2.10"
+  }
+}
