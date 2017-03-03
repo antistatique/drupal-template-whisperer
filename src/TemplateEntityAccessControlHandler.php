@@ -35,8 +35,6 @@ class TemplateEntityAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
-      dump($account);
-      die();
     return AccessResult::allowedIfHasPermission($account, 'administer template_whisperer entities');
   }
 

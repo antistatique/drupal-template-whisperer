@@ -17,3 +17,30 @@ entity.template_whisperer.canonical:
   requirements:
     # Calls the access controller of the entity, $operation 'view'
     _entity_access: 'template_whisperer.view'
+
+entity.template_whisperer.add_form:
+  path: '/admin/structure/template_whisperer/add'
+  defaults:
+  # Calls the form.add controller, defined in the contact entity.
+    _entity_form: template_whisperer.add
+    _title: 'Add Template Whisperer'
+  requirements:
+    _entity_create_access: 'template_whisperer'
+
+entity.template_whisperer.edit_form:
+  path: '/admin/structure/template_whisperer/{template_whisperer}/edit'
+  defaults:
+  # Calls the form.edit controller, defined in the contact entity.
+    _entity_form: template_whisperer.edit
+    _title: 'Edit Template Whisperer'
+  requirements:
+    _entity_access: 'template_whisperer.edit'
+
+entity.template_whisperer.delete_form:
+  path: '/admin/structure/template_whisperer/{template_whisperer}/delete'
+  defaults:
+    # Calls the form.delete controller, defined in the contact entity.
+    _entity_form: template_whisperer.delete
+    _title: 'Delete Template Whisperer'
+  requirements:
+    _entity_access: 'template_whisperer.delete'
