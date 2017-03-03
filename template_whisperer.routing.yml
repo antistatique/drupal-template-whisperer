@@ -1,5 +1,5 @@
 template_whisperer:
-  path: '/admin/structure/template-whisperer'
+  path: '/admin/structure/template-whisperer/list'
   defaults:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
     _title: 'Template Whisperer'
