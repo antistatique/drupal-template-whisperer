@@ -6,7 +6,12 @@ template_whisperer:
   requirements:
     _permission: 'administer template_whisperer entities'
 
-# actions.
+# Collection page.
+# Managed by a views
+entity.template_whisperer.collection:
+  path: '/admin/structure/template-whisperer/list'
+
+# Detail page.
 entity.template_whisperer.canonical:
   path: '/admin/structure/template-whisperer/{template_whisperer}'
   defaults:
@@ -18,6 +23,7 @@ entity.template_whisperer.canonical:
     # Calls the access controller of the entity, $operation 'view'
     _entity_access: 'template_whisperer.view'
 
+# Actions.
 entity.template_whisperer.add_form:
   path: '/admin/structure/template-whisperer/add'
   defaults:

@@ -8,17 +8,17 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
 
 /**
- * Access controller for the Template Entity entity.
+ * Access controller for the Template Whisperer Entity entity.
  *
- * @see \Drupal\template_whisperer\Entity\TemplateEntity.
+ * @see \Drupal\template_whisperer\Entity\TemplateWhispererEntity.
  */
-class TemplateEntityAccessControlHandler extends EntityAccessControlHandler {
+class TemplateWhispererEntityAccessControlHandler extends EntityAccessControlHandler {
 
   /**
    * {@inheritdoc}
    */
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
-    /** @var \Drupal\template_whisperer\Entity\TemplateEntityInterface $entity */
+    /** @var \Drupal\template_whisperer\Entity\TemplateWhispererEntityInterface $entity */
     switch ($operation) {
       case 'view':
       case 'update':

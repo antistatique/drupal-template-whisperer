@@ -5,9 +5,9 @@ namespace Drupal\template_whisperer\Entity;
 use Drupal\views\EntityViewsData;
 
 /**
- * Provides Views data for Template Entity entities.
+ * Provides Views data for Template Whisperer Entity entities.
  */
-class TemplateEntityViewsData extends EntityViewsData {
+class TemplateWhispererEntityViewsData extends EntityViewsData {
 
   /**
    * {@inheritdoc}

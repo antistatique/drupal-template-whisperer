@@ -41,6 +41,13 @@ Check Drupal best practices:
   --ignore=*/vendor/* ./
   ```
 
+Automatically fix coding standards
+
+  ```
+  ./vendor/bin/phpcbf --standard=Drupal --colors --extensions=php,module,inc,install,test,profile,theme,css,info
+  --ignore=*/vendor/* ./
+  ```
+
 ### Enforce code standards with git hooks
 
 Maintaining code quality by adding the custom post-commit hook to yours.

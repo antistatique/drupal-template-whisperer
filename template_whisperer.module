@@ -2,36 +2,53 @@
 
 /**
  * @file
- * Legacy Drupal 7 code to implements hooks.
+ * Contains template_whisperer.module.
  */
 
-use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
- * Implements hook_help().
+ * Implements hook_theme_suggestions_alter().
  */
-function template_whisperer_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    // Main module help for the template_whisperer module.
-    case 'help.page.template_whisperer':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Adds a field that allows you to choose a template to render the node with. Think Wordpress templates.') . '</p>';
-      return $output;
+function template_whisperer_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  $twManager = \Drupal::service('plugin.manager.template_whisperer');
 
-    default:
+  $entity = template_whisperer_get_route_entity();
+
+  if (!empty($entity) && $entity instanceof ContentEntityInterface) {
+    $suggestionsEntity = $twManager->suggestionsFromEntity($entity);
+
+    // Expose one suggestion by fields.
+    foreach ($suggestionsEntity as $suggestion) {
+      $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->getType() . '__' . $suggestion;
+    }
+
+    // Expose a suggestion merging each fields suggestion on this entity.
+    if (count($suggestionsEntity) > 1) {
+      $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->getType() . '__' . implode('__', $suggestionsEntity);
+    }
   }
 }
 
 /**
- * Implements hook_theme_suggestions_node_alter().
+ * Returns the entity of the current route.
+ *
+ * @return EntityInterface
+ *   The entity or NULL if this is not an entity route.
  */
-function template_whisperer_theme_suggestions_node_alter(array &$suggestions, array $variables, $hook) {
-  dump($hook);
+function template_whisperer_get_route_entity() {
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
 
-  // if (isset($variables['elements']['#node']->field_theme_model)
-  //     && !empty($variables['elements']['#node']->field_theme_model->entity->field_theme_suggestion->value)
-  // ) {
-  //     $suggestions[] = 'node' . '__' . $variables['elements']['#node']->getType() . '__' . $variables['elements']['#node']->field_theme_model->entity->field_theme_suggestion->value;
-  // }
+  // Look for a canonical entity view page, e.g. node/{nid}, user/{uid}, etc.
+  $matches = [];
+  preg_match('/entity\.(.*)\.canonical/', $route_name, $matches);
+  if (!empty($matches[1])) {
+    $entity_type = $matches[1];
+    return $route_match->getParameter($entity_type);
+  }
 }
+
+// Includes.
+require_once 'inc/rm_cardinality.inc';
+require_once 'inc/help.inc';

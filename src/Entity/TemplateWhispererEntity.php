@@ -9,24 +9,24 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 
 /**
- * Defines the Template Entity entity.
+ * Defines the Template Whisperer Entity entity.
  *
  * @ingroup template_whisperer
  *
  * @ContentEntityType(
  *   id = "template_whisperer",
- *   label = @Translation("Template Entity"),
+ *   label = @Translation("Template Whisperer Entity"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
  *
  *     "form" = {
  *       "default" = "Drupal\Core\Entity\ContentEntityForm",
- *       "add" = "Drupal\Core\Entity\ContentEntityForm",
- *       "edit" = "Drupal\Core\Entity\ContentEntityForm",
+ *       "add" = "Drupal\template_whisperer\Form\TemplateWhispererForm",
+ *       "edit" = "Drupal\template_whisperer\Form\TemplateWhispererForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
- *     "access" = "Drupal\template_whisperer\TemplateEntityAccessControlHandler",
+ *     "access" = "Drupal\template_whisperer\TemplateWhispererEntityAccessControlHandler",
  *   },
  *   base_table = "template_whisperer",
  *   admin_permission = "administer template_whisperer entities",
@@ -42,8 +42,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *   },
  * )
  */
-class TemplateEntity extends ContentEntityBase implements TemplateEntityInterface {
-
+class TemplateWhispererEntity extends ContentEntityBase implements TemplateWhispererEntityInterface {
   use EntityChangedTrait;
 
   /**

@@ -1,0 +1,4 @@
+services:
+  plugin.manager.template_whisperer:
+    class: Drupal\template_whisperer\TemplateWhispererManager
+    arguments: ['@entity_type.manager', '@entity.query']
