@@ -42,9 +42,12 @@ revisioning of Templates Whisperers values added for individual entities.
   enabled for this entity, select "Users may translate this field" to use
   Drupal's translation system.
 
-5. When you edit the content of that entity or bundle you should then see the new "Template Whisperer" section on the Advanced tabs.')
+5. When you edit the content of that entity or
+bundle you should then see the new "Template Whisperer"
+section on the Advanced tabs.')
   5.1 Select the suggestion you want to add for that entity or bundle
-  5.2 You can now have access to your own suggestion such [entity-type-id]--[entity-type]--list-news.html.twig.
+  5.2 You can now have access to your own suggestion such
+  [entity-type-id]--[entity-type]--list-news.html.twig.
 
 ## Template Whisperer versions
 
@@ -56,12 +59,14 @@ recommended to keep Drupal core installations up to date.
 
 ## Dependencies
 
-The Drupal 8 version of Template Whisperer requires nothing ! Feel free to use it.
+The Drupal 8 version of Template Whisperer requires nothing !
+Feel free to use it.
 
 ## Supporting organizations
 
 This project is sponsored by Antistatique. We are a Swiss Web Agency,
-Visit us at [www.antistatique.net](https://www.antistatique.net) or Contact us.
+Visit us at [www.antistatique.net](https://www.antistatique.net) or
+[Contact us](mailto:info@antistatique.net).
 
 # Known issues
 
@@ -74,8 +79,8 @@ like the following:
 The Template Whisperer field type is used in the following field:
 node.field_template_whisperer
 In order to uninstall the module, go to the appropriate field settings pages
-and remove the Template Whisperer field listed in the message. Once this is done it will
-be possible to uninstall the module.
+and remove the Template Whisperer field listed in the message.
+Once this is done it will be possible to uninstall the module.
 
 * In order to uninstall the module any "Template Whisperer"
 entities must first be removed.
