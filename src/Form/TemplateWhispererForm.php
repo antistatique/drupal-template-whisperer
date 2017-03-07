@@ -52,7 +52,6 @@ class TemplateWhispererForm extends ContentEntityForm {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
-
     $suggestion = $form_state->getValue('suggestion')[0]['value'];
 
     if (empty($suggestion) || preg_match('@^_+$@', $suggestion)) {
@@ -64,7 +63,7 @@ class TemplateWhispererForm extends ContentEntityForm {
     }
 
     $entity = $this->twManager->getOneBySuggestion($suggestion);
-    if (!empty($entity)) {
+    if (!empty($entity) && $this->entity->id() != $entity->id()) {
       $form_state->setErrorByName('suggestion', $this->t('The suggestion is already in use. It must be unique.'));
     }
 
@@ -79,14 +78,14 @@ class TemplateWhispererForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label Template Whisperer.', [
-          '%label' => $entity->label(),
+        drupal_set_message($this->t('Created the "%label" Template Whisperer.', [
+          '%label' => $entity->getName(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label Template Whisperer.', [
-          '%label' => $entity->label(),
+        drupal_set_message($this->t('Saved the "%label" Template Whisperer.', [
+          '%label' => $entity->getName(),
         ]));
     }
     $form_state->setRedirect('template_whisperer');

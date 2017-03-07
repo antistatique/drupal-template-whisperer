@@ -12,8 +12,11 @@ on your environment:
 
 ## 🏆 Tests
 
+  Template Whisperer use BrowserTestBase to test
+  web-based behaviors and interactions.
+
   ```bash
-    $ ../vendor/bin/phpunit --group template_whisperer
+    $ ../vendor/bin/phpunit --group template_whisperer_ui
   ```
 
 ## 🚔 Check Drupal coding standards & Drupal best practices
@@ -44,7 +47,8 @@ Check Drupal best practices:
 Automatically fix coding standards
 
   ```
-  ./vendor/bin/phpcbf --standard=Drupal --colors --extensions=php,module,inc,install,test,profile,theme,css,info
+  ./vendor/bin/phpcbf --standard=Drupal --colors
+  --extensions=php,module,inc,install,test,profile,theme,css,info
   --ignore=*/vendor/* ./
   ```
 

@@ -403,18 +403,7 @@ display:
       filters: {  }
       sorts: {  }
       title: 'Template Whisperer'
-      header:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: false
-          content: "<ul class=\"action-links\">\n  <li><a href=\"/admin/structure/template-whisperer/add\" class=\"button button-action button--primary button--small\">Add Template Whisperer</a></li>\n</ul>"
-          plugin_id: text_custom
+      header: {  }
       footer: {  }
       empty:
         area_text_custom:
