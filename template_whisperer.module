@@ -11,7 +11,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
  * Implements hook_theme_suggestions_alter().
  */
 function template_whisperer_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
-  if (in_array($hook, ['taxonomy_term', 'node', 'user'])) {
+  if (isset($variables['elements']['#entity_type']) && $variables['elements']['#entity_type'] === $hook) {
     $twManager = \Drupal::service('plugin.manager.template_whisperer');
 
     $entity = template_whisperer_get_route_entity();
