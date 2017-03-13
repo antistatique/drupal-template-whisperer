@@ -69,12 +69,12 @@ class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPlug
 
     $target_id = $items[$delta]->get('target_id')->getValue();
     $element['target_id'] = array(
-      '#title' => $this->t('Select a Templates Whisperer'),
+      '#title' => $this->t('Select a template'),
       '#type' => 'select',
       '#options' => $whisperes,
       '#empty_value' => '',
       '#default_value' => (isset($target_id)) ? $target_id : NULL,
-      '#description' => $this->t('Specify a Template Whisperer by which a template will be generated. For example "@entity--@bundle--list-news.html.twig" when choosing a "List news" Whisperer.', ['@entity' => $entity, '@bundle' => $bundle]),
+      '#description' => $this->t('Specify a template which will be used to render the content.'),
     );
 
     // Put the form element into the form's "advanced" group.
