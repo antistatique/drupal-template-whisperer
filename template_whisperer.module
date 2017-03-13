@@ -11,7 +11,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
  * Implements hook_theme_suggestions_alter().
  */
 function template_whisperer_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
-  if (in_array($hook, ['term', 'node', 'user'])) {
+  if (in_array($hook, ['taxonomy_term', 'node', 'user'])) {
     $twManager = \Drupal::service('plugin.manager.template_whisperer');
 
     $entity = template_whisperer_get_route_entity();
@@ -20,12 +20,12 @@ function template_whisperer_theme_suggestions_alter(array &$suggestions, array $
 
       // Expose one suggestion by fields.
       foreach ($suggestionsEntity as $suggestion) {
-        $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->getType() . '__' . $suggestion;
+        $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->bundle() . '__' . $suggestion;
       }
 
       // Expose a suggestion merging each fields suggestion on this entity.
       if (count($suggestionsEntity) > 1) {
-        $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->getType() . '__' . implode('__', $suggestionsEntity);
+        $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->bundle() . '__' . implode('__', $suggestionsEntity);
       }
     }
   }
