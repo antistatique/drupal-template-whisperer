@@ -341,7 +341,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '[entity]--[bundle]--<strong>{{ suggestion }}</strong>.html.twig'
+            text: '[entity]--[bundle]--<strong>{{ suggestion|replace({''_'': ''-''})}}</strong>.html.twig'
             make_link: false
             path: ''
             absolute: false
