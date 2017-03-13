@@ -40,7 +40,7 @@ class UiPageTest extends TemplateWhispererTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Test that there is an empty listing.
-    $this->assertSession()->pageTextContains('No content available.');
+    $this->assertSession()->pageTextContains('No Template Whisperer has currently been set.');
   }
 
   /**
@@ -50,21 +50,21 @@ class UiPageTest extends TemplateWhispererTestBase {
     $this->drupalGet('admin/structure/template-whisperer/list');
     $this->clickLink('Add Template Whisperer');
 
-    $this->fillField('Name', 'Test');
+    $this->fillField('Name', 'Test Template Whisperer');
     $this->fillField('Template Suggestion', 'test');
     $this->pressButton('Save');
 
     // Must be redirected on the collection page.
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextContains('Created the "Test" Template Whisperer.');
+    $this->assertSession()->pageTextContains('Created the "Test Template Whisperer" Template Whisperer.');
 
     // Edit the created template whisperer.
-    $this->clickLink('Test');
+    $this->clickLink('Test Template Whisperer');
     $this->assertSession()->statusCodeEquals(200);
     $this->pressButton('Save');
 
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextContains('Saved the "Test" Template Whisperer.');
+    $this->assertSession()->pageTextContains('Saved the "Test Template Whisperer" Template Whisperer.');
   }
 
   /**
@@ -79,11 +79,11 @@ class UiPageTest extends TemplateWhispererTestBase {
     $this->assertSession()->pageTextContains('This action cannot be undone.');
 
     $this->pressButton('Delete');
-    $this->assertSession()->pageTextContains('No content available.');
+    $this->assertSession()->pageTextContains('No Template Whisperer has currently been set.');
 
     // Test Delete into entity.
     $this->testCreate();
-    $this->clickLink('Test');
+    $this->clickLink('Test Template Whisperer');
     $this->clickLink('Delete');
     $this->assertSession()->pageTextContains('Are you sure you want to delete');
     $this->assertSession()->pageTextContains('This action cannot be undone.');

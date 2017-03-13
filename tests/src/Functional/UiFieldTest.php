@@ -97,7 +97,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Check our custom field exist.
-    $this->assertSession()->elementContains('css', '#edit-field-template-whisperer-0', 'Select a Templates Whisperer');
+    $this->assertSession()->elementContains('css', '#edit-field-template-whisperer-0', 'Select a template');
   }
 
 }

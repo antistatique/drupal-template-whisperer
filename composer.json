@@ -1,6 +1,6 @@
 {
-  "name": "drupal/disrupt_tools",
-  "description": "Provides a number of utility, service and helper APIs for Drupal developers and site builders.",
+  "name": "drupal/template_whisperer",
+  "description": "Provides a formalized way to declare and suggest page templates.",
   "type": "drupal-module",
   "homepage": "https://www.drupal.org/sandbox/wengerk/2857588",
   "authors": [

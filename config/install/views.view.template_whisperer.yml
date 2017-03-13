@@ -6,11 +6,11 @@ dependencies:
     - template_whisperer
     - user
 _core:
-  default_config_hash: UkYB_LQnXmgxbaMHipA55f_pPQfwVMXhuHmoSMGCB98
+  default_config_hash: iU95eCiOsNnKXGNTXduyIwgANodMzRRA-FZN34j5vms
 id: template_whisperer
 label: 'Template Whisperer'
 module: views
-description: 'List of template whisperers.'
+description: 'List of Template Whisperers.'
 tag: ''
 base_table: template_whisperer
 base_field: id
@@ -289,8 +289,8 @@ display:
           label: 'Template Suggestion'
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '[entity]--[bundle]--<strong>{{ suggestion }}</strong>.html.twig'
             make_link: false
             path: ''
             absolute: false

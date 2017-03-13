@@ -15,7 +15,7 @@ use Drupal\template_whisperer\TemplateWhispererManager;
  *
  * @FieldWidget(
  *   id = "template_whisperer",
- *   label = @Translation("Advanced Template Whisperer form"),
+ *   label = @Translation("Advanced Template Whisperer"),
  *   field_types = {
  *     "template_whisperer"
  *   }

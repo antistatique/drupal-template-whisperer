@@ -1,6 +1,7 @@
 # Developing on Template Whisperer
 
 * Issues should be filed at https://www.drupal.org/project/issues/2857588
+* Pull requests can be made against https://github.com/drupal-media/crop/pulls
 
 ## 🔧 Prerequisites
 
