@@ -63,10 +63,6 @@ class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPlug
       '#type' => 'details',
     ];
 
-    // Create the field.
-    $entity = $items->getEntity()->getEntityTypeId();
-    $bundle = $items->getEntity()->bundle();
-
     $target_id = $items[$delta]->get('target_id')->getValue();
     $element['target_id'] = array(
       '#title' => $this->t('Select a template'),
