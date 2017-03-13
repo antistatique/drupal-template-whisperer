@@ -105,7 +105,7 @@ class TemplateWhispererEntity extends ContentEntityBase implements TemplateWhisp
 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))
-      ->setDescription(t('The name of the Template Whisperer.'))
+      ->setDescription(t('The name of the Template Whisperer. (Will appear in the field widget)'))
       ->setSettings(array(
         'max_length' => 50,
         'text_processing' => 0,
@@ -125,7 +125,7 @@ class TemplateWhispererEntity extends ContentEntityBase implements TemplateWhisp
 
     $fields['suggestion'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Template Suggestion'))
-      ->setDescription(t("The  Template Whisperer's Suggestion that should be used."))
+      ->setDescription(t("The Theme Suggestion machine name that should be used. E.g. <code>news_list</code>"))
       ->setSettings(array(
         'max_length' => 50,
         'text_processing' => 0,

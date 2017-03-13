@@ -415,7 +415,7 @@ display:
           admin_label: ''
           empty: true
           tokenize: false
-          content: 'No content available.'
+          content: 'No Template Whisperer has currently been set.'
           plugin_id: text_custom
       relationships: {  }
       arguments: {  }

@@ -56,7 +56,7 @@ class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPlug
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $whisperes = $this->twManager->getList();
+    $whisperers = $this->twManager->getList();
 
     // Add the outer fieldset.
     $element += [
@@ -71,7 +71,7 @@ class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPlug
     $element['target_id'] = array(
       '#title' => $this->t('Select a template'),
       '#type' => 'select',
-      '#options' => $whisperes,
+      '#options' => $whisperers,
       '#empty_value' => '',
       '#default_value' => (isset($target_id)) ? $target_id : NULL,
       '#description' => $this->t('Specify a template which will be used to render the content.'),

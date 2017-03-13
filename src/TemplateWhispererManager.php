@@ -144,9 +144,9 @@ class TemplateWhispererManager {
    * Returns a list of the suggestions values from a field.
    *
    * @param Drupal\Core\Entity\ContentEntityInterface $entity
-   *   The Entity which contain our special field(s).
+   *   The Entity that contains our special field(s).
    * @param string $field_name
-   *    The field name which one contain our suggestion.
+   *    The field that contains our suggestion.
    *
    * @return string
    *   The suggestion string.
