@@ -124,7 +124,7 @@ class TemplateWhispererEntity extends ContentEntityBase implements TemplateWhisp
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['suggestion'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Template Suggestion'))
+      ->setLabel(t('Theme Suggestion'))
       ->setDescription(t("The Theme Suggestion machine name that should be used. E.g. <code>news_list</code>"))
       ->setSettings(array(
         'max_length' => 50,

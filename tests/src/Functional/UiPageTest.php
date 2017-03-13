@@ -51,7 +51,7 @@ class UiPageTest extends TemplateWhispererTestBase {
     $this->clickLink('Add Template Whisperer');
 
     $this->fillField('Name', 'Test Template Whisperer');
-    $this->fillField('Template Suggestion', 'test');
+    $this->fillField('Theme Suggestion', 'test');
     $this->pressButton('Save');
 
     // Must be redirected on the collection page.
