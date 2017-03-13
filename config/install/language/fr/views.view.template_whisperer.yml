@@ -1,0 +1,14 @@
+display:
+  default:
+    display_options:
+      fields:
+        edit_template_whisperer:
+          text: Modifier
+        delete_template_whisperer:
+          text: Supprimer
+        name:
+          label: Nom
+        dropbutton:
+          label: Actions
+        suggestion:
+          label: 'Suggestion de thème'
