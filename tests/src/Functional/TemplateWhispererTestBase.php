@@ -10,6 +10,34 @@ use Drupal\Tests\BrowserTestBase;
 abstract class TemplateWhispererTestBase extends BrowserTestBase {
 
   /**
+   * Enables Twig debugging.
+   */
+  protected function debugOn() {
+    // Enable debug, rebuild the service container, and clear all caches.
+    $parameters = $this->container->getParameter('twig.config');
+    if (!$parameters['debug']) {
+      $parameters['debug'] = TRUE;
+      $this->setContainerParameter('twig.config', $parameters);
+      $this->rebuildContainer();
+      $this->resetAll();
+    }
+  }
+
+  /**
+   * Disables Twig debugging.
+   */
+  protected function debugOff() {
+    // Disable debug, rebuild the service container, and clear all caches.
+    $parameters = $this->container->getParameter('twig.config');
+    if ($parameters['debug']) {
+      $parameters['debug'] = FALSE;
+      $this->setContainerParameter('twig.config', $parameters);
+      $this->rebuildContainer();
+      $this->resetAll();
+    }
+  }
+
+  /**
    * Finds link with specified locator.
    *
    * @param string $locator

@@ -1,7 +1,9 @@
 # Developing on Template Whisperer
 
-* Issues should be filed at https://www.drupal.org/project/issues/template_whisperer
-* Pull requests can be made against https://github.com/antistatique/drupal-template-whisperer/pulls
+* Issues should be filed at
+https://www.drupal.org/project/issues/template_whisperer
+* Pull requests can be made against
+https://github.com/antistatique/drupal-template-whisperer/pulls
 
 ## 🔧 Prerequisites
 

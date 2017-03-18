@@ -45,6 +45,13 @@ class UiFieldTest extends TemplateWhispererTestBase {
     ]);
     $this->drupalLogin($admin_user);
 
+    $this->template = $this->container->get('entity.manager')->getStorage('template_whisperer')
+      ->create([
+        'name'       => 'Article - GoogleMap',
+        'suggestion' => 'googlemap',
+      ]);
+    $this->template->save();
+
     // Create an article content type that we will use for testing.
     $this->drupalCreateContentType(array('type' => 'article', 'name' => 'Article'));
 
@@ -55,6 +62,13 @@ class UiFieldTest extends TemplateWhispererTestBase {
       ]);
     $this->article->save();
     $this->container->get('router.builder')->rebuild();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function tearDown() {
+    $this->debugOff();
   }
 
   /**
@@ -98,6 +112,54 @@ class UiFieldTest extends TemplateWhispererTestBase {
 
     // Check our custom field exist.
     $this->assertSession()->elementContains('css', '#edit-field-template-whisperer-0', 'Select a template');
+  }
+
+  /**
+   * Tests that the Template Whisperer saved is used as suggestion of the node.
+   */
+  public function testFieldSaved() {
+    $this->testFieldExist();
+
+    // Save the node with our custom field.
+    $this->fillField('Select a template', $this->template->id());
+    $this->pressButton('Save');
+
+    $this->debugOn();
+
+    // Access the node canonical page.
+    $this->drupalGet('node/' . $this->article->id());
+    $this->assertSession()->statusCodeEquals(200);
+
+    $output = $this->getSession()->getPage();
+
+    $this->assertTrue(strpos($output->getContent(), '<!-- THEME HOOK: \'node\' -->') !== FALSE, 'node theme hook debug comment is present.');
+
+    $this->assertTrue(strpos($output->getContent(), '* node--article--googlemap.html.twig') !== FALSE, 'node--article--googlemap theme hook debug comment is present.');
+  }
+
+  /**
+   * Tests the Node whitout Template saved, don't suggestion it.
+   */
+  public function testFieldWhitoutTemplate() {
+    $article = $this->container->get('entity_type.manager')->getStorage('node')
+      ->create([
+        'type'  => 'article',
+        'title' => 'Article N°2',
+      ]);
+    $article->save();
+    $this->testFieldSaved();
+
+    $this->debugOn();
+
+    // Access the node canonical page.
+    $this->drupalGet('node/' . $article->id());
+    $this->assertSession()->statusCodeEquals(200);
+
+    $output = $this->getSession()->getPage();
+
+    $this->assertTrue(strpos($output->getContent(), '<!-- THEME HOOK: \'node\' -->') !== FALSE, 'node theme hook debug comment is present.');
+
+    $this->assertTrue(strpos($output->getContent(), '* node--article--googlemap.html.twig') === FALSE, 'node--article--googlemap theme hook debug comment is NOT present.');
   }
 
 }
