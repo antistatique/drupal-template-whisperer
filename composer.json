@@ -2,7 +2,7 @@
   "name": "drupal/template_whisperer",
   "description": "Provides a formalized way to declare and suggest page templates.",
   "type": "drupal-module",
-  "homepage": "https://www.drupal.org/sandbox/wengerk/2857588",
+  "homepage": "https://www.drupal.org/project/template_whisperer",
   "authors": [
     {
       "name": "Antistatique",
@@ -18,7 +18,7 @@
     }
   ],
   "support": {
-    "issues": "https://www.drupal.org/project/issues/2857588"
+    "issues": "https://www.drupal.org/project/issues/template_whisperer"
   },
   "license": "GPL-2.0+",
   "require-dev": {
