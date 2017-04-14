@@ -1,0 +1,13 @@
+template_whisperer.template_whisperer.*:
+  type: config_entity
+  label: 'Template Whisperer - Suggestion Config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    name:
+      type: string
+      label: 'Name'
+    suggestion:
+      type: string
+      label: 'Theme Suggestion'

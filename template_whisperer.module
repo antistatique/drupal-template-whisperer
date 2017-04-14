@@ -18,14 +18,16 @@ function template_whisperer_theme_suggestions_alter(array &$suggestions, array $
     if (!empty($entity) && $entity instanceof ContentEntityInterface) {
       $suggestionsEntity = $twManager->suggestionsFromEntity($entity);
 
-      // Expose one suggestion by fields.
-      foreach ($suggestionsEntity as $suggestion) {
-        $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->bundle() . '__' . $suggestion;
-      }
+      if (!empty($suggestionsEntity)) {
+        // Expose one suggestion by fields.
+        foreach ($suggestionsEntity as $suggestion) {
+          $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->bundle() . '__' . $suggestion;
+        }
 
-      // Expose a suggestion merging each fields suggestion on this entity.
-      if (count($suggestionsEntity) > 1) {
-        $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->bundle() . '__' . implode('__', $suggestionsEntity);
+        // Expose a suggestion merging each fields suggestion on this entity.
+        if (count($suggestionsEntity) > 1) {
+          $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->bundle() . '__' . implode('__', $suggestionsEntity);
+        }
       }
     }
   }

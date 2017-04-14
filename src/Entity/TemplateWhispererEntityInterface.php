@@ -2,15 +2,14 @@
 
 namespace Drupal\template_whisperer\Entity;
 
-use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
 
 /**
  * Provides an interface for defining Template Whisperer Entity entities.
  *
  * @ingroup template_whisperer
  */
-interface TemplateWhispererEntityInterface extends ContentEntityInterface, EntityChangedInterface {
+interface TemplateWhispererEntityInterface extends ConfigEntityInterface {
 
   /**
    * Gets the Template Whisperer Entity name.
@@ -49,24 +48,5 @@ interface TemplateWhispererEntityInterface extends ContentEntityInterface, Entit
    *   The called Template Whisperer Entity entity.
    */
   public function setSuggestion($suggestion);
-
-  /**
-   * Gets the Template Whisperer Entity creation timestamp.
-   *
-   * @return int
-   *   Creation timestamp of the Template Whisperer Entity.
-   */
-  public function getCreatedTime();
-
-  /**
-   * Sets the Template Whisperer Entity creation timestamp.
-   *
-   * @param int $timestamp
-   *   The Template Whisperer Entity creation timestamp.
-   *
-   * @return \Drupal\template_whisperer\Entity\TemplateWhispererEntityInterface
-   *   The called Template Whisperer Entity entity.
-   */
-  public function setCreatedTime($timestamp);
 
 }

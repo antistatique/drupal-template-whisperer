@@ -2,7 +2,7 @@
 
 namespace Drupal\template_whisperer\Form;
 
-use Drupal\Core\Entity\ContentEntityForm;
+use Drupal\Core\Entity\EntityForm;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\template_whisperer\TemplateWhispererManager;
@@ -12,7 +12,7 @@ use Drupal\template_whisperer\TemplateWhispererManager;
  *
  * @ingroup template_whisperer
  */
-class TemplateWhispererForm extends ContentEntityForm {
+class TemplateWhispererForm extends EntityForm {
 
   /**
    * Template Whisperer Manager.
@@ -42,8 +42,34 @@ class TemplateWhispererForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
-    $form = parent::buildForm($form, $form_state);
+  public function form(array $form, FormStateInterface $form_state) {
+    $form = parent::form($form, $form_state);
+
+    /** @var \Drupal\template_whisperer\Entity\TemplateWhispererEntity $entity */
+    $entity = $this->buildEntity($form, $form_state);
+
+    $form['#title'] = $this->operation == 'add' ? $this->t('Add suggestion')
+        :
+        $this->t('Edit %name suggestion', array('%name' => $entity->name));
+
+    $form['name'] = [
+      '#title'         => $this->t('Name'),
+      '#type'          => 'textfield',
+      '#default_value' => isset($entity->name) ? $entity->name : NULL,
+      '#description'   => $this->t('The human-readable name. Will appear in the field widget.'),
+      '#size'          => 50,
+      '#required'      => TRUE,
+    ];
+
+    $form['suggestion'] = [
+      '#title'         => $this->t('Suggestion'),
+      '#type'          => 'textfield',
+      '#default_value' => isset($entity->suggestion) ? $entity->suggestion : NULL,
+      '#description'   => $this->t('A unique suggestion for this template whisperer. It must only contain lowercase letters, numbers, and underscores. E.g. <code>news_list</code>'),
+      '#required'      => TRUE,
+      '#size'          => 50,
+    ];
+
     return $form;
   }
 
@@ -52,7 +78,7 @@ class TemplateWhispererForm extends ContentEntityForm {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
-    $suggestion = $form_state->getValue('suggestion')[0]['value'];
+    $suggestion = $form_state->getValue('suggestion');
 
     if (empty($suggestion) || preg_match('@^_+$@', $suggestion)) {
       $form_state->setErrorByName('suggestion', $this->t('The suggestion must contain unique characters.'));
@@ -66,29 +92,31 @@ class TemplateWhispererForm extends ContentEntityForm {
     if (!empty($entity) && $this->entity->id() != $entity->id()) {
       $form_state->setErrorByName('suggestion', $this->t('The suggestion is already in use. It must be unique.'));
     }
-
   }
 
   /**
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-    $entity = $this->entity;
-    $status = parent::save($form, $form_state);
+    /** @var \Drupal\template_whisperer\Entity\TemplateWhispererEntity $entity */
+    $entity = $this->buildEntity($form, $form_state);
+
+    $entity->id = trim($entity->suggestion);
+    $status = $entity->save();
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the "%label" Template Whisperer.', [
-          '%label' => $entity->getName(),
+        drupal_set_message($this->t('Created the "%name" suggestion.', [
+          '%name' => $entity->getName(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the "%label" Template Whisperer.', [
-          '%label' => $entity->getName(),
+        drupal_set_message($this->t('Saved the "%name" suggestion.', [
+          '%name' => $entity->getName(),
         ]));
     }
-    $form_state->setRedirect('template_whisperer');
+    $form_state->setRedirect('entity.template_whisperer.collection');
   }
 
 }

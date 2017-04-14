@@ -27,7 +27,8 @@ class TemplateWhispererFieldItem extends FieldItemBase {
     return array(
       'columns' => array(
         'target_id' => array(
-          'type' => 'int',
+          'type' => 'varchar',
+          'length' => 128,
           'not null' => FALSE,
         ),
       ),

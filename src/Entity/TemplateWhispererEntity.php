@@ -2,33 +2,25 @@
 
 namespace Drupal\template_whisperer\Entity;
 
-use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Entity\ContentEntityBase;
-use Drupal\Core\Entity\EntityChangedTrait;
-use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Config\Entity\ConfigEntityBase;
 
 /**
  * Defines the Template Whisperer Entity entity.
  *
  * @ingroup template_whisperer
  *
- * @ContentEntityType(
+ * @ConfigEntityType(
  *   id = "template_whisperer",
  *   label = @Translation("Template Whisperer Entity"),
  *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "views_data" = "Drupal\views\EntityViewsData",
- *
+ *     "list_builder" = "Drupal\template_whisperer\TemplateWhispererListBuilder",
  *     "form" = {
- *       "default" = "Drupal\Core\Entity\ContentEntityForm",
  *       "add" = "Drupal\template_whisperer\Form\TemplateWhispererForm",
  *       "edit" = "Drupal\template_whisperer\Form\TemplateWhispererForm",
- *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
+ *       "delete" = "Drupal\template_whisperer\Form\TemplateWhispererDeleteForm",
  *     },
- *     "access" = "Drupal\template_whisperer\TemplateWhispererEntityAccessControlHandler",
  *   },
- *   base_table = "template_whisperer",
+ *   config_prefix = "template_whisperer",
  *   admin_permission = "administer template_whisperer entities",
  *   entity_keys = {
  *     "id" = "id",
@@ -42,28 +34,20 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *   },
  * )
  */
-class TemplateWhispererEntity extends ContentEntityBase implements TemplateWhispererEntityInterface {
-  use EntityChangedTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function preCreate(EntityStorageInterface $storage_controller, array &$values) {
-    parent::preCreate($storage_controller, $values);
-  }
+class TemplateWhispererEntity extends ConfigEntityBase implements TemplateWhispererEntityInterface {
 
   /**
    * {@inheritdoc}
    */
   public function getName() {
-    return $this->get('name')->value;
+    return $this->name;
   }
 
   /**
    * {@inheritdoc}
    */
   public function setName($name) {
-    $this->set('name', $name);
+    $this->name = $name;
     return $this;
   }
 
@@ -71,87 +55,15 @@ class TemplateWhispererEntity extends ContentEntityBase implements TemplateWhisp
    * {@inheritdoc}
    */
   public function getSuggestion() {
-    return $this->get('suggestion')->value;
+    return $this->suggestion;
   }
 
   /**
    * {@inheritdoc}
    */
   public function setSuggestion($suggestion) {
-    $this->set('suggestion', $suggestion);
+    $this->suggestion = $suggestion;
     return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCreatedTime() {
-    return $this->get('created')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setCreatedTime($timestamp) {
-    $this->set('created', $timestamp);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
-    $fields = parent::baseFieldDefinitions($entity_type);
-
-    $fields['name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Name'))
-      ->setDescription(t('The name of the Template Whisperer. (Will appear in the field widget)'))
-      ->setSettings(array(
-        'max_length' => 50,
-        'text_processing' => 0,
-      ))
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ))
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['suggestion'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Theme Suggestion'))
-      ->setDescription(t("The Theme Suggestion machine name that should be used. E.g. <code>news_list</code>"))
-      ->setSettings(array(
-        'max_length' => 50,
-        'text_processing' => 0,
-      ))
-      ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -4,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'string_textfield',
-        'weight' => -4,
-      ))
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['created'] = BaseFieldDefinition::create('created')
-      ->setLabel(t('Created'))
-      ->setDescription(t('The time that the entity was created.'));
-
-    $fields['changed'] = BaseFieldDefinition::create('changed')
-      ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the entity was last edited.'));
-
-    return $fields;
   }
 
 }

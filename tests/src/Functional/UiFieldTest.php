@@ -47,6 +47,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
 
     $this->template = $this->container->get('entity.manager')->getStorage('template_whisperer')
       ->create([
+        'id'         => 'googlemap',
         'name'       => 'Article - GoogleMap',
         'suggestion' => 'googlemap',
       ]);

@@ -40,7 +40,7 @@ class UiPageTest extends TemplateWhispererTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Test that there is an empty listing.
-    $this->assertSession()->pageTextContains('No Template Whisperer has currently been set.');
+    $this->assertSession()->pageTextContains('No suggestion has currently been set.');
   }
 
   /**
@@ -48,23 +48,23 @@ class UiPageTest extends TemplateWhispererTestBase {
    */
   public function testCreate() {
     $this->drupalGet('admin/structure/template-whisperer/list');
-    $this->clickLink('Add Template Whisperer');
+    $this->clickLink('Add suggestion');
 
     $this->fillField('Name', 'Test Template Whisperer');
-    $this->fillField('Theme Suggestion', 'test');
+    $this->fillField('Suggestion', 'test');
     $this->pressButton('Save');
 
     // Must be redirected on the collection page.
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextContains('Created the "Test Template Whisperer" Template Whisperer.');
+    $this->assertSession()->pageTextContains('Created the "Test Template Whisperer" suggestion.');
 
     // Edit the created template whisperer.
-    $this->clickLink('Test Template Whisperer');
+    $this->clickLink('Edit');
     $this->assertSession()->statusCodeEquals(200);
     $this->pressButton('Save');
 
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextContains('Saved the "Test Template Whisperer" Template Whisperer.');
+    $this->assertSession()->pageTextContains('Saved the "Test Template Whisperer" suggestion.');
   }
 
   /**
@@ -75,17 +75,18 @@ class UiPageTest extends TemplateWhispererTestBase {
     $this->testCreate();
 
     $this->clickLink('Delete');
-    $this->assertSession()->pageTextContains('Are you sure you want to delete');
+    $this->assertSession()->pageTextContains('Are you sure you want to delete the suggestion "Test Template Whisperer"?');
     $this->assertSession()->pageTextContains('This action cannot be undone.');
 
     $this->pressButton('Delete');
-    $this->assertSession()->pageTextContains('No Template Whisperer has currently been set.');
+    $this->assertSession()->pageTextContains('No suggestion has currently been set.');
+    $this->assertSession()->pageTextContains('The suggestion "Test Template Whisperer" has been deleted.');
 
     // Test Delete into entity.
     $this->testCreate();
-    $this->clickLink('Test Template Whisperer');
+    $this->clickLink('Edit');
     $this->clickLink('Delete');
-    $this->assertSession()->pageTextContains('Are you sure you want to delete');
+    $this->assertSession()->pageTextContains('Are you sure you want to delete the suggestion "Test Template Whisperer"?');
     $this->assertSession()->pageTextContains('This action cannot be undone.');
     $this->clickLink('Cancel');
     $this->assertSession()->statusCodeEquals(200);
