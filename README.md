@@ -29,7 +29,7 @@ but those are some of the obvious uses of Template Whisperer.
 
 1. Install the module.
 2. Open admin/structure/template-whisperer/list.
-3. Create your own suggestion by clicking "Add Template Whisperer.
+3. Create your own suggestion by clicking "Add suggestion".
 4. Attach a new field "Template Whisperer" for a specific entity.
 
   4.1 Go to the "Manage fields" of the bundle where

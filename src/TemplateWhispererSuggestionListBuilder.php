@@ -15,7 +15,7 @@ use Drupal\Core\Entity\EntityInterface;
  *
  * @see \Drupal\template_whisperer\Entity\TemplateWhisperer
  */
-class TemplateWhispererListBuilder extends ConfigEntityListBuilder {
+class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
 
   /**
    * The url generator service.
@@ -32,7 +32,7 @@ class TemplateWhispererListBuilder extends ConfigEntityListBuilder {
   protected $queryFactory;
 
   /**
-   * Constructs a TemplateWhispererListBuilder object.
+   * Constructs a TemplateWhispererSuggestionListBuilder object.
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
    *   The entity type definition.

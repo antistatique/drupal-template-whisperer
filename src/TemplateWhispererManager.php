@@ -19,11 +19,11 @@ class TemplateWhispererManager {
   private $entityQuery;
 
   /**
-   * EntityTypeManagerInterface to load Template Whisperer.
+   * EntityTypeManagerInterface to manage Template Whisperer Suggestion.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  private $entityTemplateWhisperer;
+  private $entityTemplateWhispererSuggestion;
 
   /**
    * Class constructor.
@@ -34,8 +34,8 @@ class TemplateWhispererManager {
    *   The factory class Creating entity query objects.
    */
   public function __construct(EntityTypeManagerInterface $entity, QueryFactory $entityQuery) {
-    $this->entityTemplateWhisperer = $entity->getStorage('template_whisperer');
-    $this->entityQuery             = $entityQuery;
+    $this->entityTemplateWhispererSuggestion = $entity->getStorage('template_whisperer_suggestion');
+    $this->entityQuery                       = $entityQuery;
   }
 
   /**
@@ -43,17 +43,17 @@ class TemplateWhispererManager {
    *
    * @return array
    *   Return an array of
-   *   Drupal\template_whisperer\Entity\TemplateWhispererEntity
+   *   Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity
    */
   public function getList() {
     $list = [];
 
     $ids = $this->entityQuery
-      ->get('template_whisperer')
+      ->get('template_whisperer_suggestion')
       ->execute();
 
     if (!empty($ids)) {
-      $entities = $this->entityTemplateWhisperer->loadMultiple($ids);
+      $entities = $this->entityTemplateWhispererSuggestion->loadMultiple($ids);
 
       foreach ($entities as $entity) {
         $list[$entity->id()] = $entity->getName();
@@ -69,17 +69,17 @@ class TemplateWhispererManager {
    * @param string $suggestion
    *   The suggestion.
    *
-   * @return Drupal\template_whisperer\Entity\TemplateWhispererEntity|null
+   * @return Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity|null
    *    Return the Entity corresponding of the given suggestion or Null.
    */
   public function getOneBySuggestion($suggestion) {
     $id = $this->entityQuery
-      ->get('template_whisperer')
+      ->get('template_whisperer_suggestion')
       ->condition('suggestion', $suggestion)
       ->range(0, 1)
       ->execute();
 
-    return $id ? $this->entityTemplateWhisperer->load(current($id)) : NULL;
+    return $id ? $this->entityTemplateWhispererSuggestion->load(current($id)) : NULL;
   }
 
   /**
@@ -157,7 +157,7 @@ class TemplateWhispererManager {
       // Get value and break it into an array of suggestions with values.
       $target_id = $item->get('target_id')->getValue();
       if (!empty($target_id)) {
-        $whisperer = $this->entityTemplateWhisperer->load($target_id);
+        $whisperer = $this->entityTemplateWhispererSuggestion->load($target_id);
         $suggestion = $whisperer->getSuggestion();
       }
     }

@@ -1,6 +1,6 @@
-template_whisperer.template_whisperer.*:
+template_whisperer.template_whisperer_suggestion.*:
   type: config_entity
-  label: 'Template Whisperer - Suggestion Config'
+  label: 'Template Whisperer - Suggestion'
   mapping:
     id:
       type: string

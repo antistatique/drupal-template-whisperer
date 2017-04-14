@@ -12,7 +12,7 @@ use Drupal\template_whisperer\TemplateWhispererManager;
  *
  * @ingroup template_whisperer
  */
-class TemplateWhispererForm extends EntityForm {
+class TemplateWhispererSuggestionForm extends EntityForm {
 
   /**
    * Template Whisperer Manager.
@@ -45,7 +45,7 @@ class TemplateWhispererForm extends EntityForm {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
-    /** @var \Drupal\template_whisperer\Entity\TemplateWhispererEntity $entity */
+    /** @var \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity $entity */
     $entity = $this->buildEntity($form, $form_state);
 
     $form['#title'] = $this->operation == 'add' ? $this->t('Add suggestion')
@@ -98,7 +98,7 @@ class TemplateWhispererForm extends EntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-    /** @var \Drupal\template_whisperer\Entity\TemplateWhispererEntity $entity */
+    /** @var \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity $entity */
     $entity = $this->buildEntity($form, $form_state);
 
     $entity->id = trim($entity->suggestion);
@@ -116,7 +116,7 @@ class TemplateWhispererForm extends EntityForm {
           '%name' => $entity->getName(),
         ]));
     }
-    $form_state->setRedirect('entity.template_whisperer.collection');
+    $form_state->setRedirect('entity.template_whisperer_suggestion.collection');
   }
 
 }

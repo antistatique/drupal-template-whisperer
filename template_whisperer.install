@@ -11,6 +11,6 @@ use Drupal\Core\Url;
  * Implements hook_install().
  */
 function template_whisperer_install() {
-  $url = Url::fromRoute('template_whisperer');
+  $url = Url::fromRoute('entity.template_whisperer_suggestion.collection');
   drupal_set_message(t('Template Whisperer is available under <a href="@administer-page">Administer > Structure > Template Whisperer</a>', array('@administer-page' => $url->toString())));
 }

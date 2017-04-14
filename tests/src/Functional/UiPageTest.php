@@ -28,7 +28,7 @@ class UiPageTest extends TemplateWhispererTestBase {
     parent::setUp();
 
     // Create a user for tests.
-    $account = $this->drupalCreateUser(['administer template_whisperer entities']);
+    $account = $this->drupalCreateUser(['administer template whisperer suggestion entities']);
     $this->drupalLogin($account);
   }
 
