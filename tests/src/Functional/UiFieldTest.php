@@ -45,7 +45,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
     ]);
     $this->drupalLogin($admin_user);
 
-    $this->template = $this->container->get('entity.manager')->getStorage('template_whisperer_suggestion')
+    $this->template = $this->container->get('entity_type.manager')->getStorage('template_whisperer_suggestion')
       ->create([
         'id'         => 'googlemap',
         'name'       => 'Article - GoogleMap',
