@@ -54,7 +54,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
     $this->template->save();
 
     // Create an article content type that we will use for testing.
-    $this->drupalCreateContentType(array('type' => 'article', 'name' => 'Article'));
+    $this->drupalCreateContentType(['type' => 'article', 'name' => 'Article']);
 
     $this->article = $this->container->get('entity_type.manager')->getStorage('node')
       ->create([

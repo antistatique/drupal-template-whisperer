@@ -1,6 +1,6 @@
 # Collection page.
 entity.template_whisperer_suggestion.collection:
-  path: '/admin/structure/template-whisperer/list'
+  path: '/admin/structure/template-whisperer'
   defaults:
   # Calls the "list" controller, defined as annotation
   # of the template whisperer suggestion entity.
@@ -8,6 +8,21 @@ entity.template_whisperer_suggestion.collection:
     _title: 'List suggestion(s)'
   requirements:
     _permission: 'administer template whisperer suggestion entities'
+
+# Usage page.
+entity.template_whisperer_suggestion.usage:
+  path: '/admin/structure/template-whisperer/{template_whisperer_suggestion}/usage'
+  defaults:
+  # Calls the "usage" controller, defined as annotation
+  # of the template whisperer suggestion entity.
+    _controller: '\Drupal\template_whisperer\Controller\AdminSuggestionController::usage'
+    _title: 'Suggestion usage information'
+  requirements:
+    _permission: 'administer template whisperer suggestion entities'
+  options:
+    parameters:
+      template_whisperer_suggestion:
+        type: entity:template_whisperer_suggestion
 
 # Detail page.
 entity.template_whisperer_suggestion.canonical:

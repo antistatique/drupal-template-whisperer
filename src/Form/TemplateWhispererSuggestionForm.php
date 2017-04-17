@@ -50,7 +50,7 @@ class TemplateWhispererSuggestionForm extends EntityForm {
 
     $form['#title'] = $this->operation == 'add' ? $this->t('Add suggestion')
         :
-        $this->t('Edit %name suggestion', array('%name' => $entity->name));
+        $this->t('Edit %name suggestion', ['%name' => $entity->name]);
 
     $form['name'] = [
       '#title'         => $this->t('Name'),

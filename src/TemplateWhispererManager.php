@@ -4,7 +4,7 @@ namespace Drupal\template_whisperer;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use \Drupal\Core\Entity\Query\QueryFactory;
+use Drupal\Core\Entity\Query\QueryFactory;
 
 /**
  * Class TemplateWhispererManager.
@@ -70,7 +70,7 @@ class TemplateWhispererManager {
    *   The suggestion.
    *
    * @return Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity|null
-   *    Return the Entity corresponding of the given suggestion or Null.
+   *   Return the Entity corresponding of the given suggestion or Null.
    */
   public function getOneBySuggestion($suggestion) {
     $id = $this->entityQuery
@@ -146,7 +146,7 @@ class TemplateWhispererManager {
    * @param Drupal\Core\Entity\ContentEntityInterface $entity
    *   The Entity that contains our special field(s).
    * @param string $field_name
-   *    The field that contains our suggestion.
+   *   The field that contains our suggestion.
    *
    * @return string
    *   The suggestion string.
