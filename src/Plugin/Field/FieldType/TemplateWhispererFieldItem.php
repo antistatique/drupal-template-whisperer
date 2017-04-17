@@ -79,11 +79,11 @@ class TemplateWhispererFieldItem extends FieldItemBase {
   public function postSave($update) {
     $entity = $this->getEntity();
 
-    $tws_usage = \Drupal::service('template_whisperer.suggestion.usage');
+    $twSuggestionUsage = \Drupal::service('template_whisperer.suggestion.usage');
     if (!$update) {
       // Add a new usage for newly changed suggestions.
       foreach ($this->referencedEntities() as $suggestion) {
-        $tws_usage->add($suggestion, 'template_whisperer', $entity->getEntityTypeId(), $entity->id());
+        $twSuggestionUsage->add($suggestion, 'template_whisperer', $entity->getEntityTypeId(), $entity->id());
       }
     }
     else {
@@ -112,16 +112,16 @@ class TemplateWhispererFieldItem extends FieldItemBase {
       // removed from the field.
       $removed_ids = array_filter(array_diff($original_ids, $ids));
       if (!empty($removed_ids)) {
-        $removed_suggestions = \Drupal::entityManager()->getStorage('template_whisperer')->loadMultiple($removed_ids);
+        $removed_suggestions = \Drupal::service('entity_type.manager')->getStorage('template_whisperer')->loadMultiple($removed_ids);
         foreach ($removed_suggestions as $suggestion) {
-          $tws_usage->delete($suggestion, 'template_whisperer', $entity->getEntityTypeId(), $entity->id());
+          $twSuggestionUsage->delete($suggestion, 'template_whisperer', $entity->getEntityTypeId(), $entity->id());
         }
       }
 
       // Add new usage entries for newly added suggestions.
       foreach ($suggestions as $suggestion) {
         if (!in_array($suggestion->id(), $original_ids)) {
-          $tws_usage->add($suggestion, 'template_whisperer', $entity->getEntityTypeId(), $entity->id());
+          $twSuggestionUsage->add($suggestion, 'template_whisperer', $entity->getEntityTypeId(), $entity->id());
         }
       }
     }
@@ -134,14 +134,14 @@ class TemplateWhispererFieldItem extends FieldItemBase {
     parent::delete();
     $entity = $this->getEntity();
 
-    $tws_usage = \Drupal::service('template_whisperer.suggestion.usage');
+    $twSuggestionUsage = \Drupal::service('template_whisperer.suggestion.usage');
 
     // If a translation is deleted only decrement the suggestion usage by one.
     // If the default translation is deleted remove all suggestion usages
     // within this entity.
     $count = $entity->isDefaultTranslation() ? 0 : 1;
     foreach ($this->referencedEntities() as $suggestion) {
-      $tws_usage->delete($suggestion, 'template_whisperer', $entity->getEntityTypeId(), $entity->id(), $count);
+      $twSuggestionUsage->delete($suggestion, 'template_whisperer', $entity->getEntityTypeId(), $entity->id(), $count);
     }
   }
 

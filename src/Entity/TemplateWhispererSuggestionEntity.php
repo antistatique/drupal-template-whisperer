@@ -75,13 +75,13 @@ class TemplateWhispererSuggestionEntity extends ConfigEntityBase implements Temp
     parent::preDelete($storage, $entities);
 
     foreach ($entities as $entity) {
-      $tws_usage = \Drupal::service('template_whisperer.suggestion.usage');
+      $twSuggestionUsage = \Drupal::service('template_whisperer.suggestion.usage');
 
       // Delete all remaining references to this suggestion.
-      $suggestion_usage = $tws_usage->listUsage($entity);
+      $suggestion_usage = $twSuggestionUsage->listUsage($entity);
       if (!empty($suggestion_usage)) {
         foreach ($suggestion_usage as $usage) {
-          $tws_usage->delete($entity, $usage->module);
+          $twSuggestionUsage->delete($entity, $usage->module);
         }
       }
     }
