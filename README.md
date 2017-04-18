@@ -28,8 +28,8 @@ but those are some of the obvious uses of Template Whisperer.
 ## Standard usage scenario
 
 1. Install the module.
-2. Open admin/structure/template-whisperer/list.
-3. Create your own suggestion by clicking "Add suggestion".
+2. Open admin/structure/template-whisperer.
+3. Create your own suggestion by clicking "Add Template Whisperer.
 4. Attach a new field "Template Whisperer" for a specific entity.
 
   4.1 Go to the "Manage fields" of the bundle where
@@ -87,6 +87,6 @@ Visit us at [www.antistatique.net](https://www.antistatique.net) or
   entities must first be removed.
   In order to see whether there are entities blocking the
   module from being uninstalled, load the administration interface page
-  (admin/structure/template-whisperer/list) and see if any are listed.
+  (admin/structure/template-whisperer) and see if any are listed.
   In order to uninstall the module, delete every entities.
   Once this is done it will be possible to uninstall the module.
