@@ -48,6 +48,7 @@ class UiPageTest extends TemplateWhispererTestBase {
    */
   public function testCreate() {
     $this->drupalGet('admin/structure/template-whisperer');
+
     $this->clickLink('Add suggestion');
 
     $this->fillField('Name', 'Test Template Whisperer');

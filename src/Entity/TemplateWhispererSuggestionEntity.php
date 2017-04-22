@@ -2,7 +2,6 @@
 
 namespace Drupal\template_whisperer\Entity;
 
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 
 /**
@@ -86,5 +85,4 @@ class TemplateWhispererSuggestionEntity extends ConfigEntityBase implements Temp
       }
     }
   }
-
 }
