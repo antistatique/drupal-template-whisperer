@@ -86,4 +86,5 @@ class TemplateWhispererSuggestionEntity extends ConfigEntityBase implements Temp
       }
     }
   }
+
 }
