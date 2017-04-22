@@ -14,7 +14,11 @@ function template_whisperer_theme_suggestions_alter(array &$suggestions, array $
   if (isset($variables['elements']['#entity_type']) && $variables['elements']['#entity_type'] === $hook) {
     $twManager = \Drupal::service('plugin.manager.template_whisperer');
 
-    $entity = template_whisperer_get_route_entity();
+    $entity = NULL;
+    if (isset($variables['elements']['#' . $hook])) {
+      $entity = $variables['elements']['#' . $hook];
+    }
+
     if (!empty($entity) && $entity instanceof ContentEntityInterface) {
       $suggestionsEntity = $twManager->suggestionsFromEntity($entity);
 
@@ -30,25 +34,6 @@ function template_whisperer_theme_suggestions_alter(array &$suggestions, array $
         }
       }
     }
-  }
-}
-
-/**
- * Returns the entity of the current route.
- *
- * @return EntityInterface
- *   The entity or NULL if this is not an entity route.
- */
-function template_whisperer_get_route_entity() {
-  $route_match = \Drupal::routeMatch();
-  $route_name = $route_match->getRouteName();
-
-  // Look for a canonical entity view page, e.g. node/{nid}, user/{uid}, etc.
-  $matches = [];
-  preg_match('/entity\.(.*)\.canonical/', $route_name, $matches);
-  if (!empty($matches[1])) {
-    $entity_type = $matches[1];
-    return $route_match->getParameter($entity_type);
   }
 }
 
