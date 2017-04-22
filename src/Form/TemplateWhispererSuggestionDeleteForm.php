@@ -15,7 +15,7 @@ class TemplateWhispererSuggestionDeleteForm extends EntityConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete the suggestion "%name"?', array('%name' => $this->entity->getName()));
+    return $this->t('Are you sure you want to delete the suggestion "%name"?', ['%name' => $this->entity->getName()]);
   }
 
   /**
@@ -46,7 +46,7 @@ class TemplateWhispererSuggestionDeleteForm extends EntityConfirmFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->entity->delete();
-    $t_args = array('%name' => $this->entity->getName());
+    $t_args = ['%name' => $this->entity->getName()];
     drupal_set_message($this->t('The suggestion "%name" has been deleted.', $t_args));
     $this->logger('template_whisperer')->notice('Deleted suggestion "%name".', $t_args);
 

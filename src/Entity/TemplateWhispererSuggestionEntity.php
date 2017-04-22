@@ -30,7 +30,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "add-form" = "/admin/structure/template-whisperer/add",
  *     "edit-form" = "/admin/structure/template-whisperer/{template_whisperer_suggestion}/edit",
  *     "delete-form" = "/admin/structure/template-whisperer/{template_whisperer_suggestion}/delete",
- *     "collection" = "/admin/structure/template-whisperer/list",
+ *     "collection" = "/admin/structure/template-whisperer",
+ *     "usage" = "/admin/structure/template-whisperer/{template_whisperer_suggestion}/usage",
  *   },
  * )
  */
@@ -66,4 +67,22 @@ class TemplateWhispererSuggestionEntity extends ConfigEntityBase implements Temp
     return $this;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public static function preDelete(EntityStorageInterface $storage, array $entities) {
+    parent::preDelete($storage, $entities);
+
+    foreach ($entities as $entity) {
+      $twSuggestionUsage = \Drupal::service('template_whisperer.suggestion.usage');
+
+      // Delete all remaining references to this suggestion.
+      $suggestion_usage = $twSuggestionUsage->listUsage($entity);
+      if (!empty($suggestion_usage)) {
+        foreach ($suggestion_usage as $usage) {
+          $twSuggestionUsage->delete($entity, $usage->module);
+        }
+      }
+    }
+  }
 }

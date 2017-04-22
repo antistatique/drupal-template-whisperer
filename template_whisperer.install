@@ -12,5 +12,58 @@ use Drupal\Core\Url;
  */
 function template_whisperer_install() {
   $url = Url::fromRoute('entity.template_whisperer_suggestion.collection');
-  drupal_set_message(t('Template Whisperer is available under <a href="@administer-page">Administer > Structure > Template Whisperer</a>', array('@administer-page' => $url->toString())));
+  drupal_set_message(t('Template Whisperer is available under <a href="@administer-page">Administer > Structure > Template Whisperer</a>', ['@administer-page' => $url->toString()]));
+}
+
+/**
+ * Implements hook_schema().
+ */
+function template_whisperer_schema() {
+  $schema['template_whisperer_suggestion_usage'] = [
+    'description' => 'Track where a suggestion is used.',
+    'fields' => [
+      'sid' => [
+        'description' => 'Suggestion ID.',
+        'type' => 'varchar_ascii',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'module' => [
+        'description' => 'The name of the module that is using the suggestion.',
+        'type' => 'varchar_ascii',
+        'length' => DRUPAL_EXTENSION_NAME_MAX_LENGTH,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'type' => [
+        'description' => 'The name of the object type in which the suggestion is used.',
+        'type' => 'varchar_ascii',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'id' => [
+        'description' => 'The primary key of the object using the suggestion.',
+        'type' => 'varchar_ascii',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'count' => [
+        'description' => 'The number of times this suggestion is used by this object.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['sid', 'type', 'id', 'module'],
+    'indexes' => [
+      'type_id' => ['type', 'id'],
+      'sid_count' => ['sid', 'count'],
+      'sid_module' => ['sid', 'module'],
+    ],
+  ];
+  return $schema;
 }

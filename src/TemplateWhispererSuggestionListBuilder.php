@@ -32,6 +32,13 @@ class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
   protected $queryFactory;
 
   /**
+   * Template Whisperer Suggestion Usage.
+   *
+   * @var \Drupal\template_whisperer\TemplateWhispererSuggestionUsage
+   */
+  protected $twSuggestionUsage;
+
+  /**
    * Constructs a TemplateWhispererSuggestionListBuilder object.
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
@@ -42,11 +49,14 @@ class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
    *   The url generator service.
    * @param \Drupal\Core\Entity\Query\QueryFactory $query_factory
    *   The entity query factory.
+   * @param \Drupal\template_whisperer\TemplateWhispererSuggestionUsage $tw_suggestion_usage
+   *   Template Whisperer Suggestion Usage.
    */
-  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, UrlGeneratorInterface $url_generator, QueryFactory $query_factory) {
+  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, UrlGeneratorInterface $url_generator, QueryFactory $query_factory, TemplateWhispererSuggestionUsage $tw_suggestion_usage) {
     parent::__construct($entity_type, $storage);
-    $this->urlGenerator = $url_generator;
-    $this->queryFactory = $query_factory;
+    $this->urlGenerator      = $url_generator;
+    $this->queryFactory      = $query_factory;
+    $this->twSuggestionUsage = $tw_suggestion_usage;
   }
 
   /**
@@ -57,7 +67,8 @@ class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
       $entity_type,
       $container->get('entity.manager')->getStorage($entity_type->id()),
       $container->get('url_generator'),
-      $container->get('entity.query')
+      $container->get('entity.query'),
+      $container->get('template_whisperer.suggestion.usage')
     );
   }
 
@@ -86,27 +97,13 @@ class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
     ];
     $row['suggestion'] = $entity->getSuggestion();
 
-    // @TODO: Usage listing + Usage page
-    /** @var \Drupal\image\Entity\ImageStyle $image_style */
-    $usage = 0;
-    // Foreach ($image_styles as $image_style) {
-    //   if (count($usage) < 2) {
-    //     $usage[] = $image_style->link();
-    //   }
-    // }
-    //
-    // $other_image_styles = array_splice($image_styles, 2);
-    // if ($other_image_styles) {
-    //   $usage_message = t('@first, @second and @count more', [
-    //     '@first' => $usage[0],
-    //     '@second' => $usage[1],
-    //     '@count' => count($other_image_styles),
-    //   ]);
-    // }
-    // else {
-    //   $usage_message = implode(', ', $usage);
-    // }.
-    $row['usage']['data']['#markup'] = $usage;
+    $usage = $this->t('never');
+    $usages = $this->twSuggestionUsage->countUsage($entity);
+    if ($usages > 0) {
+      $usage = $this->formatPlural($usages, '1 place', '@count places');
+    }
+    $url = $this->urlGenerator->generateFromRoute('entity.template_whisperer_suggestion.usage', ['template_whisperer_suggestion' => $entity->id()]);
+    $row['usage']['data']['#markup'] = '<a href="' . $url . '">' . $usage . '</a>';
 
     return $row + parent::buildRow($entity);
   }

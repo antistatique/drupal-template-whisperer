@@ -2,3 +2,9 @@ services:
   plugin.manager.template_whisperer:
     class: Drupal\template_whisperer\TemplateWhispererManager
     arguments: ['@entity_type.manager', '@entity.query']
+
+  template_whisperer.suggestion.usage:
+    class: Drupal\template_whisperer\TemplateWhispererSuggestionUsage
+    arguments: ['@database']
+    tags:
+      - { name: backend_overridable }
