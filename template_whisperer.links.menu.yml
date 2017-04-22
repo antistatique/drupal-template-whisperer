@@ -1,5 +1,5 @@
 template_whisperer:
   title: 'Template Whisperer'
-  route_name: template_whisperer
+  route_name: entity.template_whisperer_suggestion.collection
   description: 'Template Whisperer'
   parent: system.admin_structure

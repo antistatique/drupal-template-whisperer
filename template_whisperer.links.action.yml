@@ -1,5 +1,5 @@
-entity.template_whisperer.add_form:
-  route_name: entity.template_whisperer.add_form
-  title: 'Add Template Whisperer'
+entity.template_whisperer_suggestion.add_form:
+  route_name: entity.template_whisperer_suggestion.add_form
+  title: 'Add suggestion'
   appears_on:
-    - entity.template_whisperer.collection
+    - entity.template_whisperer_suggestion.collection

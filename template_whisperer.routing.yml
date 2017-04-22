@@ -1,52 +1,52 @@
-template_whisperer:
+# Collection page.
+entity.template_whisperer_suggestion.collection:
   path: '/admin/structure/template-whisperer/list'
   defaults:
-    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
-    _title: 'Template Whisperer'
+  # Calls the "list" controller, defined as annotation
+  # of the template whisperer suggestion entity.
+    _entity_list: 'template_whisperer_suggestion'
+    _title: 'List suggestion(s)'
   requirements:
-    _permission: 'administer template_whisperer entities'
-
-# Collection page.
-# Managed by a views
-entity.template_whisperer.collection:
-  path: '/admin/structure/template-whisperer/list'
+    _permission: 'administer template whisperer suggestion entities'
 
 # Detail page.
-entity.template_whisperer.canonical:
-  path: '/admin/structure/template-whisperer/{template_whisperer}'
+entity.template_whisperer_suggestion.canonical:
+  path: '/admin/structure/template-whisperer/{template_whisperer_suggestion}'
   defaults:
-    # Calls the view controller, defined in the annotation of the
-    # template_whisperer entity.
-    _entity_view: 'template_whisperer'
-    _title: 'Template Whisperer'
+    # Calls the "view" controller, defined as annotation
+    # of the template whisperer suggestion entity.
+    _entity_view: 'template_whisperer_suggestion'
+    _title: 'View suggestion'
   requirements:
-    # Calls the access controller of the entity, $operation 'view'
-    _entity_access: 'template_whisperer.view'
+    _permission: 'administer template whisperer suggestion entities'
 
 # Actions.
-entity.template_whisperer.add_form:
+entity.template_whisperer_suggestion.add_form:
   path: '/admin/structure/template-whisperer/add'
   defaults:
-  # Calls the form.add controller, defined in the contact entity.
-    _entity_form: template_whisperer.add
-    _title: 'Add Template Whisperer'
+    # Calls the "form.add" controller, defined as annotation
+    # of the template whisperer suggestion entity.
+    _entity_form: template_whisperer_suggestion.add
+    _title: 'Add suggestion'
   requirements:
-    _entity_create_access: 'template_whisperer'
+    _permission: 'administer template whisperer suggestion entities'
 
-entity.template_whisperer.edit_form:
-  path: '/admin/structure/template-whisperer/{template_whisperer}/edit'
+entity.template_whisperer_suggestion.edit_form:
+  path: '/admin/structure/template-whisperer/{template_whisperer_suggestion}/edit'
   defaults:
-  # Calls the form.edit controller, defined in the contact entity.
-    _entity_form: template_whisperer.edit
-    _title: 'Edit Template Whisperer'
+    # Calls the "form.edit" controller, defined as annotation
+    # of the template whisperer suggestion entity.
+    _entity_form: template_whisperer_suggestion.edit
+    _title: 'Edit suggestion'
   requirements:
-    _entity_access: 'template_whisperer.edit'
+    _permission: 'administer template whisperer suggestion entities'
 
-entity.template_whisperer.delete_form:
-  path: '/admin/structure/template-whisperer/{template_whisperer}/delete'
+entity.template_whisperer_suggestion.delete_form:
+  path: '/admin/structure/template-whisperer/{template_whisperer_suggestion}/delete'
   defaults:
-    # Calls the form.delete controller, defined in the contact entity.
-    _entity_form: template_whisperer.delete
-    _title: 'Delete Template Whisperer'
+    # Calls the "form.delete" controller, defined as annotation
+    # of the template whisperer suggestion entity.
+    _entity_form: template_whisperer_suggestion.delete
+    _title: 'Delete suggestion'
   requirements:
-    _entity_access: 'template_whisperer.delete'
+    _permission: 'administer template whisperer suggestion entities'
