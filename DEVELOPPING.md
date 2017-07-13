@@ -19,8 +19,21 @@ on your environment:
   web-based behaviors and interactions.
 
   ```bash
-    $ ../vendor/bin/phpunit --group template_whisperer_ui
+  $ cd core
+  $ ../../vendor/bin/phpunit
   ```
+
+For kernel tests you need a working database connection and for browser tests
+your Drupal installation needs to be reachable via a web server.
+Copy the phpunit config file:
+
+  ```bash
+  $ cd core
+  $ cp phpunit.xml.dist phpunit.xml
+  ```
+
+You must provide a `SIMPLETEST_DB`,
+Eg. `sqlite://localhost/build/tw-local.sqlite`.
 
 ## 🚔 Check Drupal coding standards & Drupal best practices
 
