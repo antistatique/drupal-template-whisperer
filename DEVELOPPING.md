@@ -39,7 +39,7 @@ Eg. `sqlite://localhost/build/tw-local.sqlite`.
 
 You need to run composer before using PHPCS. Then register the Drupal
 and DrupalPractice Standard with PHPCS:
-`./vendor/bin/phpcs --config-set installed_paths
+`./vendor/bin/phpcs --config-set installed_paths \
 `pwd`/vendor/drupal/coder/coder_sniffer`
 
 ### Command Line Usage
@@ -47,25 +47,45 @@ and DrupalPractice Standard with PHPCS:
 Check Drupal coding standards:
 
   ```
-  $ ./vendor/bin/phpcs --standard=Drupal --colors
-  --extensions=php,module,inc,install,test,profile,theme,css,info,md
+  $ ./vendor/bin/phpcs --standard=Drupal --colors \
+  --extensions=php,module,inc,install,test,profile,theme,css,info,md \
   --ignore=*/vendor/* ./
   ```
 
 Check Drupal best practices:
 
   ```
-  $ ./vendor/bin/phpcs --standard=DrupalPractice --colors
-  --extensions=php,module,inc,install,test,profile,theme,css,info,md
+  $ ./vendor/bin/phpcs --standard=DrupalPractice --colors \
+  --extensions=php,module,inc,install,test,profile,theme,css,info,md \
   --ignore=*/vendor/* ./
   ```
 
 Automatically fix coding standards
 
   ```
-  ./vendor/bin/phpcbf --standard=Drupal --colors
-  --extensions=php,module,inc,install,test,profile,theme,css,info
+  ./vendor/bin/phpcbf --standard=Drupal --colors \
+  --extensions=php,module,inc,install,test,profile,theme,css,info \
   --ignore=*/vendor/* ./
+  ```
+
+### Improve global code quality using PHPCPD & PHPMD.
+
+Add requirements if necessary using `composer`:
+
+  ```bash
+  $ composer require-dev 'phpmd/phpmd:^2.6' 'sebastian/phpcpd:^3.0'
+  ```
+
+Detect overcomplicated expressions & Unused parameters, methods, properties
+
+  ```bash
+  $ ./vendor/bin/phpmd ./web/modules/custom text ./phpmd.xml
+  ```
+
+Copy/Paste Detector
+
+  ```bash
+  $ ./vendor/bin/phpcpd ./web/modules/custom
   ```
 
 ### Enforce code standards with git hooks
