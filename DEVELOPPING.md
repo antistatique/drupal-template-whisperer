@@ -48,7 +48,9 @@ Run the functional tests:
   ```bash
   # You must be on the drupal-root folder - usually /web.
   $ cd web
-  $ ../vendor/bin/phpunit -c core \
+  $ SIMPLETEST_DB="sqlite://localhost//tmp/tw.sqlite" \
+  SIMPLETEST_BASE_URL='http://d8.test' \
+  ../vendor/bin/phpunit -c core \
   --group template_whisperer_ui
   ```
 
@@ -57,7 +59,9 @@ Debug using
   ```bash
   # You must be on the drupal-root folder - usually /web.
   $ cd web
-  $ ../vendor/bin/phpunit -c core \
+  $ SIMPLETEST_DB="sqlite://localhost//tmp/tw.sqlite" \
+  SIMPLETEST_BASE_URL='http://d8.test' \
+  ../vendor/bin/phpunit -c core \
   --group template_whisperer_ui \
   --printer="\Drupal\Tests\Listeners\HtmlOutputPrinter" --stop-on-error
   ```
