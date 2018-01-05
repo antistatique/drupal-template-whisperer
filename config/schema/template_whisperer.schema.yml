@@ -11,3 +11,20 @@ template_whisperer.template_whisperer_suggestion.*:
     suggestion:
       type: string
       label: 'Theme Suggestion'
+
+# Schema for the configuration of the Template Whisperer field type.
+
+field.field_settings.template_whisperer:
+  type: mapping
+  label: 'Template Whisperer settings'
+  mapping:
+    handler:
+      type: mapping
+      label: 'Reference Type'
+      mapping:
+        suggestions:
+          type: sequence
+          label: 'Available Suggestions'
+          sequence:
+            type: string
+            label: 'Suggestion'

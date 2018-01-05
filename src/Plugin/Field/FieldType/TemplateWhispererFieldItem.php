@@ -5,6 +5,8 @@ namespace Drupal\template_whisperer\Plugin\Field\FieldType;
 use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\TypedData\DataDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Plugin implementation of the 'template_whisperer' field type.
@@ -19,6 +21,15 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
  * )
  */
 class TemplateWhispererFieldItem extends FieldItemBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function defaultFieldSettings() {
+    return [
+      'handler' => ['suggestions' => []],
+    ] + parent::defaultFieldSettings();
+  }
 
   /**
    * {@inheritdoc}
@@ -43,7 +54,7 @@ class TemplateWhispererFieldItem extends FieldItemBase {
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     $properties['target_id'] = DataDefinition::create('string')
-      ->setLabel(t('Template Whisperer reference'))
+      ->setLabel(new TranslatableMarkup('Template Whisperer reference'))
       ->setRequired(TRUE);
 
     return $properties;
@@ -71,6 +82,39 @@ class TemplateWhispererFieldItem extends FieldItemBase {
       }
     }
     return $referenced_entities;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function fieldSettingsForm(array $form, FormStateInterface $form_state) {
+    $element = [];
+
+    $field = $form_state->getFormObject()->getEntity();
+    $settings = $this->getSettings();
+
+    $twManager = \Drupal::service('plugin.manager.template_whisperer');
+    $whisperers = $twManager->getList();
+
+    $element['handler'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Reference type'),
+      '#open' => TRUE,
+      '#description' => $this->t('These settings apply only to the @label field when used in the @bundle type.', [
+        '@label'  => ucfirst($field->getLabel()),
+        '@bundle' => ucfirst($field->getTargetBundle()),
+      ]),
+    ];
+
+    $element['handler']['suggestions'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Available Suggestions'),
+      '#options' => $whisperers,
+      '#default_value' => $settings['handler']['suggestions'],
+      '#description' => $this->t('The suggestion(s) that can be referenced through this field. Leave empty to allow all.'),
+    ];
+
+    return $element;
   }
 
   /**

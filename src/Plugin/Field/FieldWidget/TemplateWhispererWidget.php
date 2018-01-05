@@ -56,7 +56,24 @@ class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPlug
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $whisperers = $this->twManager->getList();
+    // Get all the suggestions.
+    $suggestions = $this->twManager->getList();
+    $field_settings = $this->getFieldSettings();
+
+    // Filter the possible value only if at least one element has been checked.
+    // Otherwise, all the suggestions are available.
+    if (isset($field_settings['handler']) && isset($field_settings['handler']['suggestions'])) {
+      $filtred_suggestions = array_filter($field_settings['handler']['suggestions'], function ($value) {
+        return ($value != '0');
+      });
+
+      // Filter the suggestions to keep only the selected one in the field conf.
+      if (!empty($filtred_suggestions)) {
+        $suggestions = array_filter($suggestions, function ($key) use ($filtred_suggestions) {
+          return array_key_exists($key, $filtred_suggestions);
+        }, ARRAY_FILTER_USE_KEY);
+      }
+    }
 
     // Add the outer fieldset.
     $element += [
@@ -67,7 +84,7 @@ class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPlug
     $element['target_id'] = [
       '#title' => $this->t('Select a template'),
       '#type' => 'select',
-      '#options' => $whisperers,
+      '#options' => $suggestions,
       '#empty_value' => '',
       '#default_value' => (isset($target_id)) ? $target_id : NULL,
       '#description' => $this->t('Specify a template which will be used to render the content.'),

@@ -46,7 +46,6 @@ class UiFieldTest extends TemplateWhispererTestBase {
     $this->drupalLogin($admin_user);
 
     $this->template = $this->container->get('entity_type.manager')->getStorage('template_whisperer_suggestion')
-
       ->create([
         'id'         => 'googlemap',
         'name'       => 'Article - GoogleMap',
@@ -114,6 +113,93 @@ class UiFieldTest extends TemplateWhispererTestBase {
 
     // Check our custom field exist.
     $this->assertSession()->elementContains('css', '#edit-field-template-whisperer-0', 'Select a template');
+  }
+
+  /**
+   * Test the Fields Settings.
+   *
+   * Tests that a previously added Template Whisperer field propose
+   * Available Suggestions in the settings section & store this configuration.
+   */
+  public function testFieldSettings() {
+    $this->testAddField();
+
+    // Access the field settings page.
+    $this->drupalGet('/admin/structure/types/manage/article/fields/node.article.field_template_whisperer');
+    $this->assertSession()->statusCodeEquals(200);
+
+    $session = $this->getSession();
+    $page = $session->getPage();
+
+    // Check Settings field.
+    $this->assertSession()->elementContains('css', '#edit-settings-handler', 'These settings apply only to the Template Whisperer field when used in the Article type.');
+    $this->assertSession()->elementContains('css', '#edit-settings-handler', 'Reference type');
+    $this->assertSession()->elementContains('css', '#edit-settings-handler', 'Available Suggestions');
+    $this->assertSession()->elementContains('css', '#edit-settings-handler-suggestions', 'Article - GoogleMap');
+    $this->assertSession()->checkboxNotChecked('settings[handler][suggestions][googlemap]');
+    $page->checkField('settings[handler][suggestions][googlemap]');
+    $this->pressButton('Save settings');
+
+    // Return to the field settings page.
+    $this->drupalGet('/admin/structure/types/manage/article/fields/node.article.field_template_whisperer');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->checkboxChecked('settings[handler][suggestions][googlemap]');
+  }
+
+  /**
+   * Test the Fields Settings.
+   *
+   * Tests that a previously non-setted Template Whisperer field propose
+   * all Available Suggestions in the widget.
+   */
+  public function testFieldSettingsInWidgetNoSelection() {
+    $this->template_homepage = $this->container->get('entity_type.manager')->getStorage('template_whisperer_suggestion')
+      ->create([
+        'id'         => 'homepage',
+        'name'       => 'Article - Homepage',
+        'suggestion' => 'homepage',
+      ]);
+    $this->template_homepage->save();
+
+    $this->testAddField();
+
+    // Access the node edit page.
+    $this->drupalGet('node/' . $this->article->id() . '/edit');
+    $this->assertSession()->statusCodeEquals(200);
+
+    $this->assertSession()->elementContains('css', '#edit-field-template-whisperer-0-target-id', 'Article - GoogleMap');
+    $this->assertSession()->elementContains('css', '#edit-field-template-whisperer-0-target-id', 'Article - Homepage');
+  }
+
+  /**
+   * Test the Fields Settings.
+   *
+   * Tests that a previously setted Template Whisperer field propose
+   * only selected Available Suggestions in the widget.
+   */
+  public function testFieldSettingsInWidgetWithSelection() {
+    $this->template_homepage = $this->container->get('entity_type.manager')->getStorage('template_whisperer_suggestion')
+      ->create([
+        'id'         => 'homepage',
+        'name'       => 'Article - Homepage',
+        'suggestion' => 'homepage',
+      ]);
+    $this->template_homepage->save();
+
+    $this->testFieldSettings();
+
+    // Return to the field settings page.
+    $this->drupalGet('/admin/structure/types/manage/article/fields/node.article.field_template_whisperer');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->checkboxChecked('settings[handler][suggestions][googlemap]');
+    $this->assertSession()->checkboxNotChecked('settings[handler][suggestions][homepage]');
+
+    // Access the node edit page.
+    $this->drupalGet('node/' . $this->article->id() . '/edit');
+    $this->assertSession()->statusCodeEquals(200);
+
+    $this->assertSession()->elementContains('css', '#edit-field-template-whisperer-0-target-id', 'Article - GoogleMap');
+    $this->assertSession()->elementNotContains('css', '#edit-field-template-whisperer-0-target-id', 'Article - Homepage');
   }
 
   /**
