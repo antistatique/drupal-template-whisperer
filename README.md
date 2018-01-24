@@ -3,6 +3,11 @@
 Provides a formalized way to declare and suggest page templates
 using "Template Whisperer".
 
+
+|       Travis-CI        |        Style-CI         |        Downloads        |         Releases         |
+|:----------------------:|:-----------------------:|:-----------------------:|:------------------------:|
+| [![Travis](https://img.shields.io/travis/antistatique/drupal-template-whisperer.svg?style=flat-square)](https://travis-ci.org/antistatique/drupal-template-whisperer) | [![StyleCI](https://styleci.io/repos/85471768/shield)](https://styleci.io/repos/85471768) | [![Downloads](https://img.shields.io/badge/downloads-8.x--3.1-green.svg?style=flat-square)](https://ftp.drupal.org/files/projects/bamboo_twig-8.x-3.1.tar.gz) | [![Latest Stable Version](https://img.shields.io/badge/release-v3.1-blue.svg?style=flat-square)](https://www.drupal.org/project/bamboo_twig/releases) |
+
 It is a continuation to something besides the standard
 node.html.twig file for a variety of special case pages
 like site news lists, contact page, ...
@@ -52,7 +57,7 @@ but those are some of the obvious uses of Template Whisperer.
 
 ## Template Whisperer versions
 
-Template Whisperer is only available for Drupal 8 !   
+Template Whisperer is only available for Drupal 8 !
 The module is ready to be used in Drupal 8, there are no known issues.
 
 This version should work with all Drupal 8 releases, and it is always
