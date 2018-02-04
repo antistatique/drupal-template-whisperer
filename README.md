@@ -19,6 +19,10 @@ like site news lists, contact page, ...
   - You want to allow the editors to freely include pre-defined content on the
     node by themselves.
     E.g. Add a list of the three latest news at the end of the content.
+  - You don't want to hardcode node ID for specific templating but want the content to drive this decision.
+  - You don't want to hardcode/configure node url to render blocks (default behavior of Drupal Layout) in a custom template (may need (Bambo Twig)[https://www.drupal.org/project/bamboo_twig]).
+  - You want Pathauto be able to detect which page list your specific content to generate a real dynamic pattern driven by content creation.
+  Eg. node of type article need a Pathauto patterns `/articles/article/[node:title]`, you can then use `/[suggestion:lookup:articles_collection:entity:url:relative]/[node:title]`.
 
 Template Whisperer can do a lot more than that,
 but those are some of the obvious uses of Template Whisperer.
@@ -29,6 +33,8 @@ but those are some of the obvious uses of Template Whisperer.
 
 * Use of standard fields for entity support, allowing for translation and
   revisioning of Template Whisperer values added for individual entities.
+
+* Fully Token integration.
 
 ## Standard usage scenario
 
