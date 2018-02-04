@@ -30,6 +30,10 @@ but those are some of the obvious uses of Template Whisperer.
 * Use of standard fields for entity support, allowing for translation and
   revisioning of Template Whisperer values added for individual entities.
 
+* High permissions granularity:
+  - `administer template whisperer suggestion entities`: Access the administration forms for CRUD operations on Suggestion(s).
+  - `administer the template whisperer field`: Allow to see & edit any Template Whisperer field(s).
+
 ## Standard usage scenario
 
 1. Install the module.
