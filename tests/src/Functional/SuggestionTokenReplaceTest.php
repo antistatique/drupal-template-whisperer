@@ -5,6 +5,9 @@ namespace Drupal\Tests\template_whisperer\Functional;
 /**
  * Check suggestion tokens replacement.
  *
+ * @covers ::template_whisperer_token_info
+ * @covers ::template_whisperer_tokens
+ *
  * @group token_template_whisperer
  * @group template_whisperer
  */
