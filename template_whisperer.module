@@ -40,3 +40,4 @@ function template_whisperer_theme_suggestions_alter(array &$suggestions, array $
 // Includes.
 require_once 'inc/rm_cardinality.inc';
 require_once 'inc/help.inc';
+require_once 'inc/tokens.inc';
