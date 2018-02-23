@@ -11,6 +11,9 @@ use Drupal\Core\Url;
  * Implements hook_install().
  */
 function template_whisperer_install() {
+  // Rebuild the route cache before accessing new route.
+  \Drupal::service("router.builder")->rebuild();
+
   $url = Url::fromRoute('entity.template_whisperer_suggestion.collection');
   drupal_set_message(t('Template Whisperer is available under <a href="@administer-page">Administer > Structure > Template Whisperer</a>', ['@administer-page' => $url->toString()]));
 }
