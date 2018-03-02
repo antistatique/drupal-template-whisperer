@@ -13,7 +13,6 @@ template_whisperer.template_whisperer_suggestion.*:
       label: 'Theme Suggestion'
 
 # Schema for the configuration of the Template Whisperer field type.
-
 field.field_settings.template_whisperer:
   type: mapping
   label: 'Template Whisperer settings'
@@ -28,3 +27,12 @@ field.field_settings.template_whisperer:
           sequence:
             type: string
             label: 'Suggestion'
+
+# Schema for Block Conditions
+condition.plugin.template_whisperer:
+  type: condition.plugin
+  mapping:
+    suggestions:
+      type: sequence
+      sequence:
+        type: string

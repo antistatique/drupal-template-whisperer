@@ -82,13 +82,14 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $options = $this->templateWhispererManager->getList();
 
-    $form['templates_whisperer'] = [
+    $form['suggestions'] = [
       '#type' => 'checkboxes',
-      '#title' => $this->t('When the node has the following templates whisperer suggestion'),
-      '#default_value' => $this->configuration['templates'],
+      '#title' => $this->t('When the node has the following Suggestion(s)'),
+      '#default_value' => $this->configuration['suggestions'],
       '#options' => array_map('\Drupal\Component\Utility\Html::escape', $options),
       '#description' => $this->t('Select suggestion(s) to enforce only on those selected. If none are selected, all suggestion will be allowed.'),
     ];
+
 
     $form = parent::buildConfigurationForm($form, $form_state);
     unset($form['negate']);
@@ -101,7 +102,7 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
    */
   public function defaultConfiguration() {
     return [
-      'templates_whisperer' => [],
+      'suggestions' => [],
     ] + parent::defaultConfiguration();
   }
 
@@ -109,7 +110,7 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
-    $this->configuration['templates_whisperer'] = array_filter($form_state->getValue('templates'));
+    $this->configuration['suggestions'] = array_filter($form_state->getValue('suggestions'));
     parent::submitConfigurationForm($form, $form_state);
   }
 
@@ -120,21 +121,21 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
    *   TRUE if the condition has been met, FALSE otherwise.
    */
   public function evaluate() {
-    if (empty($this->configuration['templates_whisperer'])) {
+    if (empty($this->configuration['suggestions'])) {
       return TRUE;
     }
 
     $node = $this->getContextValue('node');
     $nodeTemplates = $this->templateWhispererManager->suggestionsFromEntity($node);
 
-    return count(array_intersect($this->configuration['templates_whisperer'], $nodeTemplates)) > 0;
+    return count(array_intersect($this->configuration['suggestions'], $nodeTemplates)) > 0;
   }
 
   /**
    * Provides a human readable summary of the condition's configuration.
    */
   public function summary() {
-    $templates = $this->configuration['templates_whisperer'];
+    $templates = $this->configuration['suggestions'];
     return $this->t('The node template is @template', [ '@template' => implode(', ', $templates) ]);
   }
 
