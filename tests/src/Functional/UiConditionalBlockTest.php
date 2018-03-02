@@ -135,6 +135,11 @@ class UiConditionalBlockTest extends TemplateWhispererTestBase {
         'title' => 'Article N°2',
         'field_template_whisperer' => $this->suggestions[0]->id(),
       ],
+      [
+        'type'  => 'article',
+        'title' => 'Article N°3',
+        'field_template_whisperer' => $this->suggestions[1]->id(),
+      ],
     ];
     $this->articles = [];
     foreach ($articles_values as $values) {
@@ -178,6 +183,47 @@ class UiConditionalBlockTest extends TemplateWhispererTestBase {
     $this->assertNoText($title, 'Block was not displayed according to block visibility rules.');
 
     $this->drupalGet($this->articles[1]->toUrl());
+    $this->assertText($title, 'Block was displayed according to block visibility rules.');
+
+    $this->drupalGet($this->articles[2]->toUrl());
+    $this->assertNoText($title, 'Block was displayed according to block visibility rules.');
+  }
+
+  /**
+   * Tests block visibility according Template Whisperer suggestions condition.
+   */
+  public function testBlockMultipleVisibility() {
+    $block_name = 'system_powered_by_block';
+    // Create a random title for the block.
+    $title = $this->randomMachineName(8);
+    // Enable a standard block.
+    $default_theme = $this->config('system.theme')->get('default');
+    $edit = [
+      'id'                      => strtolower($this->randomMachineName(8)),
+      'region'                  => 'sidebar_first',
+      'settings[label]'         => $title,
+      'settings[label_display]' => TRUE,
+    ];
+
+    // Set the block to be hidden on Template Whisperer Suggestion "Timeline".
+    $edit['visibility[template_whisperer][suggestions][' . $this->suggestions[0]->id() . ']'] = TRUE;
+    $edit['visibility[template_whisperer][suggestions][' . $this->suggestions[1]->id() . ']'] = TRUE;
+    $this->drupalGet('admin/structure/block/add/' . $block_name . '/' . $default_theme);
+
+    $this->drupalPostForm(NULL, $edit, t('Save block'));
+    $this->assertText('The block configuration has been saved.', 'Block was saved');
+
+    $this->clickLink('Configure');
+    $this->assertFieldChecked('edit-visibility-template-whisperer-suggestions-' . $this->suggestions[0]->id());
+    $this->assertFieldChecked('edit-visibility-template-whisperer-suggestions-' . $this->suggestions[1]->id());
+
+    $this->drupalGet($this->articles[0]->toUrl());
+    $this->assertNoText($title, 'Block was not displayed according to block visibility rules.');
+
+    $this->drupalGet($this->articles[1]->toUrl());
+    $this->assertText($title, 'Block was displayed according to block visibility rules.');
+
+    $this->drupalGet($this->articles[2]->toUrl());
     $this->assertText($title, 'Block was displayed according to block visibility rules.');
   }
 
