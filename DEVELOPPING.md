@@ -9,12 +9,14 @@ https://github.com/antistatique/drupal-template-whisperer/pulls
 
 Drupal repo
   ```
-  git remote add drupal https://wengerk@git.drupal.org:project/template_whisperer.git
+  git remote add drupal \
+  https://wengerk@git.drupal.org:project/template_whisperer.git
   ```
 
 Github repo
   ```
-  git remote add github https://github.com/antistatique/drupal-template-whisperer.git
+  git remote add github \
+  https://github.com/antistatique/drupal-template-whisperer.git
   ```
 
 ## 🔧 Prerequisites
