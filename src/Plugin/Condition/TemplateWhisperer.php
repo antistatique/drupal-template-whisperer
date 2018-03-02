@@ -8,9 +8,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\template_whisperer\TemplateWhispererManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Condition\Annotation\Condition;
-use Drupal\Core\Annotation\ContextDefinition;
-use Drupal\Core\Annotation\Translation;
 
 /**
  * Provides a 'Template Whisperer' condition.
@@ -26,25 +23,14 @@ use Drupal\Core\Annotation\Translation;
 class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryPluginInterface {
 
   /**
+   * The Template Manager.
+   *
    * @var \Drupal\template_whisperer\TemplateWhispererManager
-   *    The Template Manager.
    */
   protected $templateWhispererManager;
 
   /**
-   * Creates a new NodeType instance.
-   *
-   * @param \Drupal\Core\Entity\EntityStorageInterface $entity_storage
-   *   The entity storage.
-   * @param array $configuration
-   *   The plugin configuration, i.e. an array with configuration values keyed
-   *   by configuration option name. The special key 'context' may be used to
-   *   initialize the defined contexts by setting it to an array of context
-   *   values keyed by context names.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param \Drupal\template_whisperer\TemplateWhispererManager $template_whisperer_manager
-   *   The Template Whisperer Manager.
+   * {@inheritdoc}
    */
   public function __construct(EntityStorageInterface $entity_storage, array $configuration, $plugin_id, $plugin_definition, TemplateWhispererManager $template_whisperer_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -52,19 +38,7 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
   }
 
   /**
-   * Creates an instance of the plugin.
-   *
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-   *   The container to pull out services used in the plugin.
-   * @param array                                                     $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string                                                    $plugin_id
-   *   The plugin ID for the plugin instance.
-   * @param mixed                                                     $plugin_definition
-   *   The plugin implementation definition.
-   *
-   * @return static
-   *   Returns an instance of this plugin.
+   * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
@@ -89,7 +63,6 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
       '#options' => array_map('\Drupal\Component\Utility\Html::escape', $options),
       '#description' => $this->t('Select suggestion(s) to enforce only on those selected. If none are selected, all suggestion will be allowed.'),
     ];
-
 
     $form = parent::buildConfigurationForm($form, $form_state);
     unset($form['negate']);
@@ -136,7 +109,7 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
    */
   public function summary() {
     $templates = $this->configuration['suggestions'];
-    return $this->t('The node template is @template', [ '@template' => implode(', ', $templates) ]);
+    return $this->t('The node template is @template', ['@template' => implode(', ', $templates)]);
   }
 
 }
