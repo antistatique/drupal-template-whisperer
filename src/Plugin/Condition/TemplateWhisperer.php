@@ -54,6 +54,8 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+    $form['#attached']['library'][] = 'template_whisperer/block';
+
     $options = $this->templateWhispererManager->getList();
 
     $form['suggestions'] = [
