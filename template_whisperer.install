@@ -70,3 +70,32 @@ function template_whisperer_schema() {
   ];
   return $schema;
 }
+
+/**
+ * Migrate the permission `administer the template whisperer field` to roles.
+ */
+function template_whisperer_update_8001(&$sandbox) {
+  /** @var \Drupal\user\RoleInterface $roleStorage */
+  $roleStorage = \Drupal::service('entity_type.manager')
+    ->getStorage('user_role');
+
+  // Get all roles with `administer template whisperer` permissions.
+  $roles_with_tw_administer = user_role_names(TRUE, 'administer template whisperer');
+  // Get all roles with `administer template whisperer suggestion entities.
+  $roles_with_tw_suggestion = user_role_names(TRUE, 'administer template whisperer suggestion entities');
+
+  $rids = array_merge($roles_with_tw_administer, $roles_with_tw_suggestion);
+  $rids = array_keys($rids);
+
+  if ($rids) {
+    $roles = $roleStorage->loadMultiple($rids);
+    // Add the new permission `administer the template whisperer field` to all
+    // roles that already have the 2 previous permissions
+    // `administer template whisperer` or
+    // `administer template whisperer suggestion entities`.
+    foreach ($roles as $role) {
+      $role->grantPermission('administer the template whisperer field');
+      $role->save();
+    }
+  }
+}
