@@ -35,6 +35,11 @@ but those are some of the obvious uses of Template Whisperer.
   revisioning of Template Whisperer values added for individual entities.
 
 * Fully Token integration.
+ - Highly versatile URLs patterns with Template Whisperer Tokens in Pathauto.
+  
+* High permissions granularity:
+  - `administer template whisperer suggestion entities`: Access the administration forms for CRUD operations on Suggestion(s).
+  - `administer the template whisperer field`: Allow to see & edit any Template Whisperer field(s).
 
 ## Standard usage scenario
 
