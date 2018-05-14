@@ -10,6 +10,7 @@ CHANGELOG
  - Add Hook Update 8001 to migrate the new permission "administer the template whisperer field" & avoid breaking changes.
  - Integrate Travis CI.
  - Integrate Style CI.
+ - Add Twig function to retrieve entity-ies using a given Template Whisperer suggestion.
 
 ## 0.2.0 (2017-04-18)
  - Refactoring Template Whisperer as ConfigEntity instead of ContentEntity.

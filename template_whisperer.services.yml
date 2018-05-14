@@ -8,3 +8,9 @@ services:
     arguments: ['@database']
     tags:
       - { name: backend_overridable }
+
+  template_whisperer.twig.extension:
+    class: Drupal\template_whisperer\TwigExtension\TwigExtension
+    arguments: ['@plugin.manager.template_whisperer', '@template_whisperer.suggestion.usage']
+    tags:
+      - { name: twig.extension }
