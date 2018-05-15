@@ -1,12 +1,14 @@
 CHANGELOG
 ---------
 
-## NEXT RELEASE
+## NEXT RELEASE
  - Improve DEVELOPPING.md with better testing command.
  - Fix an issue that make the Template Whisperer impossible to change in a entity.
  - Add possibility to chose which Suggestion are avaialble for selection, by field.
  - Add more tests to improve stability.
  - Add Block Conditional Visibility.
+ - Add new permission "administer the template whisperer field" for edit access of field(s).
+ - Add Hook Update 8001 to migrate the new permission "administer the template whisperer field" & avoid breaking changes.
  - Integrate Travis CI.
  - Integrate Style CI.
 

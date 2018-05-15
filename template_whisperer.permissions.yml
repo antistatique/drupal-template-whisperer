@@ -1,7 +1,13 @@
-administer template whisperer:
+# Permissions for the Template Whisperer entitiy
+'administer template whisperer':
   title: 'Administer Template Whisperer'
   description: 'Allow to access the administration of Template Whisperer.'
 
-administer template whisperer suggestion entities:
+'administer template whisperer suggestion entities':
   title: 'Administer Template Whisperer Suggestion entities'
   description: 'Allow to access the administration forms for CRUD operations of Template Whisperer Suggestion entities.'
+
+# Permissions for the Template Whisperer field
+'administer the template whisperer field':
+  title: 'Administer Template Whisperer field.'
+  description: 'Allow to edit any Template Whisperer fields.'
