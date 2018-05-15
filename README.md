@@ -36,7 +36,7 @@ but those are some of the obvious uses of Template Whisperer.
 
 * Fully Token integration.
  - Highly versatile URLs patterns with Template Whisperer Tokens in Pathauto.
-  
+
 * High permissions granularity:
   - `administer template whisperer suggestion entities`: Access the administration forms for CRUD operations on Suggestion(s).
   - `administer the template whisperer field`: Allow to see & edit any Template Whisperer field(s).
@@ -78,6 +78,8 @@ recommended to keep Drupal core installations up to date.
 
 The Drupal 8 version of Template Whisperer requires nothing !
 Feel free to use it.
+
+Template Whisperer requires PHP 7.0+ to works properly. We recommend updating to at least PHP 7.1 if possible, and ideally PHP 7.2, which is supported as of Drupal 8.5.0 (release date: March 7, 2018).
 
 ## Supporting organizations
 
