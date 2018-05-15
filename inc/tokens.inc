@@ -47,12 +47,6 @@ function template_whisperer_token_info() {
     'type'        => 'entity',
   ];
 
-  $suggestion_lookup['used-in'] = [
-    'name'        => t('Used In'),
-    'description' => t('Get the first node where the suggestions is used in.'),
-    'type'        => 'array',
-  ];
-
   return [
     'types' => $types,
     'tokens' => [
