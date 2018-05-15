@@ -27,14 +27,14 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
    *
    * @var \Drupal\template_whisperer\TemplateWhispererManager
    */
-  protected $templateWhispererManager;
+  protected $twManager;
 
   /**
    * {@inheritdoc}
    */
   public function __construct(EntityStorageInterface $entity_storage, array $configuration, $plugin_id, $plugin_definition, TemplateWhispererManager $template_whisperer_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->templateWhispererManager = $template_whisperer_manager;
+    $this->twManager = $template_whisperer_manager;
   }
 
   /**
@@ -56,18 +56,18 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $form['#attached']['library'][] = 'template_whisperer/block';
 
-    $options = $this->templateWhispererManager->getList();
+    $options = $this->twManager->getList();
 
     $form['suggestions'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('When the node has the following Suggestion(s)'),
+      '#type'          => 'checkboxes',
+      '#title'         => $this->t('When the node has the following Suggestion(s)'),
       '#default_value' => $this->configuration['suggestions'],
-      '#options' => array_map('\Drupal\Component\Utility\Html::escape', $options),
-      '#description' => $this->t('Select suggestion(s) to enforce only on those selected. If none are selected, all suggestion will be allowed.'),
+      '#options'       => array_map('\Drupal\Component\Utility\Html::escape', $options),
+      '#description'   => $this->t('Select suggestion(s) to enforce only on those selected. If none are selected, all suggestion will be allowed.'),
     ];
 
     $form = parent::buildConfigurationForm($form, $form_state);
-    unset($form['negate']);
+    $form['negate']['#access'] = FALSE;
 
     return $form;
   }
@@ -101,7 +101,7 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
     }
 
     $node = $this->getContextValue('node');
-    $nodeTemplates = $this->templateWhispererManager->suggestionsFromEntity($node);
+    $nodeTemplates = $this->twManager->suggestionsFromEntity($node);
 
     return count(array_intersect($this->configuration['suggestions'], $nodeTemplates)) > 0;
   }
