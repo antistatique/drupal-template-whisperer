@@ -16,7 +16,8 @@ use Drupal\Tests\user\Traits\UserCreationTrait;
  *
  * @see \Drupal\KernelTests\KernelTestBase
  *
- * @group field_template_whisperer
+ * @group template_whisperer_kernel_page
+ * @group template_whisperer_kernel
  * @group template_whisperer
  */
 class FieldTemplateWhispererTest extends FieldKernelTestBase {
