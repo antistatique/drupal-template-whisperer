@@ -23,6 +23,7 @@
   "license": "GPL-2.0-or-later",
   "require-dev": {
     "squizlabs/php_codesniffer": "^2.7",
-    "drupal/coder": "*"
+    "drupal/coder": "*",
+    "wapmorgan/php-code-fixer": "^2.0"
   }
 }
