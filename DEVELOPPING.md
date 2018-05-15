@@ -8,13 +8,15 @@ https://github.com/antistatique/drupal-template-whisperer/pulls
 ## 📦 Repositories
 
 Drupal repo
-  ```
+
+  ```bash
   git remote add drupal \
   https://wengerk@git.drupal.org:project/template_whisperer.git
   ```
 
 Github repo
-  ```
+
+  ```bash
   git remote add github \
   https://github.com/antistatique/drupal-template-whisperer.git
   ```
@@ -37,8 +39,8 @@ your Drupal installation needs to be reachable via a web server.
 Copy the phpunit config file:
 
   ```bash
-  $ cd core
-  $ cp phpunit.xml.dist phpunit.xml
+  cd core
+  cp phpunit.xml.dist phpunit.xml
   ```
 
 You must provide `SIMPLETEST_BASE_URL`, Eg. `http://localhost`.
@@ -49,8 +51,8 @@ Run the functional tests:
 
   ```bash
   # You must be on the drupal-root folder - usually /web.
-  $ cd web
-  $ SIMPLETEST_DB="sqlite://localhost//tmp/tw.sqlite" \
+  cd web
+  SIMPLETEST_DB="sqlite://localhost//tmp/tw.sqlite" \
   SIMPLETEST_BASE_URL='http://d8.test' \
   ../vendor/bin/phpunit -c core \
   --group template_whisperer_ui
@@ -60,8 +62,8 @@ Debug using
 
   ```bash
   # You must be on the drupal-root folder - usually /web.
-  $ cd web
-  $ SIMPLETEST_DB="sqlite://localhost//tmp/tw.sqlite" \
+  cd web
+  SIMPLETEST_DB="sqlite://localhost//tmp/tw.sqlite" \
   SIMPLETEST_BASE_URL='http://d8.test' \
   ../vendor/bin/phpunit -c core \
   --group template_whisperer_ui \
@@ -77,7 +79,7 @@ You need to run composer before using PHPCS. Then register the Drupal
 and DrupalPractice Standard with PHPCS:
 
   ```bash
-  $ ./vendor/bin/phpcs --config-set installed_paths \
+  ./vendor/bin/phpcs --config-set installed_paths \
   `pwd`/vendor/drupal/coder/coder_sniffer
   ```
 
