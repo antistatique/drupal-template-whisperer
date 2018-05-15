@@ -23,14 +23,51 @@ function template_whisperer_theme_suggestions_alter(array &$suggestions, array $
       $suggestionsEntity = $twManager->suggestionsFromEntity($entity);
 
       if (!empty($suggestionsEntity)) {
+
         // Expose one suggestion by fields.
         foreach ($suggestionsEntity as $suggestion) {
-          $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->bundle() . '__' . $suggestion;
-        }
+          // Collect every suggestions variants that will be injected.
+          $base_suggestions = [];
 
-        // Expose a suggestion merging each fields suggestion on this entity.
-        if (count($suggestionsEntity) > 1) {
-          $suggestions[] = $entity->getEntityTypeId() . '__' . $entity->bundle() . '__' . implode('__', $suggestionsEntity);
+          // Will suggest node--article--suggestion.html.twig.
+          $base_suggestions[] = [
+            $entity->getEntityTypeId(),
+            $entity->bundle(),
+          ];
+
+          // Will suggest node--1--article--suggestion.html.twig.
+          $base_suggestions[] = [
+            $entity->getEntityTypeId(),
+            $entity->id(),
+            $entity->bundle(),
+          ];
+
+          // Colect variation based on the view_mode.
+          if (isset($variables['elements']['#view_mode'])) {
+            // Will suggest node--article--teaser--suggestion.html.twig.
+            $base_suggestions[] = [
+              $entity->getEntityTypeId(),
+              $entity->bundle(),
+              $variables['elements']['#view_mode'],
+            ];
+            // Will suggest node--1--article--teaser--suggestion.html.twig.
+            $base_suggestions[] = [
+              $entity->getEntityTypeId(),
+              $entity->id(),
+              $entity->bundle(),
+              $variables['elements']['#view_mode'],
+            ];
+          }
+
+          // Generate suggestions for every variations.
+          foreach ($base_suggestions as $base_suggestion) {
+            $suggestions[] = implode('__', $base_suggestion) . '__' . $suggestion;
+
+            // Merge each fields suggestion at once.
+            if (count($suggestionsEntity) > 1) {
+              $suggestions[] = implode('__', $base_suggestion) . '__' . implode('__', $suggestionsEntity);
+            }
+          }
         }
       }
     }

@@ -1,6 +1,9 @@
 CHANGELOG
 ---------
 
+## NEXT RELEASE
+ - Fix suggestions too much permissive which leads in wrong suggestions usage - Issue 2944054
+
 ## 8.x-2.0 (2018-05-15)
  - Improve DEVELOPPING.md with better testing command.
  - Fix an issue that make the Suggestion impossible to change in a entity field.
