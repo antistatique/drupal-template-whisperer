@@ -1,0 +1,8 @@
+block:
+  version: VERSION
+  js:
+    js/block.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.block

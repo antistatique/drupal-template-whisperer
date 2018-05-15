@@ -15,6 +15,7 @@ Drupal repo
   ```
 
 Github repo
+
   ```bash
   git remote add github \
   https://github.com/antistatique/drupal-template-whisperer.git

@@ -6,6 +6,7 @@ CHANGELOG
  - Fix an issue that make the Suggestion impossible to change in a entity field.
  - Add feature to chose which Suggestion are avaialble for selection, by field.
  - Add more tests to improve stability.
+ - Add Block Conditional Visibility.
  - Add Token integration.
  - Add new permission "administer the template whisperer field" for edit access of field(s).
  - Add Hook Update 8001 to migrate the new permission "administer the template whisperer field" & avoid breaking changes.
