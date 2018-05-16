@@ -62,11 +62,6 @@ function template_whisperer_theme_suggestions_alter(array &$suggestions, array $
           // Generate suggestions for every variations.
           foreach ($base_suggestions as $base_suggestion) {
             $suggestions[] = implode('__', $base_suggestion) . '__' . $suggestion;
-
-            // Merge each fields suggestion at once.
-            if (count($suggestionsEntity) > 1) {
-              $suggestions[] = implode('__', $base_suggestion) . '__' . implode('__', $suggestionsEntity);
-            }
           }
         }
       }
