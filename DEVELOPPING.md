@@ -85,12 +85,23 @@ and DrupalPractice Standard with PHPCS:
 
 ### Command Line Usage
 
+echo "\n🚔  \033[0;32mRunning Code Sniffer Drupal & DrupalPractice for /web/modules/custom ...\033[0m"
+./vendor/bin/phpcs --config-set installed_paths `pwd`/vendor/drupal/coder/coder_sniffer
+./vendor/bin/phpcs --standard=Drupal --colors --extensions=php,module,inc,install,test,profile,theme,css,info,txt --ignore=*/vendor/* --encoding=utf-8 ./
+./vendor/bin/phpcs --standard=DrupalPractice --colors --extensions=php,module,inc,install,test,profile,theme,css,info,txt --ignore=*/vendor/* --encoding=utf-8 ./
+
+echo "\n💩  \033[0;32mRunning PHP Mess Detector ...\033[0m"
+./vendor/bin/phpmd ./ text ./phpmd.xml --suffixes php,module,inc,install,test,profile,theme,css,info,txt --exclude vendor
+
+echo "\n🛂  \033[0;32mRunning PHP Copy/Paste Detector ...\033[0m"
+./vendor/bin/phpcpd ./ --names=*.php,*.module,*.inc,*.install,*.test,*.profile,*.theme,*.css,*.info,*.txt --names-exclude=*.md,*.info.yml --progress --ansi --exclude=vendor
+
 Check Drupal coding standards:
 
   ```bash
   ./vendor/bin/phpcs --standard=Drupal --colors \
   --extensions=php,module,inc,install,test,profile,theme,css,info,md \
-  --ignore=*/vendor/*,*/node_modules/* ./
+  --ignore=*/vendor/*,*/node_modules/* --encoding=utf-8 ./
   ```
 
 Check Drupal best practices:
@@ -98,7 +109,7 @@ Check Drupal best practices:
   ```bash
   ./vendor/bin/phpcs --standard=DrupalPractice --colors \
   --extensions=php,module,inc,install,test,profile,theme,css,info,md \
-  --ignore=*/vendor/*,*/node_modules/* ./
+  --ignore=*/vendor/*,*/node_modules/* --encoding=utf-8 ./
   ```
 
 Automatically fix coding standards
@@ -106,7 +117,15 @@ Automatically fix coding standards
   ```bash
   ./vendor/bin/phpcbf --standard=Drupal --colors \
   --extensions=php,module,inc,install,test,profile,theme,css,info \
-  --ignore=*/vendor/*,*/node_modules/* ./
+  --ignore=*/vendor/*,*/node_modules/* --encoding=utf-8 ./
+  ```
+
+Checks compatibility with PHP interpreter versions
+
+  ```bash
+  ./vendor/bin/phpcf \
+  --file-extensions php,module,inc,install,test,profile,theme,info \
+  --exclude vendor ./
   ```
 
 ### Improve global code quality using PHPCPD & PHPMD
@@ -114,7 +133,7 @@ Automatically fix coding standards
 Add requirements if necessary using `composer`:
 
   ```bash
-  composer require --dev 'phpmd/phpmd:^2.6' 'sebastian/phpcpd:^3.0'
+  composer require --dev 'phpmd/phpmd:^2.6' 'sebastian/phpcpd:^3.0' 'wapmorgan/php-code-fixer:^2.0'
   ```
 
 Detect overcomplicated expressions & Unused parameters, methods, properties
@@ -127,6 +146,14 @@ Copy/Paste Detector
 
   ```bash
   ./vendor/bin/phpcpd ./web/modules/custom
+  ```
+
+PhpCodeFixer
+
+  A scanner that checks compatibility of your code with new interpreter versions.
+
+  ```bash
+  ./vendor/bin/phpcf ./web/modules/custom
   ```
 
 ### Enforce code standards with git hooks
