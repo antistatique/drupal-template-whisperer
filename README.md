@@ -6,7 +6,7 @@ using "Template Whisperer".
 
 |       Travis-CI        |        Style-CI         |        Downloads        |         Releases         |
 |:----------------------:|:-----------------------:|:-----------------------:|:------------------------:|
-| [![Travis](https://img.shields.io/travis/antistatique/drupal-template-whisperer.svg?style=flat-square)](https://travis-ci.org/antistatique/drupal-template-whisperer) | [![StyleCI](https://styleci.io/repos/85471768/shield)](https://styleci.io/repos/85471768) | [![Downloads](https://img.shields.io/badge/downloads-8.x--2.0-green.svg?style=flat-square)](https://ftp.drupal.org/files/projects/template_whisperer-8.x-2.0.tar.gz) | [![Latest Stable Version](https://img.shields.io/badge/release-v2.0-blue.svg?style=flat-square)](https://www.drupal.org/project/template_whisperer/releases) |
+| [![Travis](https://img.shields.io/travis/antistatique/drupal-template-whisperer.svg?style=flat-square)](https://travis-ci.org/antistatique/drupal-template-whisperer) | [![StyleCI](https://styleci.io/repos/85471768/shield)](https://styleci.io/repos/85471768) | [![Downloads](https://img.shields.io/badge/downloads-8.x--2.1-green.svg?style=flat-square)](https://ftp.drupal.org/files/projects/template_whisperer-8.x-2.1.tar.gz) | [![Latest Stable Version](https://img.shields.io/badge/release-v2.1-blue.svg?style=flat-square)](https://www.drupal.org/project/template_whisperer/releases) |
 
 It is a continuation to something besides the standard
 node.html.twig file for a variety of special case pages
