@@ -1,6 +1,9 @@
 CHANGELOG
 ---------
 
+## NEXT RELEASE
+ - fix uninstall/reinstall by removing garbage configurations.
+
 ## 8.x-2.0 (2018-05-15)
  - Improve DEVELOPPING.md with better testing command.
  - Fix an issue that make the Suggestion impossible to change in a entity field.

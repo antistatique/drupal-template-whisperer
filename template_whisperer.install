@@ -99,3 +99,10 @@ function template_whisperer_update_8001(&$sandbox) {
     }
   }
 }
+
+/**
+ * Remove the Template Whisperer listing views to use the Entity one.
+ */
+function template_whisperer_update_8002(&$sandbox) {
+  \Drupal::configFactory()->getEditable('views.view.template_whisperer')->delete();
+}
