@@ -2,7 +2,8 @@ CHANGELOG
 ---------
 
 ## NEXT RELEASE
- - Fix suggestions too much permissive which leads in wrong suggestions usage - Issue 2944054
+ - Fix suggestions too much permissive which leads in wrong suggestions usage - Issue 2944054.
+ - Update the latests PHPUnit 6.x for testing on TravisCI.
  - Fix uninstall/reinstall by removing garbage configurations.
 
 ## 8.x-2.0 (2018-05-15)

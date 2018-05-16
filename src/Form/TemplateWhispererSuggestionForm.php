@@ -115,6 +115,7 @@ class TemplateWhispererSuggestionForm extends EntityForm {
         drupal_set_message($this->t('Saved the "%name" suggestion.', [
           '%name' => $entity->getName(),
         ]));
+        break;
     }
     $form_state->setRedirect('entity.template_whisperer_suggestion.collection');
   }
