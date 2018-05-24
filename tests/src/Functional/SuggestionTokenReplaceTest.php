@@ -95,7 +95,6 @@ class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {
     // Create the usage entry.
     $twSuggestionUsage = $this->container->get('template_whisperer.suggestion.usage');
     $twSuggestionUsage->add($this->suggestions['foo'], 'template_whisperer', $this->testNode->getEntityTypeId(), $this->testNode->id());
-
   }
 
   /**
