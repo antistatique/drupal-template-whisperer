@@ -113,9 +113,6 @@ function template_whisperer_tokens($type, $tokens, array $data, array $options, 
     }
 
     $entity_type_manager = \Drupal::service('entity_type.manager');
-    if (!$usage) {
-      return $replacements;
-    }
     $entity_storage = $entity_type_manager->getStorage($usage->type);
     $entity = $entity_storage->load($usage->id);
 
