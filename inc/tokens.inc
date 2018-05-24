@@ -107,6 +107,11 @@ function template_whisperer_tokens($type, $tokens, array $data, array $options, 
     $usages = $tw_manager_usage->listUsage($suggestion);
     $usage = reset($usages);
 
+    // Prevent lookup when the suggestion is never used.
+    if (!$usage) {
+      return $replacements;
+    }
+
     $entity_type_manager = \Drupal::service('entity_type.manager');
     if (!$usage) {
       return $replacements;

@@ -27,9 +27,16 @@ class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {
   /**
    * Collection of Template Whisperer test entites.
    *
-   * @var Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity[]
+   * @var \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity[]
    */
   private $suggestions;
+
+  /**
+   * The node with an attached suggestion for this tests.
+   *
+   * @var \Drupal\node\NodeInterface
+   */
+  protected $testNode;
 
   /**
    * {@inheritdoc}
@@ -77,25 +84,26 @@ class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {
         'field_name'  => 'field_template_whisperer',
         'bundle'      => 'article',
       ])->save();
+
+    // Create a default entity & attache a suggestion.
+    $this->testNode = $this->drupalCreateNode(['type' => 'article']);
+
+    $target_id = $this->suggestions['foo']->getSuggestion();
+    $this->testNode->field_template_whisperer->target_id = $target_id;
+    $this->testNode->save();
+
+    // Create the usage entry.
+    $twSuggestionUsage = $this->container->get('template_whisperer.suggestion.usage');
+    $twSuggestionUsage->add($this->suggestions['foo'], 'template_whisperer', $this->testNode->getEntityTypeId(), $this->testNode->id());
+
   }
 
   /**
-   * Creates a suggestion, then tests the tokens generated from it.
+   * Test the token works with valid parameters.
    */
   public function testSuggestionTokenReplacement() {
     $token_service = \Drupal::token();
     $language_interface = \Drupal::languageManager()->getCurrentLanguage();
-
-    // Create a default entity & attache a suggestion.
-    $node = $this->drupalCreateNode(['type' => 'article']);
-
-    $target_id = $this->suggestions['foo']->getSuggestion();
-    $node->field_template_whisperer->target_id = $target_id;
-    $node->save();
-
-    // Create the usage entry.
-    $twSuggestionUsage = $this->container->get('template_whisperer.suggestion.usage');
-    $twSuggestionUsage->add($this->suggestions['foo'], 'template_whisperer', $node->getEntityTypeId(), $node->id());
 
     // Tokens options.
     $options = ['langcode' => $language_interface->getId()];
@@ -112,13 +120,43 @@ class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {
 
     // Chainable Lookup -> Entity tokens.
     $replacement = $token_service->replace('[suggestion:lookup:foo:entity:nid]', [], $options);
-    $this->assertEqual($replacement, $node->id());
+    $this->assertEqual($replacement, $this->testNode->id());
     $replacement = $token_service->replace('[suggestion:lookup:foo:entity:url]', [], $options);
-    $this->assertEqual($replacement, $node->toUrl('canonical', ['absolute' => TRUE])->toString());
+    $this->assertEqual($replacement, $this->testNode->toUrl('canonical', ['absolute' => TRUE])->toString());
 
     // Tests invalide token for node.
     $replacement = $token_service->replace('[suggestion:lookup:foo:entity]', [], $options);
     $this->assertEqual($replacement, '[suggestion:lookup:foo:entity]');
+  }
+
+  /**
+   * Test the token works with unexisting lookup suggestion.
+   */
+  public function testSuggestionTokenUnexistingSuggestion() {
+    $token_service = \Drupal::token();
+    $language_interface = \Drupal::languageManager()->getCurrentLanguage();
+
+    // Tokens options.
+    $options = ['langcode' => $language_interface->getId()];
+
+    // Tests inexisting suggestion.
+    $replacement = $token_service->replace('[suggestion:lookup:baz:entity:id]', [], $options);
+    $this->assertEqual($replacement, '[suggestion:lookup:baz:entity:id]');
+  }
+
+  /**
+   * Test the token works with unused lookup suggestion.
+   */
+  public function testSuggestionTokenUnusedSuggestion() {
+    $token_service = \Drupal::token();
+    $language_interface = \Drupal::languageManager()->getCurrentLanguage();
+
+    // Tokens options.
+    $options = ['langcode' => $language_interface->getId()];
+
+    // Tests existing but non-used suggestion.
+    $replacement = $token_service->replace('[suggestion:lookup:bar:entity:id]', [], $options);
+    $this->assertEqual($replacement, '[suggestion:lookup:bar:entity:id]');
   }
 
 }
