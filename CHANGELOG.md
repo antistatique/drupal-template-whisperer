@@ -1,6 +1,9 @@
 CHANGELOG
 ---------
 
+## NEXT RELEASE
+ - Fix Token suggestion my crash on unused suggestion lookup - Issue 2974817.
+
 ## 8.x-2.1 (2018-05-16)
  - Fix suggestions too much permissive which leads in wrong suggestions usage - Issue 2944054.
  - Update to PHPUnit 6.x & Drupal 8.6.x for testing on TravisCI.
