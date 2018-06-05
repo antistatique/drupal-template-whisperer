@@ -4,6 +4,7 @@ CHANGELOG
 ## NEXT RELEASE
  - Fix Token suggestion my crash on unused suggestion lookup - Issue 2974817.
  - Add better warning of suggestion usage before deletion.
+ - Fix Undefined index: handler when updating a Template Whisperer Settings - Issue 2935078.
 
 ## 8.x-2.1 (2018-05-16)
  - Fix suggestions too much permissive which leads in wrong suggestions usage - Issue 2944054.

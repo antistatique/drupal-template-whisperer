@@ -97,9 +97,9 @@ class TemplateWhispererFieldItem extends FieldItemBase {
     $whisperers = $twManager->getList();
 
     $element['handler'] = [
-      '#type' => 'details',
+      '#type'  => 'details',
       '#title' => $this->t('Reference type'),
-      '#open' => TRUE,
+      '#open'  => TRUE,
       '#description' => $this->t('These settings apply only to the @label field when used in the @bundle type.', [
         '@label'  => ucfirst($field->getLabel()),
         '@bundle' => ucfirst($field->getTargetBundle()),
@@ -107,11 +107,11 @@ class TemplateWhispererFieldItem extends FieldItemBase {
     ];
 
     $element['handler']['suggestions'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Available Suggestions'),
-      '#options' => $whisperers,
-      '#default_value' => $settings['handler']['suggestions'],
-      '#description' => $this->t('The suggestion(s) that can be referenced through this field. Leave empty to allow all.'),
+      '#type'          => 'checkboxes',
+      '#title'         => $this->t('Available Suggestions'),
+      '#options'       => $whisperers,
+      '#default_value' => isset($settings['handler']['suggestions']) ? $settings['handler']['suggestions'] : [],
+      '#description'   => $this->t('The suggestion(s) that can be referenced through this field. Leave empty to allow all.'),
     ];
 
     return $element;
