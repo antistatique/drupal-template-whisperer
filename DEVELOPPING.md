@@ -11,7 +11,7 @@ Drupal repo
 
   ```bash
   git remote add drupal \
-  https://wengerk@git.drupal.org:project/template_whisperer.git
+  git@git.drupal.org:project/template_whisperer.git
   ```
 
 Github repo
