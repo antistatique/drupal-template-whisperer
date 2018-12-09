@@ -90,8 +90,12 @@ class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPlug
       '#description' => $this->t('Specify a template which will be used to render the content.'),
     ];
 
-    // Put the form element into the form's "advanced" group.
-    $element['#group'] = 'advanced';
+    // When "advanced" group exists move the form element inside.
+    // Prevent moving the form element when used within an inline-edit-form.
+    if ((isset($form['advanced']) && $form['advanced']['#type'] === 'vertical_tabs')
+      || (isset($form['#type']) && $form['#type'] != 'inline_entity_form')) {
+      $element['#group'] = 'advanced';
+    }
 
     return $element;
   }

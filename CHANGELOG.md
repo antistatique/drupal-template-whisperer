@@ -1,6 +1,9 @@
 CHANGELOG
 ---------
 
+## NEXT RELEASE
+ - Issue #3008554 by wengerk, valthebald: Display widget in advanced group only when it exists.
+
 ## 8.x-2.2 (2018-06-05)
  - Fix Token suggestion my crash on unused suggestion lookup - Issue 2974817.
  - Add better warning of suggestion usage before deletion.
