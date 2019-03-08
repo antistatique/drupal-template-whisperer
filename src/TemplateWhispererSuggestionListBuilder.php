@@ -3,7 +3,6 @@
 namespace Drupal\template_whisperer;
 
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
-use Drupal\Core\Entity\Query\QueryFactory;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -25,13 +24,6 @@ class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
   protected $urlGenerator;
 
   /**
-   * The entity query factory.
-   *
-   * @var \Drupal\Core\Entity\Query\QueryFactory
-   */
-  protected $queryFactory;
-
-  /**
    * Template Whisperer Suggestion Usage.
    *
    * @var \Drupal\template_whisperer\TemplateWhispererSuggestionUsage
@@ -47,15 +39,12 @@ class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
    *   The entity storage class.
    * @param \Drupal\Core\Routing\UrlGeneratorInterface $url_generator
    *   The url generator service.
-   * @param \Drupal\Core\Entity\Query\QueryFactory $query_factory
-   *   The entity query factory.
    * @param \Drupal\template_whisperer\TemplateWhispererSuggestionUsage $tw_suggestion_usage
    *   Template Whisperer Suggestion Usage.
    */
-  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, UrlGeneratorInterface $url_generator, QueryFactory $query_factory, TemplateWhispererSuggestionUsage $tw_suggestion_usage) {
+  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, UrlGeneratorInterface $url_generator, TemplateWhispererSuggestionUsage $tw_suggestion_usage) {
     parent::__construct($entity_type, $storage);
     $this->urlGenerator      = $url_generator;
-    $this->queryFactory      = $query_factory;
     $this->twSuggestionUsage = $tw_suggestion_usage;
   }
 
@@ -67,7 +56,6 @@ class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
       $entity_type,
       $container->get('entity.manager')->getStorage($entity_type->id()),
       $container->get('url_generator'),
-      $container->get('entity.query'),
       $container->get('template_whisperer.suggestion.usage')
     );
   }

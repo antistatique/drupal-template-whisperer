@@ -106,13 +106,13 @@ class TemplateWhispererSuggestionForm extends EntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the "%name" suggestion.', [
+        $this->messenger()->addMessage($this->t('Created the "%name" suggestion.', [
           '%name' => $entity->getName(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the "%name" suggestion.', [
+        $this->messenger()->addMessage($this->t('Saved the "%name" suggestion.', [
           '%name' => $entity->getName(),
         ]));
         break;

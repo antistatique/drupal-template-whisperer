@@ -94,7 +94,8 @@ class TemplateWhispererSuggestionDeleteForm extends EntityConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->entity->delete();
     $t_args = ['%name' => $this->entity->getName()];
-    drupal_set_message($this->t('The suggestion "%name" has been deleted.', $t_args));
+
+    $this->messenger()->addMessage($this->t('The suggestion "%name" has been deleted.', $t_args));
     $this->logger('template_whisperer')->notice('Deleted suggestion "%name".', $t_args);
 
     $form_state->setRedirectUrl($this->getCancelUrl());
