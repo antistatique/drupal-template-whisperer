@@ -1,8 +1,9 @@
 CHANGELOG
 ---------
 
-## NEXT RELEASE
+## NEXT RELEASE
  - Issue #3008554 by wengerk, valthebald: Display widget in advanced group only when it exists.
+ - close #3044924 - fix Drupal-CI Composer failure since Drupal 8.7.x+ - Update of drupal/coder squizlabs/php_codesniffer"
 
 ## 8.x-2.2 (2018-06-05)
  - Fix Token suggestion my crash on unused suggestion lookup - Issue 2974817.
