@@ -12,6 +12,9 @@ php:
   - 7.1
   - 7.2
 
+services:
+  - mysql
+
 matrix:
   fast_finish: true
   allow_failures:
