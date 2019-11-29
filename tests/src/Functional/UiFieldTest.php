@@ -226,7 +226,11 @@ class UiFieldTest extends TemplateWhispererTestBase {
     // Asserts the debug mode of twig is enabled.
     $this->assertTrue(strpos($output->getContent(), '<!-- THEME HOOK: \'node\' -->') !== FALSE);
 
-    // Asserts that all Template Whisperer based suggestions are present.
+    // Asserts that all Page Template Whisperer based suggestions are present.
+    $this->assertTrue(strpos($output->getContent(), '* page--node--1--googlemap.html.twig') !== FALSE);
+    $this->assertTrue(strpos($output->getContent(), '* page--node--googlemap.html.twig') !== FALSE);
+
+    // Asserts that all Entity Template Whisperer based suggestions are present.
     $this->assertTrue(strpos($output->getContent(), '* node--article--googlemap.html.twig') !== FALSE);
     $this->assertTrue(strpos($output->getContent(), '* node--1--article--googlemap.html.twig') !== FALSE);
     $this->assertTrue(strpos($output->getContent(), '* node--article--full--googlemap.html.twig') !== FALSE);
@@ -234,7 +238,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
   }
 
   /**
-   * Tests the Node whitout Template saved, don't suggestion it.
+   * Tests the Node whiteout Template saved, don't suggestion it.
    */
   public function testFieldWhitoutTemplate() {
     $article = $this->container->get('entity_type.manager')->getStorage('node')
@@ -256,7 +260,11 @@ class UiFieldTest extends TemplateWhispererTestBase {
     // Asserts the debug mode of twig is enabled.
     $this->assertTrue(strpos($output->getContent(), '<!-- THEME HOOK: \'node\' -->') !== FALSE);
 
-    // Asserts that all Template Whisperer based suggestions are not present.
+    // Asserts that Page Template Whisperer based suggestions are not present.
+    $this->assertTrue(strpos($output->getContent(), '* page--node--1--googlemap.html.twig') === FALSE);
+    $this->assertTrue(strpos($output->getContent(), '* page--node--googlemap.html.twig') === FALSE);
+
+    // Asserts that Entity Template Whisperer based suggestions are not present.
     $this->assertTrue(strpos($output->getContent(), '* node--article--googlemap.html.twig') === FALSE);
     $this->assertTrue(strpos($output->getContent(), '* node--1--article--googlemap.html.twig') === FALSE);
     $this->assertTrue(strpos($output->getContent(), '* node--article--full--googlemap.html.twig') === FALSE);
