@@ -71,15 +71,15 @@ but those are some of the obvious uses of Template Whisperer.
 Template Whisperer is available for Drupal 8 and Drupal 9!
 
 - If you are running Drupal `8.7.x`, use Template Whisperer `2.x`.
-- If you are running Drupal `8.8.x`, use Bamboo Twig `3.x`.
+- If you are running Drupal `8.8.x`, use Template Whisperer `3.x`.
 
 The version `8.x-3.x` is not compatible with Drupal `8.7.x`.
 Drupal `8.8.x` brings some breaking change with tests and so you
-must upgrade to `8.x-3.x` version of **Bamboo Twig**.
+must upgrade to `8.x-3.x` version of **Template Whisperer**.
 
 ## Which version should I use?
 
-|Drupal Core|Bamboo Twig|
+|Drupal Core|Template Whisperer|
 |:---------:|:---------:|
 |8.0.x      |1.x        |
 |8.4.x      |2.x        |
