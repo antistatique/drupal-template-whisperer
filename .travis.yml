@@ -15,8 +15,6 @@ services:
 
 matrix:
   include:
-    - name: D8.7
-      env: DRUPAL_TI_RUNNERS="phpunit-core" DRUPAL_TI_CORE_BRANCH="8.7.x" DRUPAL_TI_PHPUNIT_ARGS="--group template_whisperer"
     - name: D8.8
       env: DRUPAL_TI_RUNNERS="phpunit-core" DRUPAL_TI_CORE_BRANCH="8.8.x" DRUPAL_TI_PHPUNIT_ARGS="--group template_whisperer"
     - name: D8.9
