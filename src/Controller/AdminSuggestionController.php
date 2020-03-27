@@ -2,6 +2,7 @@
 
 namespace Drupal\template_whisperer\Controller;
 
+use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -36,12 +37,20 @@ class AdminSuggestionController extends ControllerBase {
   protected $urlGenerator;
 
   /**
+   * The pager manager.
+   *
+   * @var \Drupal\Core\Pager\PagerManagerInterface
+   */
+  protected $pagerManager;
+
+  /**
    * Class constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, TemplateWhispererSuggestionUsage $tw_suggestion_usage, UrlGeneratorInterface $url_generator) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, TemplateWhispererSuggestionUsage $tw_suggestion_usage, UrlGeneratorInterface $url_generator, PagerManagerInterface $pager_manager) {
     $this->entityTypeManager = $entity_type_manager;
     $this->twSuggestionUsage = $tw_suggestion_usage;
     $this->urlGenerator      = $url_generator;
+    $this->pagerManager      = $pager_manager;
   }
 
   /**
@@ -50,10 +59,11 @@ class AdminSuggestionController extends ControllerBase {
   public static function create(ContainerInterface $container) {
     // Instantiates this form class.
     return new static(
-    // Load the service required to construct this class.
-    $container->get('entity_type.manager'),
-    $container->get('template_whisperer.suggestion.usage'),
-    $container->get('url_generator')
+      // Load the service required to construct this class.
+      $container->get('entity_type.manager'),
+      $container->get('template_whisperer.suggestion.usage'),
+      $container->get('url_generator'),
+      $container->get('pager.manager')
     );
   }
 
@@ -84,8 +94,8 @@ class AdminSuggestionController extends ControllerBase {
     $usages = $this->twSuggestionUsage->listUsage($template_whisperer_suggestion);
     $count = $this->twSuggestionUsage->countUsage($template_whisperer_suggestion);
 
+    $this->pagerManager->createPager($count, 30);
     // Pager.
-    pager_default_initialize($count, 30);
     $output[] = [
       '#type'     => 'pager',
       '#quantity' => '3',
@@ -105,7 +115,7 @@ class AdminSuggestionController extends ControllerBase {
 
       // Build the table empty state.
       if (!empty($entity)) {
-        $output['table'][$i]['entity'] = ['#markup' => '<a target="_blank" href="' . $entity->url() . '">' . $entity->getTitle() . '</a>'];
+        $output['table'][$i]['entity'] = ['#markup' => '<a target="_blank" href="' . $entity->toUrl()->toString() . '">' . $entity->getTitle() . '</a>'];
       }
     }
 
