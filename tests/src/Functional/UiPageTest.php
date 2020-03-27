@@ -15,6 +15,11 @@ class UiPageTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   public static $modules = ['template_whisperer'];
 
   /**

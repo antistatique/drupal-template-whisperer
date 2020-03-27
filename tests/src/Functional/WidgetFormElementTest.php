@@ -2,6 +2,8 @@
 
 namespace Drupal\Tests\template_whisperer\Functional;
 
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
+
 /**
  * @coversDefaultClass \Drupal\template_whisperer\Plugin\Field\FieldWidget\TemplateWhispererWidget
  *
@@ -90,11 +92,10 @@ class WidgetFormElementTest extends TemplateWhispererTestBase {
       'bundle'        => 'article',
     ])->save();
 
-    entity_get_form_display('node', 'article', 'default')
-      ->setComponent('field_template_whisperer_1', [
-        'type' => 'template_whisperer',
-        'weight' => 20,
-      ])->save();
+    EntityFormDisplay::load('node.article.default')->setComponent('field_template_whisperer_1', [
+      'type' => 'template_whisperer',
+      'weight' => 20,
+    ])->save();
 
     $this->article = $em->getStorage('node')->create([
       'type'  => 'article',
@@ -127,11 +128,15 @@ class WidgetFormElementTest extends TemplateWhispererTestBase {
       'bundle'        => 'tags',
     ])->save();
 
-    entity_get_form_display('taxonomy_term', 'tags', 'default')
-      ->setComponent('field_template_whisperer_2', [
-        'type' => 'template_whisperer',
-        'weight' => 20,
-      ])->save();
+    EntityFormDisplay::create([
+      'targetEntityType' => 'taxonomy_term',
+      'bundle' => 'tags',
+      'mode' => 'default',
+      'status' => TRUE,
+    ])->setComponent('field_template_whisperer_2', [
+      'type' => 'template_whisperer',
+      'weight' => 20,
+    ])->save();
 
     $this->tag = $em->getStorage('taxonomy_term')->create([
       'name' => 'Tags N°1',

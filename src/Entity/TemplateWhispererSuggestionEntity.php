@@ -34,6 +34,11 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "collection" = "/admin/structure/template-whisperer",
  *     "usage" = "/admin/structure/template-whisperer/{template_whisperer_suggestion}/usage",
  *   },
+ *   config_export = {
+ *     "id",
+ *     "name",
+ *     "suggestion",
+ *   }
  * )
  */
 class TemplateWhispererSuggestionEntity extends ConfigEntityBase implements TemplateWhispererSuggestionEntityInterface {
