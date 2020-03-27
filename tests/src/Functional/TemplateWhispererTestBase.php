@@ -10,6 +10,11 @@ use Drupal\Tests\BrowserTestBase;
 abstract class TemplateWhispererTestBase extends BrowserTestBase {
 
   /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'classy';
+
+  /**
    * Enables Twig debugging.
    */
   protected function debugOn() {

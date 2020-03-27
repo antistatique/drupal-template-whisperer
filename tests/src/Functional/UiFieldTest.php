@@ -15,6 +15,11 @@ class UiFieldTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   public static $modules = ['node', 'field_ui', 'template_whisperer'];
 
   /**

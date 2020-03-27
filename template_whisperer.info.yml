@@ -1,7 +1,7 @@
 name: Template Whisperer
 type: module
 description: Provides a formalized way to declare and suggest page templates.
-core: 8.x
+core_version_requirement: ^8.7 || ^9
 package: Fields types
 
 dependencies:
