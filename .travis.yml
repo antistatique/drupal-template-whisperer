@@ -16,9 +16,9 @@ services:
 matrix:
   include:
     - name: D8.8
-      env: DRUPAL_TI_RUNNERS="phpunit-core" COMPOSER_EXTRA_DEPENDENCIES="symfony/event-dispatcher:^3.4" DRUPAL_TI_CORE_BRANCH="8.8.x" DRUPAL_TI_PHPUNIT_ARGS="--group template_whisperer"
+      env: DRUPAL_TI_RUNNERS="phpunit-core" DRUPAL_TI_DRUSH_VERSION="drush/drush:10.1.1 symfony/event-dispatcher:^3.4" DRUPAL_TI_CORE_BRANCH="8.8.x" DRUPAL_TI_PHPUNIT_ARGS="--group template_whisperer"
     - name: D8.9
-      env: DRUPAL_TI_RUNNERS="phpunit-core" COMPOSER_EXTRA_DEPENDENCIES="symfony/event-dispatcher:^3.4" DRUPAL_TI_CORE_BRANCH="8.9.x" DRUPAL_TI_PHPUNIT_ARGS="--group template_whisperer"
+      env: DRUPAL_TI_RUNNERS="phpunit-core" DRUPAL_TI_DRUSH_VERSION="drush/drush:10.1.1 symfony/event-dispatcher:^3.4" DRUPAL_TI_CORE_BRANCH="8.9.x" DRUPAL_TI_PHPUNIT_ARGS="--group template_whisperer"
     - name: D9.0
       env: DRUPAL_TI_RUNNERS="phpunit-core" DRUPAL_TI_ENVIRONMENT="drupal-9" DRUPAL_TI_PHPUNIT_VERSION="^8.0" DRUPAL_TI_CORE_BRANCH="9.0.x" DRUPAL_TI_PHPUNIT_ARGS="--group template_whisperer"
 
