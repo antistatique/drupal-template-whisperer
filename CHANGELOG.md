@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+## 8.x-3.0-alpha (2020-03-27)
+ - Issue #3090756 by wengerk: Drupal 9 Readiness
+ - Issue #3151185 by wengerk: Drupal 9 - Tests deprecation notice assertInternalType
+
 ## 8.x-2.3 (2019-12-03)
  - Issue #3008554 by wengerk, valthebald: Display widget in advanced group only when it exists.
  - Issue #3044924 - fix Drupal-CI Composer failure since Drupal 8.7.x+ - Update of drupal/coder squizlabs/php_codesniffer"
