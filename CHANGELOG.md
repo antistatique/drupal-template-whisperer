@@ -1,6 +1,9 @@
 CHANGELOG
 ---------
 
+## NEXT RELEASE
+ - Issue #3087966 by wengerk: Support for "Negate the condition" on the Template Whisperer Block Layout Visibility configuration
+
 ## 8.x-2.3 (2019-12-03)
  - Issue #3008554 by wengerk, valthebald: Display widget in advanced group only when it exists.
  - Issue #3044924 - fix Drupal-CI Composer failure since Drupal 8.7.x+ - Update of drupal/coder squizlabs/php_codesniffer"
