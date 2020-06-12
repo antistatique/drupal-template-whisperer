@@ -1,6 +1,9 @@
 CHANGELOG
 ---------
 
+## NEXT RELEASE
+ - Issue #3087966 by wengerk: Support for "Negate the condition" on the Template Whisperer Block Layout Visibility configuration
+
 ## 8.x-3.0-alpha (2020-03-27)
  - Issue #3090756 by wengerk: Drupal 9 Readiness
  - Issue #3151185 by wengerk: Drupal 9 - Tests deprecation notice assertInternalType
