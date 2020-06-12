@@ -106,7 +106,7 @@ class TwigExtensionTest extends KernelTestBase {
     $extension = \Drupal::service('template_whisperer.twig.extension');
 
     $suggestions = $extension->getEntitiesFromSuggestion('bar');
-    $this->assertInternalType('array', $suggestions);
+    $this->assertIsArray($suggestions);
     $this->assertCount(1, $suggestions);
     $this->containsOnlyInstancesOf(TemplateWhispererSuggestionEntityInterface::class);
   }
@@ -118,7 +118,7 @@ class TwigExtensionTest extends KernelTestBase {
     /** @var \Drupal\template_whisperer\TwigExtension\TwigExtension $extension */
     $extension = \Drupal::service('template_whisperer.twig.extension');
     $suggestions = $extension->getEntitiesFromSuggestion('foo');
-    $this->assertInternalType('array', $suggestions);
+    $this->assertIsArray($suggestions);
     $this->assertCount(2, $suggestions);
     $this->containsOnlyInstancesOf(TemplateWhispererSuggestionEntityInterface::class);
   }
@@ -130,7 +130,7 @@ class TwigExtensionTest extends KernelTestBase {
     /** @var \Drupal\template_whisperer\TwigExtension\TwigExtension $extension */
     $extension = \Drupal::service('template_whisperer.twig.extension');
     $suggestions = $extension->getEntitiesFromSuggestion($this->randomString(16));
-    $this->assertInternalType('array', $suggestions);
+    $this->assertIsArray($suggestions);
     $this->assertEmpty($suggestions);
   }
 
