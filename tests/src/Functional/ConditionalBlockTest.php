@@ -5,7 +5,7 @@ namespace Drupal\Tests\template_whisperer\Functional;
 use Drupal\block\BlockInterface;
 
 /**
- * Ensures that Template Whisperer suggestions conditons' block work correctly.
+ * Ensures that Template Whisperer suggestions conditions' block work correctly.
  *
  * @group template_whisperer_functional_block
  * @group template_whisperer_functional
@@ -122,8 +122,10 @@ class ConditionalBlockTest extends TemplateWhispererTestBase {
    *   The block to update.
    * @param array $suggestions
    *   Collection of suggestion ID to add as condition of block visibility.
+   * @param bool $is_negate
+   *   Does the visibility condition should be negated.
    */
-  protected function updateBlockSuggestionVisibility(BlockInterface $block, array $suggestions = []) {
+  protected function updateBlockSuggestionVisibility(BlockInterface $block, array $suggestions = [], $is_negate = FALSE) {
     // Load the latests uncached block values.
     $block = $this->entityTypeManager->getStorage('block')->load($block->id());
     $visibility = [];
@@ -135,6 +137,7 @@ class ConditionalBlockTest extends TemplateWhispererTestBase {
       'context_mapping' => [
         'node' => '@node.node_route_context:node',
       ],
+      'negate' => $is_negate,
     ]);
     $block->save();
   }
@@ -239,7 +242,7 @@ class ConditionalBlockTest extends TemplateWhispererTestBase {
   }
 
   /**
-   * When nothing is configured, the block should be is visible on all entities.
+   * When nothing is configured, the block should be visible on all entities.
    */
   public function testBlockVisibilityDefault() {
     // Update the placed block to be visible only on "Timeline".
@@ -342,6 +345,43 @@ class ConditionalBlockTest extends TemplateWhispererTestBase {
     $this->assertSession()->pageTextContains($this->blocks[0]->label());
     $this->drupalGet($this->articles[2]->toUrl());
     $this->assertSession()->pageTextContains($this->blocks[0]->label());
+  }
+
+  /**
+   * Asserts block negate when configured to not show only on "Timeline".
+   */
+  public function testBlockVisibilityNegate() {
+    // Update the placed block to be not visible only on "Timeline".
+    $this->updateBlockSuggestionVisibility($this->blocks[0], [
+      $this->suggestions[0]->id(),
+    ], TRUE);
+
+    // Asserts the blocks is not visible according the single saved config.
+    $this->drupalGet($this->articles[0]->toUrl());
+    $this->assertSession()->pageTextContains($this->blocks[0]->label());
+    $this->drupalGet($this->articles[1]->toUrl());
+    $this->assertSession()->pageTextNotContains($this->blocks[0]->label());
+    $this->drupalGet($this->articles[2]->toUrl());
+    $this->assertSession()->pageTextContains($this->blocks[0]->label());
+  }
+
+  /**
+   * Asserts block negate when configured to not show on "Timeline" & "Story".
+   */
+  public function testBlockMultipleVisibilityNegate() {
+    // Update the placed block to be visible only on "Timeline" & "Story".
+    $this->updateBlockSuggestionVisibility($this->blocks[0], [
+      $this->suggestions[0]->id(),
+      $this->suggestions[1]->id(),
+    ], TRUE);
+
+    // Asserts the blocks is visible according the multiple saved config.
+    $this->drupalGet($this->articles[0]->toUrl());
+    $this->assertSession()->pageTextContains($this->blocks[0]->label());
+    $this->drupalGet($this->articles[1]->toUrl());
+    $this->assertSession()->pageTextNotContains($this->blocks[0]->label());
+    $this->drupalGet($this->articles[2]->toUrl());
+    $this->assertSession()->pageTextNotContains($this->blocks[0]->label());
   }
 
 }

@@ -67,8 +67,6 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
     ];
 
     $form = parent::buildConfigurationForm($form, $form_state);
-    $form['negate']['#access'] = FALSE;
-
     return $form;
   }
 
@@ -96,22 +94,37 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
    *   TRUE if the condition has been met, FALSE otherwise.
    */
   public function evaluate() {
-    if (empty($this->configuration['suggestions'])) {
+    $suggestions = $this->configuration['suggestions'];
+    if (empty($suggestions) && !$this->isNegated()) {
       return TRUE;
     }
 
     $node = $this->getContextValue('node');
-    $nodeTemplates = $this->twManager->suggestionsFromEntity($node);
+    $node_suggestions = $this->twManager->suggestionsFromEntity($node);
 
-    return count(array_intersect($this->configuration['suggestions'], $nodeTemplates)) > 0;
+    // NOTE: The context system handles negation for us.
+    return count(array_intersect($suggestions, $node_suggestions)) > 0;
   }
 
   /**
-   * Provides a human readable summary of the condition's configuration.
+   * {@inheritdoc}
    */
   public function summary() {
+    // Use the suggestion labels. They will be sanitized below.
     $templates = $this->configuration['suggestions'];
-    return $this->t('The node template is @template', ['@template' => implode(', ', $templates)]);
+    if (count($templates) > 1) {
+      $templates = implode(', ', $templates);
+    }
+    else {
+      $templates = reset($templates);
+    }
+
+    if ($this->isNegated()) {
+      return $this->t('The node template is not @template', ['@template' => $templates]);
+    }
+    else {
+      return $this->t('The node template is @template', ['@template' => $templates]);
+    }
   }
 
 }
