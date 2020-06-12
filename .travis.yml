@@ -76,7 +76,7 @@ env:
     - DRUPAL_TI_BEHAT_BROWSER="firefox"
 
     # PHPUnit specific commandline arguments.
-    - DRUPAL_TI_PHPUNIT_VERSION="^7.0"
+    - DRUPAL_TI_PHPUNIT_VERSION="^8.0"
     - DRUPAL_TI_PHPUNIT_ARGS=""
     # Specifying the phpunit-core src/ directory is useful when e.g. a vendor/
     # directory is present in the module directory, which phpunit would then
@@ -110,6 +110,8 @@ mysql:
   encoding: utf8
 
 before_install:
+  # Fix Travis Memory issues when installing via Composer.
+  - echo "memory_limit=2G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - composer self-update
   - cd ./tests
   - composer global config repositories.repo-name git https://github.com/wengerk/drupal_ti
