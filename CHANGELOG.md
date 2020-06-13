@@ -3,6 +3,7 @@ CHANGELOG
 
 ## NEXT RELEASE
  - Issue #3087966 by wengerk: Support for "Negate the condition" on the Template Whisperer Block Layout Visibility configuration
+ - Rewrite Travis Integration to use Docker instead of Drupal_TI
 
 ## 8.x-3.0-alpha (2020-03-27)
  - Issue #3090756 by wengerk: Drupal 9 Readiness
