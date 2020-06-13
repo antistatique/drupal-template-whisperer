@@ -18,7 +18,7 @@ before_install:
 #  - chmod +x docker-compose
 #  - sudo mv docker-compose /usr/local/bin
   - docker-compose build --pull --build-arg DRUPAL_VERSION=${DRUPAL_VERSION}
-  - docker-compose up --build -d --build-arg DRUPAL_VERSION=${DRUPAL_VERSION}
+  - docker-compose up --build -d
   # wait on Docker to be ready, especially MariaDB that takes many seconds to be up.
   - sleep 30
 
