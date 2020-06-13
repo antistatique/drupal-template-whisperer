@@ -9,6 +9,7 @@ matrix:
       env: DRUPAL_VERSION="8.8"
     - name: D8.9
       env: DRUPAL_VERSION="8.9"
+  allow_failures:
     - name: D9.0
       env: DRUPAL_VERSION="9.0"
 
