@@ -1,0 +1,29 @@
+version: '3.6'
+
+services:
+
+  drupal:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 8888:80
+    environment:
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+    volumes:
+      # Mount the module Template Whisperer in the proper contrib module directory.
+      - .:/var/www/html/modules/contrib/templates_whisperer
+      # Mount the Drupal PHPUnit configuration file.
+      - ./docker/phpunit.xml:/var/www/html/phpunit.xml
+    restart: always
+
+  db:
+    image: mariadb:10.1
+    environment:
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_DATABASE: drupal
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
