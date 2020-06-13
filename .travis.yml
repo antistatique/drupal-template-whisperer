@@ -6,28 +6,29 @@ services:
 matrix:
   include:
     - name: D8.8
-      env: DRUPAL_VERSION="8.8"
+      env: DRUPAL_VERSION="8.8" DOCKER_SERVICE="drupal-8"
     - name: D8.9
-      env: DRUPAL_VERSION="8.9"
+      env: DRUPAL_VERSION="8.9" DOCKER_SERVICE="drupal-8"
+    - name: D9.0
+      env: DRUPAL_VERSION="8.9" DOCKER_SERVICE="drupal-9"
   allow_failures:
     - name: D9.0
-      env: DRUPAL_VERSION="9.0"
+      env: DRUPAL_VERSION="8.9" DOCKER_SERVICE="drupal-9"
 
 before_install:
 #  - sudo rm /usr/local/bin/docker-compose
 #  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
 #  - chmod +x docker-compose
 #  - sudo mv docker-compose /usr/local/bin
-  - docker-compose build --pull --build-arg DRUPAL_VERSION=${DRUPAL_VERSION}
-  - docker-compose up --build -d
+  - docker-compose build --pull --build-arg DRUPAL_VERSION=${DRUPAL_VERSION} ${DOCKER_SERVICE}
+  - docker-compose up --build -d ${DOCKER_SERVICE}
   # wait on Docker to be ready, especially MariaDB that takes many seconds to be up.
   - sleep 30
 
 before_script:
-  - docker-compose exec drupal sudo -u www-data drush site-install standard --db-url='mysql://drupal:drupal@db/drupal' --site-name=Example -y
+  - docker-compose exec ${DOCKER_SERVICE} sudo -u www-data drush site-install standard --db-url='mysql://drupal:drupal@db-${DOCKER_SERVICE}/drupal' --site-name=Example -y
   #- docker-compose exec drupal drush user:password admin admin
   #- docker-compose exec drupal drush en template_whisperer
-  - docker-compose exec drupal sudo -u www-data -E ./vendor/bin/phpunit --group=template_whisperer --stop-on-failure
 
 script:
-  - docker-compose exec drupal sudo -u www-data -E ./vendor/bin/phpunit --group=template_whisperer
+  - docker-compose exec ${DOCKER_SERVICE} sudo -u www-data -E ./vendor/bin/phpunit --group=template_whisperer
