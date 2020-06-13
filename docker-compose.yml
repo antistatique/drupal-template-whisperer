@@ -1,0 +1,51 @@
+version: '3.6'
+
+services:
+
+  drupal-8:
+    build: ./docker/drupal-8
+    depends_on:
+      - db-drupal-8
+    ports:
+      - 8888:80
+    environment:
+      SIMPLETEST_DB: mysql://drupal:drupal@db-drupal-8/drupal
+    volumes:
+      # Mount the module Template Whisperer in the proper contrib module directory.
+      - .:/var/www/html/modules/contrib/templates_whisperer
+      # Mount the Drupal PHPUnit configuration file.
+      - ./docker/phpunit.xml:/var/www/html/phpunit.xml
+    restart: always
+
+  drupal-9:
+    build: ./docker/drupal-9
+    depends_on:
+      - db-drupal-9
+    ports:
+      - 8888:80
+    environment:
+      SIMPLETEST_DB: mysql://drupal:drupal@db-drupal-9/drupal
+    volumes:
+      # Mount the module Template Whisperer in the proper contrib module directory.
+      - .:/var/www/html/modules/contrib/templates_whisperer
+      # Mount the Drupal PHPUnit configuration file.
+      - ./docker/phpunit.xml:/var/www/html/phpunit.xml
+    restart: always
+
+  db-drupal-8:
+    image: mariadb:10.1
+    environment:
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_DATABASE: drupal
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+
+  db-drupal-9:
+    image: mariadb:10.3.7
+    environment:
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_DATABASE: drupal
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
