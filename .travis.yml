@@ -11,9 +11,6 @@ matrix:
       env: DRUPAL_VERSION="8.9" DOCKER_SERVICE="drupal-8"
     - name: D9.0
       env: DRUPAL_VERSION="8.9" DOCKER_SERVICE="drupal-9"
-  allow_failures:
-    - name: D9.0
-      env: DRUPAL_VERSION="8.9" DOCKER_SERVICE="drupal-9"
 
 before_install:
   - docker-compose build --pull --build-arg DRUPAL_VERSION=${DRUPAL_VERSION} ${DOCKER_SERVICE}
