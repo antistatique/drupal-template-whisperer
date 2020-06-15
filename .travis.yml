@@ -14,7 +14,7 @@ matrix:
 
 before_install:
   - docker-compose build --pull --build-arg DRUPAL_VERSION=${DRUPAL_VERSION} ${DOCKER_SERVICE}
-  - docker-compose up --build -d ${DOCKER_SERVICE}
+  - docker-compose up -d ${DOCKER_SERVICE}
   # wait on Docker to be ready, especially MariaDB that takes many seconds to be up.
   - sleep 30
 
