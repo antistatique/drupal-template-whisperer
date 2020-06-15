@@ -12,7 +12,6 @@ RUN set -eux; \
 		git \
 		zip \
 		unzip \
-		sudo \
 	;
 
 # Add Composer vendors directory to the path.
