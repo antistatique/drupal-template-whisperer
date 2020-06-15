@@ -23,7 +23,7 @@ RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 
 # Install Drupal Dev dependencies such as PHPUnit, Behat-Mink, ...
-RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:^${DRUPAL_VERSION}
+RUN COMPOSER_MEMORY_LIMIT=-1 composer require --dev drupal/core-dev:${DRUPAL_VERSION}
 
 # Install Drush.
 # Drush will be heavily use to setup a working Drupal environment.
