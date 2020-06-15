@@ -14,12 +14,12 @@ matrix:
 
 before_install:
   - docker-compose build --pull --build-arg DRUPAL_VERSION=${DRUPAL_VERSION} ${DOCKER_SERVICE}
-  - docker-compose up --build -d ${DOCKER_SERVICE}
+  - docker-compose up -d ${DOCKER_SERVICE}
   # wait on Docker to be ready, especially MariaDB that takes many seconds to be up.
   - sleep 30
 
 before_script:
-  - docker-compose exec ${DOCKER_SERVICE} sudo -u www-data drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
+  - docker-compose exec -u www-data ${DOCKER_SERVICE} drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
 
 script:
-  - docker-compose exec ${DOCKER_SERVICE} sudo -u www-data -E ./vendor/bin/phpunit --group=template_whisperer
+  - docker-compose exec -u www-data ${DOCKER_SERVICE} phpunit --group=template_whisperer
