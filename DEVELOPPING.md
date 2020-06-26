@@ -35,14 +35,14 @@ on your environment:
 
 Once run, you will be able to access to your fresh installed Drupal on `localhost::8888`.
 
-    docker-compose build --pull --build-arg DRUPAL_VERSION=8.9 [drupal-8|drupal-9]
+    docker-compose build --pull --build-arg BASE_IMAGE_TAG=8.9 drupal
     (get a coffee, this will take some time...)
-    docker-compose up --build -d [drupal-8|drupal-9]
-    docker-compose exec [drupal-8|drupal-9] sudo -u www-data drush site-install standard --db-url='mysql://drupal:drupal@db/drupal' --site-name=Example -y
+    docker-compose up --build -d drupal
+    docker-compose exec -u www-data drupal drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
     
     # You may be interesed by reseting the admin passowrd of your Docker and install the module using those cmd.
-    docker-compose exec [drupal-8|drupal-9] drush user:password admin admin
-    docker-compose exec [drupal-8|drupal-9] drush en template_whisperer
+    docker-compose exec drupal drush user:password admin admin
+    docker-compose exec drupal drush en template_whisperer
 
 ## 🏆 Tests
 
@@ -56,7 +56,7 @@ two separates services:
 
 Run testing by stopping at first failure using the following command:
 
-    docker-compose exec [drupal-8|drupal-9] sudo -u www-data -E ./vendor/bin/phpunit --group=template_whisperer --stop-on-failure
+    docker-compose exec -u www-data drupal phpunit --group=template_whisperer --stop-on-failure
 
 ## 🚔 Check Drupal coding standards & Drupal best practices
 
