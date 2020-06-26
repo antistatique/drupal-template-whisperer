@@ -2,8 +2,8 @@ version: '3.6'
 
 services:
 
-  drupal-8:
-    build: ./docker/drupal-8
+  drupal:
+    build: .
     depends_on:
       - db
     ports:
@@ -11,21 +11,6 @@ services:
     volumes:
       # Mount the module Template Whisperer in the proper contrib module directory.
       - .:/var/www/html/modules/contrib/templates_whisperer
-      # Mount the Drupal PHPUnit configuration file.
-      - ./docker/phpunit.xml:/var/www/html/phpunit.xml
-    restart: always
-
-  drupal-9:
-    build: ./docker/drupal-9
-    depends_on:
-      - db
-    ports:
-      - 8889:80
-    volumes:
-      # Mount the module Template Whisperer in the proper contrib module directory.
-      - .:/var/www/html/modules/contrib/templates_whisperer
-      # Mount the Drupal PHPUnit configuration file.
-      - ./docker/phpunit.xml:/var/www/html/phpunit.xml
     restart: always
 
   db:
