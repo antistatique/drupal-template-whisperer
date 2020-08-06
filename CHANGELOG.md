@@ -1,7 +1,7 @@
 CHANGELOG
 ---------
 
-## NEXT RELEASE
+## 8.x-2.4 (2020-08-06)
  - Issue #3087966 by wengerk: Support for "Negate the condition" on the Template Whisperer Block Layout Visibility configuration
 
 ## 8.x-2.3 (2019-12-03)
