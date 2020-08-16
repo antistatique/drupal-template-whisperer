@@ -57,7 +57,7 @@ class TemplateWhispererManager {
    * @param string $suggestion
    *   The suggestion.
    *
-   * @return Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity|null
+   * @return \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity|null
    *   Return the Entity corresponding of the given suggestion or Null.
    */
   public function getOneBySuggestion($suggestion) {
@@ -95,7 +95,7 @@ class TemplateWhispererManager {
   /**
    * Returns a list of the template_whisperer fields on an entity.
    *
-   * @param Drupal\Core\Entity\ContentEntityInterface $entity
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   The Entity which contain our special field(s).
    *
    * @return array
@@ -130,7 +130,7 @@ class TemplateWhispererManager {
   /**
    * Returns a list of the suggestions values from a field.
    *
-   * @param Drupal\Core\Entity\ContentEntityInterface $entity
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   The Entity that contains our special field(s).
    * @param string $field_name
    *   The field that contains our suggestion.

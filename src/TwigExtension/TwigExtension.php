@@ -58,7 +58,7 @@ class TwigExtension extends \Twig_Extension {
    * @param string $tw_suggestion
    *   The template whisperer suggestion.
    *
-   * @return Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface[]
+   * @return \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface[]
    *   A collection of Template whisperer entities.
    */
   public function getEntitiesFromSuggestion(string $tw_suggestion) {
