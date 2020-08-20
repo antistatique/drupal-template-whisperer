@@ -145,7 +145,9 @@ class TemplateWhispererManager {
       $target_id = $item->get('target_id')->getValue();
       if (!empty($target_id)) {
         $whisperer = $this->suggestionStorage->load($target_id);
-        $suggestion = $whisperer->getSuggestion();
+        if ($whisperer) {
+          $suggestion = $whisperer->getSuggestion();
+        }
       }
     }
 
