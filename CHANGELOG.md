@@ -1,6 +1,9 @@
 CHANGELOG
 ---------
 
+## NEXT RELEASE
+ - Issue #3166328 by wengerk: TemplateWhispererManager::getFieldSuggestions may throw `Call to a member function getSuggestion() on null`
+
 ## 8.x-2.4 (2020-08-06)
  - Issue #3087966 by wengerk: Support for "Negate the condition" on the Template Whisperer Block Layout Visibility configuration
 
