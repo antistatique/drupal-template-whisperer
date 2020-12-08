@@ -18,7 +18,7 @@ Github repo
 
   ```bash
   git remote add github \
-  https://github.com/antistatique/drupal-template-whisperer.git
+  git@github.com:antistatique/drupal-template-whisperer.git
   ```
 
 ## 🔧 Prerequisites
@@ -28,51 +28,36 @@ on your environment:
 
   * drush
   * Latest dev release of Drupal 8.x.
+  * docker
+  * docker-compose
+  
+### Project bootstrap
+
+Once run, you will be able to access to your fresh installed Drupal on `localhost::8888`.
+
+    docker-compose build --pull --build-arg BASE_IMAGE_TAG=8.9 drupal
+    (get a coffee, this will take some time...)
+    docker-compose up --build -d drupal
+    docker-compose exec -u www-data drupal drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
+    
+    # You may be interesed by reseting the admin passowrd of your Docker and install the module using those cmd.
+    docker-compose exec drupal drush user:password admin admin
+    docker-compose exec drupal drush en template_whisperer
 
 ## 🏆 Tests
 
-Template Whisperer use BrowserTestBase to test
-web-based behaviors and interactions.
+We use the [Drupal official Docker images](https://hub.docker.com/_/drupal/) to run testing on our project.
 
-For tests you need a working database connection and for browser tests
-your Drupal installation needs to be reachable via a web server.
-Copy the phpunit config file:
+As those images does not support - for now (2020-06-13) - Drupal 9, we split up the `docker-compose.yml` file into
+two separates services:
 
-  ```bash
-  cd core
-  cp phpunit.xml.dist phpunit.xml
-  ```
+    - Drupal 8: `drupal-8` (PHP 7.2) using `db-drupal-8` (MariaDB 10.1) and PHPUnit 7
+    - Drupal 9: `drupal-9`(PHP 7.3) using `db-drupal-9` (MariaDB 10.3.7) and PHPUnit 8
 
-You must provide `SIMPLETEST_BASE_URL`, Eg. `http://localhost`.
-You must provide `SIMPLETEST_DB`,
-Eg. `sqlite://localhost/build/template_whisperer.sqlite`.
+Run testing by stopping at first failure using the following command:
 
-Run the functional tests:
-
-  ```bash
-  # You must be on the drupal-root folder - usually /web.
-  cd web
-  SIMPLETEST_DB="sqlite://localhost//tmp/tw.sqlite" \
-  SIMPLETEST_BASE_URL='http://d8.test' \
-  ../vendor/bin/phpunit -c core \
-  --group template_whisperer_ui
-  ```
-
-Debug using
-
-  ```bash
-  # You must be on the drupal-root folder - usually /web.
-  cd web
-  SIMPLETEST_DB="sqlite://localhost//tmp/tw.sqlite" \
-  SIMPLETEST_BASE_URL='http://d8.test' \
-  ../vendor/bin/phpunit -c core \
-  --group template_whisperer_ui \
-  --printer="\Drupal\Tests\Listeners\HtmlOutputPrinter" --stop-on-error
-  ```
-
-You must provide a `BROWSERTEST_OUTPUT_DIRECTORY`,
-Eg. `/path/to/webroot/sites/simpletest/browser_output`.
-
+    docker-compose exec -u www-data drupal phpunit --group=template_whisperer --stop-on-failure --configuration=/var/www/html/phpunit.xml
+    
 ## 🚔 Check Drupal coding standards & Drupal best practices
 
 You need to run composer before using PHPCS. Then register the Drupal
