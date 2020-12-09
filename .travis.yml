@@ -14,8 +14,6 @@ matrix:
       env: BASE_IMAGE_TAG="8.8"
     - name: Drupal 8.9.x
       env: BASE_IMAGE_TAG="8.9"
-    - name: Drupal 9.0.x
-      env: BASE_IMAGE_TAG="9.0"
 
 before_install:
   - docker-compose build --pull --build-arg BASE_IMAGE_TAG=${BASE_IMAGE_TAG} drupal
