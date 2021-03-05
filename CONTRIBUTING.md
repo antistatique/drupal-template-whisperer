@@ -30,7 +30,7 @@ on your environment:
   * Latest dev release of Drupal 8.x.
   * docker
   * docker-compose
-  
+
 ### Project bootstrap
 
 Once run, you will be able to access to your fresh installed Drupal on `localhost::8888`.
@@ -39,24 +39,18 @@ Once run, you will be able to access to your fresh installed Drupal on `localhos
     (get a coffee, this will take some time...)
     docker-compose up --build -d drupal
     docker-compose exec -u www-data drupal drush site-install standard --db-url="mysql://drupal:drupal@db/drupal" --site-name=Example -y
-    
+
     # You may be interesed by reseting the admin passowrd of your Docker and install the module using those cmd.
     docker-compose exec drupal drush user:password admin admin
     docker-compose exec drupal drush en template_whisperer
 
 ## 🏆 Tests
 
-We use the [Drupal official Docker images](https://hub.docker.com/_/drupal/) to run testing on our project.
-
-As those images does not support - for now (2020-06-13) - Drupal 9, we split up the `docker-compose.yml` file into
-two separates services:
-
-    - Drupal 8: `drupal-8` (PHP 7.2) using `db-drupal-8` (MariaDB 10.1) and PHPUnit 7
-    - Drupal 9: `drupal-9`(PHP 7.3) using `db-drupal-9` (MariaDB 10.3.7) and PHPUnit 8
+We use the [Docker for Drupal Contrib images](https://hub.docker.com/r/wengerk/drupal-for-contrib) to run testing on our project.
 
 Run testing by stopping at first failure using the following command:
 
-    docker-compose exec -u www-data drupal phpunit --group=template_whisperer --stop-on-failure
+    docker-compose exec -u www-data drupal phpunit --group=template_whisperer --no-coverage --stop-on-failure --configuration=/var/www/html/phpunit.xml
 
 ## 🚔 Check Drupal coding standards & Drupal best practices
 
