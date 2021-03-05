@@ -84,7 +84,7 @@ class TemplateWhispererSuggestionDeleteForm extends EntityConfirmFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['#title'] = $this->getQuestion();
-    // @TODO: use the "usage" before allowing deletion.
+    // @todo use the "usage" before allowing deletion.
     return parent::buildForm($form, $form_state);
   }
 

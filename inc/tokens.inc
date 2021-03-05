@@ -11,6 +11,9 @@ use Drupal\Core\Render\BubbleableMetadata;
  * Implements hook_token_info().
  */
 function template_whisperer_token_info() {
+  $types = [];
+  $suggestion = [];
+  $suggestion_lookup = [];
 
   $types['suggestion'] = [
     'name'        => t('Suggestions'),
@@ -68,7 +71,7 @@ function template_whisperer_tokens($type, $tokens, array $data, array $options, 
 
   // Simple key values on the suggestion.
   if ($type == 'suggestion' && !empty($data['suggestion'])) {
-    /* @var \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity */
+    /** @var \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity */
     $suggestion = $data['suggestion'];
 
     foreach ($tokens as $name => $original) {
@@ -87,7 +90,8 @@ function template_whisperer_tokens($type, $tokens, array $data, array $options, 
   }
 
   // Lookup from dynamic sid.
-  if ($lookup_tokens = $token_service->findWithPrefix($tokens, 'lookup')) {
+  $lookup_tokens = $token_service->findWithPrefix($tokens, 'lookup');
+  if ($lookup_tokens) {
     $key = key($lookup_tokens);
 
     $sid = explode(':', $key)[0];
@@ -102,7 +106,7 @@ function template_whisperer_tokens($type, $tokens, array $data, array $options, 
 
   // Simple key values on the suggestion-lookup.
   if ($type == 'suggestion-lookup' && !empty($data['suggestion'])) {
-    /* @var \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity */
+    /** @var \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity */
     $suggestion = $data['suggestion'];
     $usages = $tw_manager_usage->listUsage($suggestion);
     $usage = reset($usages);
