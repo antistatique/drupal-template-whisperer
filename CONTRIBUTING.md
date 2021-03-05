@@ -54,85 +54,71 @@ Run testing by stopping at first failure using the following command:
 
 ## 🚔 Check Drupal coding standards & Drupal best practices
 
-You need to run composer before using PHPCS. Then register the Drupal
-and DrupalPractice Standard with PHPCS:
+During Docker build, the following Static Analyzers will be installed on the Docker `drupal` via Composer:
 
-  ```bash
-  ./vendor/bin/phpcs --config-set installed_paths \
-  `pwd`/vendor/drupal/coder/coder_sniffer
-  ```
+- `drupal/coder^8.3.1`  (including `squizlabs/php_codesniffer` & `phpstan/phpstan`),
+
+The following Analyzer will be downloaded & installed as PHAR:
+
+- `phpmd/phpmd`
+- `sebastian/phpcpd`
+- `wapmorgan/PhpDeprecationDetector`
 
 ### Command Line Usage
 
-echo "\n🚔  \033[0;32mRunning Code Sniffer Drupal & DrupalPractice for /web/modules/custom ...\033[0m"
-./vendor/bin/phpcs --config-set installed_paths `pwd`/vendor/drupal/coder/coder_sniffer
-./vendor/bin/phpcs --standard=Drupal --colors --extensions=php,module,inc,install,test,profile,theme,css,info,txt --ignore=*/vendor/* --encoding=utf-8 ./
-./vendor/bin/phpcs --standard=DrupalPractice --colors --extensions=php,module,inc,install,test,profile,theme,css,info,txt --ignore=*/vendor/* --encoding=utf-8 ./
+    ./scripts/hooks/post-commit
+    # or run command on the container itself
+    docker-compose exec drupal bash
 
-echo "\n💩  \033[0;32mRunning PHP Mess Detector ...\033[0m"
-./vendor/bin/phpmd ./ text ./phpmd.xml --suffixes php,module,inc,install,test,profile,theme,css,info,txt --exclude vendor
+#### Running Code Sniffer Drupal & DrupalPractice
 
-echo "\n🛂  \033[0;32mRunning PHP Copy/Paste Detector ...\033[0m"
-./vendor/bin/phpcpd ./ --names=*.php,*.module,*.inc,*.install,*.test,*.profile,*.theme,*.css,*.info,*.txt --names-exclude=*.md,*.info.yml --progress --ansi --exclude=vendor
+https://github.com/squizlabs/PHP_CodeSniffer
 
-Check Drupal coding standards:
+PHP_CodeSniffer is a set of two PHP scripts; the main `phpcs` script that tokenizes PHP, JavaScript and CSS files to
+detect violations of a defined coding standard, and a second `phpcbf` script to automatically correct coding standard
+violations.
+PHP_CodeSniffer is an essential development tool that ensures your code remains clean and consistent.
 
-  ```bash
-  ./vendor/bin/phpcs --standard=Drupal --colors \
-  --extensions=php,module,inc,install,test,profile,theme,css,info,md \
-  --ignore=*/vendor/*,*/node_modules/* --encoding=utf-8 ./
   ```
-
-Check Drupal best practices:
-
-  ```bash
-  ./vendor/bin/phpcs --standard=DrupalPractice --colors \
-  --extensions=php,module,inc,install,test,profile,theme,css,info,md \
-  --ignore=*/vendor/*,*/node_modules/* --encoding=utf-8 ./
+  $ docker-compose exec drupal ./vendor/bin/phpcs ./web/modules/contrib/template_whisperer/
   ```
 
 Automatically fix coding standards
 
-  ```bash
-  ./vendor/bin/phpcbf --standard=Drupal --colors \
-  --extensions=php,module,inc,install,test,profile,theme,css,info \
-  --ignore=*/vendor/*,*/node_modules/* --encoding=utf-8 ./
+  ```
+  $ docker-compose exec drupal ./vendor/bin/phpcbf ./web/modules/contrib/template_whisperer/
   ```
 
-Checks compatibility with PHP interpreter versions
+#### Running PHP Mess Detector
 
-  ```bash
-  ./vendor/bin/phpcf \
-  --file-extensions php,module,inc,install,test,profile,theme,info \
-  --exclude vendor ./
+https://github.com/phpmd/phpmd
+
+Detect overcomplicated expressions & Unused parameters, methods, properties.
+
+  ```
+  $ docker-compose exec drupal phpmd ./web/modules/contrib/template_whisperer/ text ./phpmd.xml \
+  --suffixes php,module,inc,install,test,profile,theme,css,info,txt --exclude *Test.php,*vendor/*
   ```
 
-### Improve global code quality using PHPCPD & PHPMD
+#### Running PHP Copy/Paste Detector
 
-Add requirements if necessary using `composer`:
+https://github.com/sebastianbergmann/phpcpd
 
-  ```bash
-  composer require --dev 'phpmd/phpmd:^2.6' 'sebastian/phpcpd:^3.0' 'wapmorgan/php-code-fixer:^2.0'
+`phpcpd` is a Copy/Paste Detector (CPD) for PHP code.
+
+  ```
+  $ docker-compose exec drupal phpcpd ./web/modules/contrib/template_whisperer/src --suffix .php --suffix .module --suffix .inc --suffix .install --suffix .test --suffix .profile --suffix .theme --suffix .css --suffix .info --suffix .txt --exclude *.md --exclude *.info.yml --exclude tests --exclude vendor/
   ```
 
-Detect overcomplicated expressions & Unused parameters, methods, properties
+#### Running PhpDeprecationDetector
 
-  ```bash
-  ./vendor/bin/phpmd ./web/modules/custom text ./phpmd.xml
+https://github.com/wapmorgan/PhpDeprecationDetector
+
+A scanner that checks compatibility of your code with PHP interpreter versions.
+
   ```
-
-Copy/Paste Detector
-
-  ```bash
-  ./vendor/bin/phpcpd ./web/modules/custom
-  ```
-
-PhpCodeFixer
-
-  A scanner that checks compatibility of your code with new interpreter versions.
-
-  ```bash
-  ./vendor/bin/phpcf ./web/modules/custom
+  $ docker-compose exec drupal phpdd ./web/modules/contrib/template_whisperer/ \
+    --file-extensions php,module,inc,install,test,profile,theme,info --exclude vendor
   ```
 
 ### Enforce code standards with git hooks
