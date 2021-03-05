@@ -3,10 +3,9 @@
 Provides a formalized way to declare and suggest page templates
 using "Template Whisperer".
 
-
-|       Travis-CI        |        Style-CI         |        Downloads        |         Releases         |
+|       Tests-CI        |        Style-CI         |        Downloads        |         Releases         |
 |:----------------------:|:-----------------------:|:-----------------------:|:------------------------:|
-| [![Build Status](https://travis-ci.com/antistatique/drupal-template-whisperer.svg?branch=8.x-3.x)](https://travis-ci.com/antistatique/drupal-template-whisperer) | [![StyleCI](https://styleci.io/repos/85471768/shield)](https://styleci.io/repos/85471768) | [![Downloads](https://img.shields.io/badge/downloads-8.x--2.2-green.svg?style=flat-square)](https://ftp.drupal.org/files/projects/template_whisperer-8.x-2.2.tar.gz) | [![Latest Stable Version](https://img.shields.io/badge/release-v2.2-blue.svg?style=flat-square)](https://www.drupal.org/project/template_whisperer/releases) |
+| [![Build Status](https://github.com/antistatique/drupal-template-whisperer/actions/workflows/ci.yml/badge.svg)](https://github.com/antistatique/drupal-template-whisperer/actions/workflows/ci.yml) | [![Code styles](https://github.com/antistatique/drupal-template-whisperer/actions/workflows/styles.yml/badge.svg)](https://github.com/antistatique/drupal-template-whisperer/actions/workflows/styles.yml) | [![Downloads](https://img.shields.io/badge/downloads-8.x--2.2-green.svg?style=flat-square)](https://ftp.drupal.org/files/projects/template_whisperer-8.x-2.2.tar.gz) | [![Latest Stable Version](https://img.shields.io/badge/release-v2.2-blue.svg?style=flat-square)](https://www.drupal.org/project/template_whisperer/releases) |
 
 It is a continuation to something besides the standard
 node.html.twig file for a variety of special case pages
