@@ -5,8 +5,8 @@ namespace Drupal\Tests\template_whisperer\Functional;
 /**
  * Tests event info pages and links.
  *
- * @group template_whisperer_functionnal_field
- * @group template_whisperer_functionnal
+ * @group template_whisperer_functional_field
+ * @group template_whisperer_functional
  * @group template_whisperer_ui
  * @group template_whisperer
  */
