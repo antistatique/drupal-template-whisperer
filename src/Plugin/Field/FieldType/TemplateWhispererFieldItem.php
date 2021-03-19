@@ -53,6 +53,7 @@ class TemplateWhispererFieldItem extends FieldItemBase {
    * {@inheritdoc}
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
+    $properties = [];
     $properties['target_id'] = DataDefinition::create('string')
       ->setLabel(new TranslatableMarkup('Template Whisperer reference'))
       ->setRequired(TRUE);

@@ -11,8 +11,8 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
  * when possible. Otherwise will stay in place.
  * Eg. when used on taxonomy form or when embeed into an inline-edit-form.
  *
- * @group template_whisperer_functionnal_field
- * @group template_whisperer_functionnal
+ * @group template_whisperer_functional_field
+ * @group template_whisperer_functional
  * @group template_whisperer_ui
  * @group template_whisperer
  */

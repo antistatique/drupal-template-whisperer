@@ -24,6 +24,7 @@ function template_whisperer_install() {
  * Implements hook_schema().
  */
 function template_whisperer_schema() {
+  $schema = [];
   $schema['template_whisperer_suggestion_usage'] = [
     'description' => 'Track where a suggestion is used.',
     'fields' => [

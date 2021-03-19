@@ -11,7 +11,7 @@ use Drupal\template_whisperer\TemplateWhispererSuggestionUsage;
 use Drupal\Core\Routing\UrlGeneratorInterface;
 
 /**
- * AdminSuggestionController.
+ * Listing of Template Whisperer suggestions.
  */
 class AdminSuggestionController extends ControllerBase {
 

@@ -6,7 +6,7 @@ use Drupal\template_whisperer\TemplateWhispererManager;
 use Drupal\template_whisperer\TemplateWhispererSuggestionUsage;
 
 /**
- * Class TwigExtension.
+ * Template Whisperer Twig extensions.
  */
 class TwigExtension extends \Twig_Extension {
   /**
@@ -41,7 +41,10 @@ class TwigExtension extends \Twig_Extension {
    */
   public function getFunctions() {
     return [
-      new \Twig_SimpleFunction('tw_suggestion_entities', [$this, 'getEntitiesFromSuggestion']),
+      new \Twig_SimpleFunction('tw_suggestion_entities', [
+        $this,
+        'getEntitiesFromSuggestion',
+      ]),
     ];
   }
 

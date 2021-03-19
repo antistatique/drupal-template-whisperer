@@ -8,8 +8,8 @@ namespace Drupal\Tests\template_whisperer\Functional;
  * @covers ::template_whisperer_token_info
  * @covers ::template_whisperer_tokens
  *
- * @group template_whisperer_functionnal_token
- * @group template_whisperer_functionnal
+ * @group template_whisperer_functional_token
+ * @group template_whisperer_functional
  * @group template_whisperer
  */
 class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {

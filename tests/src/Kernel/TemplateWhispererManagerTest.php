@@ -95,7 +95,7 @@ class TemplateWhispererManagerTest extends KernelTestBase {
   }
 
   /**
-   * @covers Drupal\template_whisperer\TemplateWhispererManager::getFieldSuggestions
+   * @covers \Drupal\template_whisperer\TemplateWhispererManager::getFieldSuggestions
    */
   public function testGetFieldSuggestions() {
     /** @var \Drupal\template_whisperer\TemplateWhispererManager $tw_manager */
@@ -108,7 +108,10 @@ class TemplateWhispererManagerTest extends KernelTestBase {
     $entity->save();
 
     // Ensure it does return the proper foo value.
-    $suggestions = $this->invokeMethod($tw_manager, 'getFieldSuggestions', [$entity, 'field_template_whisperer']);
+    $suggestions = $this->invokeMethod($tw_manager, 'getFieldSuggestions', [
+      $entity,
+      'field_template_whisperer',
+    ]);
     $this->assertEqual('foo', $suggestions);
 
     // Set an none-existing template whisperer.
@@ -119,7 +122,10 @@ class TemplateWhispererManagerTest extends KernelTestBase {
     $entity->save();
 
     // Ensure it does not return anything.
-    $suggestions = $this->invokeMethod($tw_manager, 'getFieldSuggestions', [$entity, 'field_template_whisperer']);
+    $suggestions = $this->invokeMethod($tw_manager, 'getFieldSuggestions', [
+      $entity,
+      'field_template_whisperer',
+    ]);
     $this->assertEmpty($suggestions);
   }
 

@@ -6,7 +6,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
- * Class TemplateWhispererManager.
+ * Template Whisperer manager.
  */
 class TemplateWhispererManager {
 
@@ -83,7 +83,7 @@ class TemplateWhispererManager {
 
     $fields = $this->getFields($entity);
 
-    /* @var FieldConfig $field_info */
+    /** @var FieldConfig $field_info */
     foreach ($fields as $field_name => $field_info) {
       // Get the suggestions from this field.
       $suggestions[] = $this->getFieldSuggestions($entity, $field_name);
@@ -161,7 +161,7 @@ class TemplateWhispererManager {
    *   The list of fields types.
    */
   protected function fieldTypes() {
-    // @TODO: Either get this dynamically from field plugins or forget it and just hardcode template_whisperer where this is called.
+    // @todo Either get this dynamically from field plugins or forget it and just hardcode template_whisperer where this is called.
     return ['template_whisperer'];
   }
 
