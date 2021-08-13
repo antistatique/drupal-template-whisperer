@@ -41,7 +41,7 @@ class FieldTemplateWhispererTest extends FieldKernelTestBase {
    *
    * This sets up the entity_test and user types to use the field plugins.
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $type_manager = $this->container->get('entity_type.manager');
 

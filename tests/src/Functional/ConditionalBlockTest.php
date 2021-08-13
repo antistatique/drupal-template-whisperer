@@ -24,7 +24,7 @@ class ConditionalBlockTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'taxonomy',
     'field_ui',
     'block',
@@ -76,7 +76,7 @@ class ConditionalBlockTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     /** @var \Drupal\Core\Entity\EntityTypeManager $entityTypeManager */

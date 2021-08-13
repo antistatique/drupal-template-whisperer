@@ -17,7 +17,7 @@ class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['node', 'template_whisperer'];
+  protected static $modules = ['node', 'template_whisperer'];
 
   /**
    * {@inheritdoc}
@@ -43,7 +43,7 @@ class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {
    *
    * This sets up the node and user types to use the field plugins.
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $type_manager = $this->container->get('entity_type.manager');
