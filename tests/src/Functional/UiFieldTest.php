@@ -20,7 +20,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['node', 'field_ui', 'template_whisperer'];
+  protected static $modules = ['node', 'field_ui', 'template_whisperer'];
 
   /**
    * We use the minimal profile because we want to test local action links.
@@ -39,7 +39,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     // Create a user for tests.

@@ -20,7 +20,7 @@ class UiPageTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['template_whisperer'];
+  protected static $modules = ['template_whisperer'];
 
   /**
    * We use the minimal profile because we want to test local action links.
@@ -39,7 +39,7 @@ class UiPageTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     /** @var \Drupal\Core\Entity\EntityTypeManager $entityTypeManager */

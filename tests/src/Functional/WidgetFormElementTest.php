@@ -21,7 +21,7 @@ class WidgetFormElementTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'taxonomy',
     'node',
     'field_ui',
@@ -52,7 +52,7 @@ class WidgetFormElementTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     // Create a user for tests.
