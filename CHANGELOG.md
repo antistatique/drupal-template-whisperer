@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.0.0] - 2022-06-24
 ### Added
 - Issue #3087966 by wengerk: Support for "Negate the condition" on the Template Whisperer Block Layout Visibility configuration
 
@@ -63,7 +65,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add BrowserTestBase to test web-based behaviors and interactions.
 - First draft.
 
-[Unreleased]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-3.0-alpha...HEAD
+[Unreleased]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-3.0...HEAD
+[3.0.0]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-3.0-alpha...8.x-3.0
 [3.0.0-alpha]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-2.3...8.x-3.0-alpha
 [2.3.0]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-2.2...8.x-2.3
 [2.2.0]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-2.1...8.x-2.2
