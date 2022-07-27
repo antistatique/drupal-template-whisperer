@@ -111,7 +111,7 @@ class TemplateWhispererFieldItem extends FieldItemBase {
       '#type'          => 'checkboxes',
       '#title'         => $this->t('Available Suggestions'),
       '#options'       => $whisperers,
-      '#default_value' => isset($settings['handler']['suggestions']) ? $settings['handler']['suggestions'] : [],
+      '#default_value' => $settings['handler']['suggestions'] ?? [],
       '#description'   => $this->t('The suggestion(s) that can be referenced through this field. Leave empty to allow all.'),
     ];
 

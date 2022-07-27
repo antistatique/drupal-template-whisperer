@@ -55,7 +55,7 @@ class TemplateWhispererSuggestionForm extends EntityForm {
     $form['name'] = [
       '#title'         => $this->t('Name'),
       '#type'          => 'textfield',
-      '#default_value' => isset($entity->name) ? $entity->name : NULL,
+      '#default_value' => $entity->name ?? NULL,
       '#description'   => $this->t('The human-readable name. Will appear in the field widget.'),
       '#size'          => 50,
       '#required'      => TRUE,
@@ -64,7 +64,7 @@ class TemplateWhispererSuggestionForm extends EntityForm {
     $form['suggestion'] = [
       '#title'         => $this->t('Suggestion'),
       '#type'          => 'textfield',
-      '#default_value' => isset($entity->suggestion) ? $entity->suggestion : NULL,
+      '#default_value' => $entity->suggestion ?? NULL,
       '#description'   => $this->t('A unique suggestion for this template whisperer. It must only contain lowercase letters, numbers, and underscores. E.g. <code>news_list</code>'),
       '#required'      => TRUE,
       '#size'          => 50,

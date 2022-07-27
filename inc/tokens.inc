@@ -122,7 +122,7 @@ function template_whisperer_tokens($type, $tokens, array $data, array $options, 
 
     foreach ($tokens as $name => $original) {
       preg_match('/^.*?:(.*?)(:(.*)$|$)/', $name, $matches);
-      $action = isset($matches[1]) ? $matches[1] : '';
+      $action = $matches[1] ?? '';
       $rest = isset($matches[2]) ? ltrim($matches[2], ':') : '';
 
       switch ($action) {
