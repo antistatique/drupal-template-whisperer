@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - remove trigger github actions on every pull-request, keep only push
+- remove satackey/action-docker-layer-caching on Github Actions
 
 ## [3.0.0] - 2022-06-24
 ### Added
