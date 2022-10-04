@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - fix docker running tests on Github Actions
 
+### Removed
+- remove trigger github actions on every pull-request, keep only push
+
 ## [3.0.0] - 2022-06-24
 ### Added
 - Issue #3087966 by wengerk: Support for "Negate the condition" on the Template Whisperer Block Layout Visibility configuration
