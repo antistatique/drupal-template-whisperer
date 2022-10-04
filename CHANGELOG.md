@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - add coverage for Drupal 9.3, 9.4 & 9.5
+- add upgrade-status check
 
 ### Fixed
 - fix docker running tests on Github Actions
+
+### Removed
+- remove trigger github actions on every pull-request, keep only push
+- remove satackey/action-docker-layer-caching on Github Actions
 
 ## [3.0.0] - 2022-06-24
 ### Added
