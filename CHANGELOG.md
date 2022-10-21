@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.1.0] - 2022-10-21
 ### Added
 - add coverage for Drupal 9.3, 9.4 & 9.5
 - add upgrade-status check
@@ -76,7 +78,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add BrowserTestBase to test web-based behaviors and interactions.
 - First draft.
 
-[Unreleased]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-3.0...HEAD
+[Unreleased]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-3.1...HEAD
+[3.1.0]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-3.0...8.x-3.1
 [3.0.0]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-3.0-alpha...8.x-3.0
 [3.0.0-alpha]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-2.3...8.x-3.0-alpha
 [2.3.0]: https://github.com/antistatique/drupal-template-whisperer/compare/8.x-2.2...8.x-2.3
