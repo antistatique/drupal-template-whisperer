@@ -78,12 +78,13 @@ must upgrade to `8.x-3.x` version of **Template Whisperer**.
 
 ## Which version should I use?
 
-|Drupal Core|Template Whisperer|
-|:---------:|:---------:|
-|8.0.x      |1.x        |
-|8.4.x      |2.x        |
-|8.8.x      |3.x        |
-|9.x        |3.x        |
+| Drupal Core | Template Whisperer |
+|:-----------:|:------------------:|
+|    8.0.x    |        1.x         |
+|    8.4.x    |        2.x         |
+|    8.8.x    |        3.0         |
+|    8.9.x    |        3.0         |
+|     9.x     |        3.x         |
 
 ## Dependencies
 
