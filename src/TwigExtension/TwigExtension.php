@@ -5,11 +5,12 @@ namespace Drupal\template_whisperer\TwigExtension;
 use Twig\TwigFunction;
 use Drupal\template_whisperer\TemplateWhispererManager;
 use Drupal\template_whisperer\TemplateWhispererSuggestionUsage;
+use Twig\Extension\AbstractExtension;
 
 /**
  * Template Whisperer Twig extensions.
  */
-class TwigExtension extends \Twig_Extension {
+class TwigExtension extends AbstractExtension {
   /**
    * Template Whisperer Manager.
    *
