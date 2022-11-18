@@ -65,18 +65,9 @@ but those are some of the obvious uses of Template Whisperer.
   5.2 You can now edit your template which is formatted this way:
   `[entity-type-id]--[entity-type]--list-news.html.twig`.
 
-## Template Whisperer versions
-
-Template Whisperer is available for Drupal 8 and Drupal 9!
-
-- If you are running Drupal `8.7.x`, use Template Whisperer `2.x`.
-- If you are running Drupal `8.8.x`, use Template Whisperer `3.x`.
-
-The version `8.x-3.x` is not compatible with Drupal `8.7.x`.
-Drupal `8.8.x` brings some breaking change with tests and so you
-must upgrade to `8.x-3.x` version of **Template Whisperer**.
-
 ## Which version should I use?
+
+Template Whisperer is available for Drupal 8, Drupal 9 and Drupal 10!
 
 | Drupal Core | Template Whisperer |
 |:-----------:|:------------------:|
@@ -85,13 +76,14 @@ must upgrade to `8.x-3.x` version of **Template Whisperer**.
 |    8.8.x    |        3.0         |
 |    8.9.x    |        3.0         |
 |     9.x     |        3.x         |
+|    10.x     |       4.0.x        |
 
 ## Dependencies
 
-The Drupal 8 version of Template Whisperer requires nothing !
+The Drupal version of Template Whisperer requires nothing !
 Feel free to use it.
 
-Template Whisperer requires PHP 7.0+ to works properly. We recommend updating to at least PHP 7.1 if possible, and ideally PHP 7.2, which is supported as of Drupal 8.5.0 (release date: March 7, 2018).
+Template Whisperer requires PHP 7.0+ to works properly. We recommend updating to at least PHP 8.1 if possible.
 
 ## Supporting organizations
 

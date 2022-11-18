@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- add official support of drupal 9.5 & 10.0
+
+### Changed
+- drop support of drupal below 9.3.x
+- bump major release number in order of using Drupal new semver system
 
 ## [3.1.0] - 2022-10-21
 ### Added
