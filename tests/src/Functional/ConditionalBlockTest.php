@@ -274,7 +274,7 @@ class ConditionalBlockTest extends TemplateWhispererTestBase {
     // Update the placed block to be visible only on "Timeline".
     $this->drupalGet('admin/structure/block/manage/' . $this->blocks[0]->id());
     $edit['visibility[template_whisperer][suggestions][' . $this->suggestions[0]->id() . ']'] = TRUE;
-    $this->drupalPostForm(NULL, $edit, 'Save block');
+    $this->submitForm($edit, 'Save block');
 
     // Asserts the configurations has been saved.
     $this->assertSession()->pageTextContains('The block configuration has been saved');
@@ -285,7 +285,7 @@ class ConditionalBlockTest extends TemplateWhispererTestBase {
     $this->drupalGet('admin/structure/block/manage/' . $this->blocks[0]->id());
     $edit['visibility[template_whisperer][suggestions][' . $this->suggestions[0]->id() . ']'] = TRUE;
     $edit['visibility[template_whisperer][suggestions][' . $this->suggestions[1]->id() . ']'] = TRUE;
-    $this->drupalPostForm(NULL, $edit, 'Save block');
+    $this->submitForm($edit, 'Save block');
     // Asserts the configurations has been saved.
     $this->assertSession()->pageTextContains('The block configuration has been saved');
     $this->clickLink('Configure');
