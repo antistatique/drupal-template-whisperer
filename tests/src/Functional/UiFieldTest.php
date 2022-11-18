@@ -76,8 +76,9 @@ class UiFieldTest extends TemplateWhispererTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function tearDown() {
+  protected function tearDown(): void {
     $this->debugOff();
+    parent::tearDown();
   }
 
   /**
