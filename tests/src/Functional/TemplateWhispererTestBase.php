@@ -12,7 +12,7 @@ abstract class TemplateWhispererTestBase extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'classy';
+  protected $defaultTheme = 'starterkit_theme';
 
   /**
    * Enables Twig debugging.
