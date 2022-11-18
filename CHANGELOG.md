@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - drop support of drupal below 9.3.x
 - bump major release number in order of using Drupal new semver system
 
+### Fixed
+- fix deprecated Classy theme replaced by Starterkit for Drupal 10 compatibilities
+- fix call to deprecated method assertEqual() replaced by assertEquals() for Drupal 10 compatibilities
+- fix deprecated class name Twig_Extension for Drupal 10 compatibilities
+- fix instantiation of deprecated class Twig_SimpleFunction for Drupal 10 compatibilities
+- fix call to deprecated method drupalPostForm() replaced by submitForm() for Drupal 10 compatibilities
+- fix declaration of ::tearDown() must be compatible with parent::tearDown() for PHP 8 compatibilities
+
 ## [3.1.0] - 2022-10-21
 ### Added
 - add coverage for Drupal 9.3, 9.4 & 9.5
