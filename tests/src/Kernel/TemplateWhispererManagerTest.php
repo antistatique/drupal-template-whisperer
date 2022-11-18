@@ -112,7 +112,7 @@ class TemplateWhispererManagerTest extends KernelTestBase {
       $entity,
       'field_template_whisperer',
     ]);
-    $this->assertEqual('foo', $suggestions);
+    $this->assertEquals('foo', $suggestions);
 
     // Set an none-existing template whisperer.
     // This may happend when an whisperer is deleted but stay on node data.

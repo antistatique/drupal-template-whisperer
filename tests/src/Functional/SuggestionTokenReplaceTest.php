@@ -109,23 +109,23 @@ class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {
 
     // Suggestion tokens.
     $replacement = $token_service->replace('[suggestion:name]', ['suggestion' => $this->suggestions['foo']], $options);
-    $this->assertEqual($replacement, $this->suggestions['foo']->getName());
+    $this->assertEquals($replacement, $this->suggestions['foo']->getName());
 
     // Chainable Lookup -> Suggestion tokens.
     $replacement = $token_service->replace('[suggestion:lookup:foo]', [], $options);
-    $this->assertEqual($replacement, $this->suggestions['foo']->getSuggestion());
+    $this->assertEquals($replacement, $this->suggestions['foo']->getSuggestion());
     $replacement = $token_service->replace('[suggestion:lookup:foo:name]', [], $options);
-    $this->assertEqual($replacement, $this->suggestions['foo']->getName());
+    $this->assertEquals($replacement, $this->suggestions['foo']->getName());
 
     // Chainable Lookup -> Entity tokens.
     $replacement = $token_service->replace('[suggestion:lookup:foo:entity:nid]', [], $options);
-    $this->assertEqual($replacement, $this->testNode->id());
+    $this->assertEquals($replacement, $this->testNode->id());
     $replacement = $token_service->replace('[suggestion:lookup:foo:entity:url]', [], $options);
-    $this->assertEqual($replacement, $this->testNode->toUrl('canonical', ['absolute' => TRUE])->toString());
+    $this->assertEquals($replacement, $this->testNode->toUrl('canonical', ['absolute' => TRUE])->toString());
 
     // Tests invalide token for node.
     $replacement = $token_service->replace('[suggestion:lookup:foo:entity]', [], $options);
-    $this->assertEqual($replacement, '[suggestion:lookup:foo:entity]');
+    $this->assertEquals($replacement, '[suggestion:lookup:foo:entity]');
   }
 
   /**
@@ -140,7 +140,7 @@ class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {
 
     // Tests inexisting suggestion.
     $replacement = $token_service->replace('[suggestion:lookup:baz:entity:id]', [], $options);
-    $this->assertEqual($replacement, '[suggestion:lookup:baz:entity:id]');
+    $this->assertEquals($replacement, '[suggestion:lookup:baz:entity:id]');
   }
 
   /**
@@ -155,7 +155,7 @@ class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {
 
     // Tests existing but non-used suggestion.
     $replacement = $token_service->replace('[suggestion:lookup:bar:entity:id]', [], $options);
-    $this->assertEqual($replacement, '[suggestion:lookup:bar:entity:id]');
+    $this->assertEquals($replacement, '[suggestion:lookup:bar:entity:id]');
   }
 
 }

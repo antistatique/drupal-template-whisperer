@@ -109,19 +109,19 @@ class FieldTemplateWhispererTest extends FieldKernelTestBase {
 
     $this->assertTrue($entity->field_template_whisperer instanceof FieldItemListInterface, 'Field implements interface.');
     $this->assertTrue($entity->field_template_whisperer[0] instanceof FieldItemInterface, 'Field item implements interface.');
-    $this->assertEqual($entity->field_template_whisperer->target_id, $target_id);
-    $this->assertEqual($entity->field_template_whisperer[0]->target_id, $target_id);
+    $this->assertEquals($entity->field_template_whisperer->target_id, $target_id);
+    $this->assertEquals($entity->field_template_whisperer[0]->target_id, $target_id);
 
     // Verify changing the field's value.
     $new_target_id = $this->suggestions['bar']->getSuggestion();
     $entity->field_template_whisperer->value = $new_target_id;
-    $this->assertEqual($entity->field_template_whisperer->value, $new_target_id);
+    $this->assertEquals($entity->field_template_whisperer->value, $new_target_id);
 
     // Read changed entity and assert changed values.
     $entity->save();
     $entity = $type_manager->getStorage('entity_test')->load($id);
-    $this->assertEqual($entity->field_template_whisperer->target_id, $target_id);
-    $this->assertEqual($entity->field_template_whisperer[0]->target_id, $target_id);
+    $this->assertEquals($entity->field_template_whisperer->target_id, $target_id);
+    $this->assertEquals($entity->field_template_whisperer[0]->target_id, $target_id);
   }
 
   /**
@@ -141,7 +141,7 @@ class FieldTemplateWhispererTest extends FieldKernelTestBase {
 
     foreach ($scenarios as $operation => $expected) {
       $result = $entity->field_template_whisperer->access($operation, $test_user);
-      $this->assertEqual($result, $expected);
+      $this->assertEquals($result, $expected);
     }
   }
 
