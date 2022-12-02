@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - re-enable PHPUnit Symfony Deprecation notice
 
+### Fixed
+- fix test class $modules property must be declared protected
+
 ## [4.0.0] - 2022-11-18
 ### Added
 - add official support of drupal 9.5 & 10.0
