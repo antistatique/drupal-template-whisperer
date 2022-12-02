@@ -27,7 +27,7 @@ class FieldTemplateWhispererTest extends FieldKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['node', 'template_whisperer'];
+  protected static $modules = ['node', 'template_whisperer'];
 
   /**
    * Collection of  Template Whisperer test entites.

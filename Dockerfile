@@ -2,7 +2,7 @@ ARG BASE_IMAGE_TAG=9.3
 FROM wengerk/drupal-for-contrib:${BASE_IMAGE_TAG}
 
 # Disable deprecation notice because supporting both Drupal 8 & Drupal 9.
-ENV SYMFONY_DEPRECATIONS_HELPER=disabled
+# ENV SYMFONY_DEPRECATIONS_HELPER=disabled
 
 # Register the Drupal and DrupalPractice Standard with PHPCS.
 RUN ./vendor/bin/phpcs --config-set installed_paths \
