@@ -38,6 +38,7 @@ class TemplateWhispererManager {
     $list = [];
 
     $ids = $this->suggestionStorage->getQuery()
+      ->accessCheck()
       ->execute();
 
     if (!empty($ids)) {
@@ -62,6 +63,7 @@ class TemplateWhispererManager {
    */
   public function getOneBySuggestion($suggestion) {
     $id = $this->suggestionStorage->getQuery()
+      ->accessCheck()
       ->condition('suggestion', $suggestion)
       ->range(0, 1)
       ->execute();
