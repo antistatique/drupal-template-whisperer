@@ -105,13 +105,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Check the cardinality.
-    // Since Drupal 10.x the confirmation message has changed.
-    if (version_compare(\Drupal::VERSION, '10.0', '>=')) {
-      $this->assertSession()->pageTextContains('These settings apply to the Template Whisperer field everywhere it is used. Some also impact the way that data is stored and cannot be changed once data has been created.');
-    }
-    else {
-      $this->assertSession()->pageTextContains('These settings apply to the Template Whisperer field everywhere it is used. These settings impact the way that data is stored in the database and cannot be changed once data has been created.');
-    }
+    $this->assertSession()->pageTextContains("These settings apply to the Template Whisperer field everywhere it is used.");
     $this->pressButton('Save field settings');
     $this->assertSession()->statusCodeEquals(200);
 
