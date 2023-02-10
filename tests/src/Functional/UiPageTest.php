@@ -131,6 +131,27 @@ class UiPageTest extends TemplateWhispererTestBase {
   }
 
   /**
+   * Tests the canonical page of a suggestion entity.
+   *
+   * Verifies the canonical page defined as handlers:view_builder on annotation.
+   *
+   * @ConfigEntityType on \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity.
+   * works.
+   */
+  public function testCanonicalPage() {
+    $suggestion = $this->entityTypeManager->getStorage('template_whisperer_suggestion')
+      ->create([
+        'id'         => 'test',
+        'name'       => 'Test Template Whisperer',
+        'suggestion' => 'test',
+      ]);
+    $suggestion->save();
+
+    $this->drupalGet('admin/structure/template-whisperer/test/usage');
+    $this->assertSession()->statusCodeEquals(200);
+  }
+
+  /**
    * Tests that the usage page works.
    */
   public function testUsagePage() {
