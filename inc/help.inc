@@ -23,7 +23,7 @@ function template_whisperer_help($route_name, RouteMatchInterface $route_match) 
 
       $output .= '<p>' . t('The best way of using Template Whisperer is as follows:') . '</p>';
       $output .= '<ol>';
-      $output .= '<li>' . t('Create your own <a href=":add-form">suggestion</a>, fill in the specific name and suggestion you need.', [':add-form' => Url::fromRoute('entity.template_whisperer.add_form')->toString()]) . '</li>';
+      $output .= '<li>' . t('Create your own <a href=":add-form">suggestion</a>, fill in the specific name and suggestion you need.', [':add-form' => Url::fromRoute('entity.template_whisperer_suggestion.add_form')->toString()]) . '</li>';
       $output .= '<li>' . t('Add the field "Template Whisperer" field via the field settings for that entity or bundle type.') . '</li>';
       $output .= '<li>' . t('When you edit the content of that entity or bundle you should then see the new "Template Whisperer" section on the Advanced tabs.') . '</li>';
       $output .= '<li>' . t('Select the suggestion you want to add for that entity or bundle.') . '</li>';
