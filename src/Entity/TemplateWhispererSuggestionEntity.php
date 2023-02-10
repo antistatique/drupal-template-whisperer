@@ -14,6 +14,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   id = "template_whisperer_suggestion",
  *   label = @Translation("Template Whisperer Suggestion Entity"),
  *   handlers = {
+ *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\template_whisperer\TemplateWhispererSuggestionListBuilder",
  *     "form" = {
  *       "add" = "Drupal\template_whisperer\Form\TemplateWhispererSuggestionForm",
