@@ -37,6 +37,13 @@ class UiFieldTest extends TemplateWhispererTestBase {
   protected $article;
 
   /**
+   * The Template Whisperer suggestion used for the test.
+   *
+   * @var \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity
+   */
+  protected $template;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -98,7 +105,13 @@ class UiFieldTest extends TemplateWhispererTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Check the cardinality.
-    $this->assertSession()->pageTextContains('These settings apply to the Template Whisperer field everywhere it is used. These settings impact the way that data is stored in the database and cannot be changed once data has been created.');
+    // Since Drupal 10.x the confirmation message has changed.
+    if (version_compare(\Drupal::VERSION, '10.0', '>=')) {
+      $this->assertSession()->pageTextContains('These settings apply to the Template Whisperer field everywhere it is used. Some also impact the way that data is stored and cannot be changed once data has been created.');
+    }
+    else {
+      $this->assertSession()->pageTextContains('These settings apply to the Template Whisperer field everywhere it is used. These settings impact the way that data is stored in the database and cannot be changed once data has been created.');
+    }
     $this->pressButton('Save field settings');
     $this->assertSession()->statusCodeEquals(200);
 
@@ -162,13 +175,13 @@ class UiFieldTest extends TemplateWhispererTestBase {
    * all Available Suggestions in the widget.
    */
   public function testFieldSettingsInWidgetNoSelection() {
-    $this->template_homepage = $this->container->get('entity_type.manager')->getStorage('template_whisperer_suggestion')
+    $template_homepage = $this->container->get('entity_type.manager')->getStorage('template_whisperer_suggestion')
       ->create([
         'id'         => 'homepage',
         'name'       => 'Article - Homepage',
         'suggestion' => 'homepage',
       ]);
-    $this->template_homepage->save();
+    $template_homepage->save();
 
     $this->testAddField();
 
@@ -187,13 +200,13 @@ class UiFieldTest extends TemplateWhispererTestBase {
    * only selected Available Suggestions in the widget.
    */
   public function testFieldSettingsInWidgetWithSelection() {
-    $this->template_homepage = $this->container->get('entity_type.manager')->getStorage('template_whisperer_suggestion')
+    $template_homepage = $this->container->get('entity_type.manager')->getStorage('template_whisperer_suggestion')
       ->create([
         'id'         => 'homepage',
         'name'       => 'Article - Homepage',
         'suggestion' => 'homepage',
       ]);
-    $this->template_homepage->save();
+    $template_homepage->save();
 
     $this->testFieldSettings();
 
@@ -246,7 +259,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
   /**
    * Tests the Node whiteout Template saved, don't suggestion it.
    */
-  public function testFieldWhitoutTemplate() {
+  public function testFieldWithoutTemplate() {
     $article = $this->container->get('entity_type.manager')->getStorage('node')
       ->create([
         'type'  => 'article',

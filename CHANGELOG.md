@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - fix test class $modules property must be declared protected
+- fix typo on test testFieldWhitoutTemplate -> testFieldWithoutTemplate
+- fix usage of dynamic properties on UiFieldTest
+
+### Added
+- add coverage of Drupal 10.1.x
 
 ## [4.0.0] - 2022-11-18
 ### Added
