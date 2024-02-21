@@ -2,10 +2,10 @@
 
 namespace Drupal\template_whisperer\TwigExtension;
 
-use Twig\TwigFunction;
 use Drupal\template_whisperer\TemplateWhispererManager;
 use Drupal\template_whisperer\TemplateWhispererSuggestionUsage;
 use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * Template Whisperer Twig extensions.

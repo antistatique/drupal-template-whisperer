@@ -2,8 +2,8 @@
 
 namespace Drupal\template_whisperer\Entity;
 
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
+use Drupal\Core\Entity\EntityStorageInterface;
 
 /**
  * Defines the Template Whisperer Suggestion entity.

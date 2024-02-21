@@ -2,8 +2,8 @@
 
 namespace Drupal\Tests\template_whisperer\Kernel;
 
-use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FieldItemInterface;
+use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Tests\field\Kernel\FieldKernelTestBase;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 
