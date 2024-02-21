@@ -105,23 +105,46 @@ class UiFieldTest extends TemplateWhispererTestBase {
       $this->clickLink('Add field');
     }
 
-    $this->fillField('Add a new field', 'template_whisperer');
+    // Add the Template Whisperer field.
+    // Since Drupal 10.2 the field type has been changed from select to radio.
+    if (version_compare(\Drupal::VERSION, '10.2', '>=')) {
+      $this->assertSession()->elementExists('css', "[name='new_storage_type'][value='template_whisperer']");
+      $this->getSession()->getPage()->selectFieldOption('new_storage_type', 'template_whisperer');
+    }
+    else {
+      $this->fillField('Add a new field', 'template_whisperer');
+    }
+
     $this->fillField('Label', 'Template Whisperer');
     $this->fillField('Machine-readable name', 'template_whisperer');
-    $this->pressButton('Save and continue');
+
+    // Since Drupal 10.2 the submit button text changed.
+    if (version_compare(\Drupal::VERSION, '10.2', '>=')) {
+      $this->pressButton('Continue');
+    }
+    else {
+      $this->pressButton('Save and continue');
+    }
     $this->assertSession()->statusCodeEquals(200);
 
     // Check the cardinality.
     $this->assertSession()->pageTextContains("These settings apply to the Template Whisperer field everywhere it is used.");
-    $this->pressButton('Save field settings');
-    $this->assertSession()->statusCodeEquals(200);
 
-    // Finalize the field.
-    $this->assertSession()->pageTextContains('Updated field Template Whisperer field settings.');
-    $this->pressButton('Save settings');
-    $this->assertSession()->statusCodeEquals(200);
-
-    $this->assertSession()->pageTextContains('Saved Template Whisperer configuration.');
+    // Since Drupal 10.2 the storage page has been removed.
+    if (version_compare(\Drupal::VERSION, '10.2', '>=')) {
+      $this->pressButton('Save settings');
+      $this->assertSession()->statusCodeEquals(200);
+      $this->assertSession()->pageTextContains('Saved Template Whisperer configuration.');
+    }
+    else {
+      $this->pressButton('Save field settings');
+      $this->assertSession()->statusCodeEquals(200);
+      // Finalize the field configuration.
+      $this->assertSession()->pageTextContains('Updated field Template Whisperer field settings.');
+      $this->pressButton('Save settings');
+      $this->assertSession()->statusCodeEquals(200);
+      $this->assertSession()->pageTextContains('Saved Template Whisperer configuration.');
+    }
   }
 
   /**

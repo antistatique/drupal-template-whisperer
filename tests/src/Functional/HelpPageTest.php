@@ -36,8 +36,21 @@ class HelpPageTest extends BrowserTestBase {
   protected function setUp(): void {
     parent::setUp();
 
+    // Since Drupal 10.2 accessing help page require a new permission.
+    if (version_compare(\Drupal::VERSION, '10.2', '>=')) {
+      $permissions = [
+        'access administration pages',
+        'access help pages',
+      ];
+    }
+    else {
+      $permissions = [
+        'access administration pages',
+      ];
+    }
+
     // Create a user for tests.
-    $admin_user = $this->drupalCreateUser(['access administration pages']);
+    $admin_user = $this->drupalCreateUser($permissions);
     $this->drupalLogin($admin_user);
   }
 
@@ -48,7 +61,7 @@ class HelpPageTest extends BrowserTestBase {
    * displayed.
    */
   public function testHelp(): void {
-    $this->drupalGet('admin/help/template_whisperer');
+    $this->drupalGet('/admin/help/template_whisperer');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->pageTextContains('The module uses is own field and his own entity to generate more suggestions for your selected nodes.');
     $this->assertSession()->linkExists('suggestion');
