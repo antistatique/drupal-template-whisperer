@@ -147,7 +147,7 @@ class UiPageTest extends TemplateWhispererTestBase {
       ]);
     $suggestion->save();
 
-    $this->drupalGet('admin/structure/template-whisperer/test/usage');
+    $this->drupalGet('admin/structure/template-whisperer/test');
     $this->assertSession()->statusCodeEquals(200);
   }
 
@@ -162,6 +162,10 @@ class UiPageTest extends TemplateWhispererTestBase {
         'suggestion' => 'test',
       ]);
     $suggestion->save();
+
+    // Ensure when not used the usage page still works.
+    $this->drupalGet('admin/structure/template-whisperer/test/usage');
+    $this->assertSession()->statusCodeEquals(200);
 
     // Create a Basic Page content type that we will use for testing.
     $page = $this->entityTypeManager->getStorage('node')->create([
