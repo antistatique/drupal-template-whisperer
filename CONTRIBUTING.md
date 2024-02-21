@@ -27,7 +27,7 @@ First of all, you need to have the following tools installed globally
 on your environment:
 
   * drush
-  * Latest dev release of Drupal 8.x/9.x/10.x.
+  * Latest dev release of Drupal 8.x/9.x/10.x/11.x.
   * docker
   * docker-compose
 

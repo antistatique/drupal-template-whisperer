@@ -104,6 +104,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
     else {
       $this->clickLink('Add field');
     }
+    $this->assertSession()->addressEquals('admin/structure/types/manage/article/fields/add-field');
 
     // Add the Template Whisperer field.
     // Since Drupal 10.2 the field type has been changed from select to radio.
@@ -115,7 +116,13 @@ class UiFieldTest extends TemplateWhispererTestBase {
       $this->fillField('Add a new field', 'template_whisperer');
     }
 
-    $this->fillField('Label', 'Template Whisperer');
+    // Since Drupal 11.0 The field label and machine_name are on another page.
+    if (version_compare(\Drupal::VERSION, '11', '>=')) {
+      $this->pressButton('Continue');
+      $this->assertSession()->addressEquals('admin/structure/types/manage/article/fields/add-field');
+    }
+
+    $this->fillField('label', 'Template Whisperer');
     $this->fillField('Machine-readable name', 'template_whisperer');
 
     // Since Drupal 10.2 the submit button text changed.

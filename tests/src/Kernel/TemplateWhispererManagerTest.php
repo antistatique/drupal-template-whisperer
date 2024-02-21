@@ -42,7 +42,12 @@ class TemplateWhispererManagerTest extends KernelTestBase {
 
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('user');
-    $this->installSchema('system', ['sequences']);
+
+    // Since Drupal 10.2.0 installing the table sequences with the
+    // method KernelTestBase::installSchema() is deprecated.
+    if (version_compare(\Drupal::VERSION, '10.2.0', '<')) {
+      $this->installSchema('system', ['sequences']);
+    }
 
     // Set default storage backend and configure the theme system.
     $this->installConfig(['field', 'system']);
