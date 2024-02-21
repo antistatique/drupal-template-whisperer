@@ -112,22 +112,35 @@ class UiPageTest extends TemplateWhispererTestBase {
     // Setup a template whisperer with one suggestion.
     $this->testCreate();
 
+    // Test Delete from listing page.
     $this->clickLink('Delete');
+    $this->assertSession()->addressEquals('admin/structure/template-whisperer/test/delete');
     $this->assertSession()->pageTextContains('Are you sure you want to delete the suggestion "Test Template Whisperer"?');
     $this->assertSession()->pageTextContains('This action cannot be undone.');
-
     $this->pressButton('Delete');
+    $this->assertSession()->addressEquals('admin/structure/template-whisperer');
     $this->assertSession()->pageTextContains('No suggestion has currently been set.');
     $this->assertSession()->pageTextContains('The suggestion "Test Template Whisperer" has been deleted.');
 
     // Test Delete into entity.
     $this->testCreate();
     $this->clickLink('Edit');
+    $this->assertSession()->addressEquals('admin/structure/template-whisperer/test/edit');
     $this->clickLink('Delete');
+    $this->assertSession()->addressEquals('admin/structure/template-whisperer/test/delete');
     $this->assertSession()->pageTextContains('Are you sure you want to delete the suggestion "Test Template Whisperer"?');
     $this->assertSession()->pageTextContains('This action cannot be undone.');
+    $this->pressButton('Delete');
+    $this->assertSession()->addressEquals('admin/structure/template-whisperer');
+    $this->assertSession()->pageTextContains('No suggestion has currently been set.');
+    $this->assertSession()->pageTextContains('The suggestion "Test Template Whisperer" has been deleted.');
+
+    // Cancel deletion.
+    $this->testCreate();
+    $this->clickLink('Delete');
+    $this->assertSession()->addressEquals('admin/structure/template-whisperer/test/delete');
     $this->clickLink('Cancel');
-    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->pageTextNotContains('The suggestion "Test Template Whisperer" has been deleted.');
   }
 
   /**
@@ -147,7 +160,7 @@ class UiPageTest extends TemplateWhispererTestBase {
       ]);
     $suggestion->save();
 
-    $this->drupalGet('admin/structure/template-whisperer/test/usage');
+    $this->drupalGet('admin/structure/template-whisperer/test');
     $this->assertSession()->statusCodeEquals(200);
   }
 
@@ -162,6 +175,10 @@ class UiPageTest extends TemplateWhispererTestBase {
         'suggestion' => 'test',
       ]);
     $suggestion->save();
+
+    // Ensure when not used the usage page still works.
+    $this->drupalGet('admin/structure/template-whisperer/test/usage');
+    $this->assertSession()->statusCodeEquals(200);
 
     // Create a Basic Page content type that we will use for testing.
     $page = $this->entityTypeManager->getStorage('node')->create([
