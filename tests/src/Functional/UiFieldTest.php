@@ -97,7 +97,14 @@ class UiFieldTest extends TemplateWhispererTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Add the Template Whisperer field.
-    $this->clickLink('Add field');
+    // Since Drupal 10.1.0 the button "add field" text has been changed.
+    if (version_compare(\Drupal::VERSION, '10.2.0', '<')) {
+      $this->clickLink('Create a new field');
+    }
+    else {
+      $this->clickLink('Add field');
+    }
+
     $this->fillField('Add a new field', 'template_whisperer');
     $this->fillField('Label', 'Template Whisperer');
     $this->fillField('Machine-readable name', 'template_whisperer');
