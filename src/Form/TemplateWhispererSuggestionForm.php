@@ -3,9 +3,9 @@
 namespace Drupal\template_whisperer\Form;
 
 use Drupal\Core\Entity\EntityForm;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\template_whisperer\TemplateWhispererManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for Template Whisperer forms.

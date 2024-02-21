@@ -3,10 +3,10 @@
 namespace Drupal\template_whisperer\Plugin\Field\FieldType;
 
 use Drupal\Core\Field\FieldItemBase;
-use Drupal\Core\TypedData\DataDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\TypedData\DataDefinition;
 
 /**
  * Plugin implementation of the 'template_whisperer' field type.

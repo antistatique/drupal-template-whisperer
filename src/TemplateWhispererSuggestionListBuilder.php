@@ -3,11 +3,11 @@
 namespace Drupal\template_whisperer;
 
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
-use Drupal\Core\Entity\EntityTypeInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Routing\UrlGeneratorInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines a class to build a listing of templates whisperer entities.

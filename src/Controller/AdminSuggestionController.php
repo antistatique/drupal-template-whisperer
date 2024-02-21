@@ -2,13 +2,13 @@
 
 namespace Drupal\template_whisperer\Controller;
 
-use Drupal\Core\Pager\PagerManagerInterface;
-use Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface;
 use Drupal\Core\Controller\ControllerBase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\template_whisperer\TemplateWhispererSuggestionUsage;
+use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
+use Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface;
+use Drupal\template_whisperer\TemplateWhispererSuggestionUsage;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Listing of Template Whisperer suggestions.

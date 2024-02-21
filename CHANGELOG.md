@@ -14,10 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix usage of dynamic properties on UiFieldTest
 - fix Issue #3312077 - Route entity.template_whisperer.add_form does not exist - by LeoAlcci, christyanpaim, Bohus Ulrych, wengerk
 - fix Issue #3312076 - The template_whisperer_suggestion entity type did not specify a view_builder handler - by immaculatexavier, Bohus Ulrych, wengerk
+- fix phpcs use statements should be sorted alphabetically
 
 ### Added
 - add coverage of Drupal 10.1.x
 - add call accessCheck on every QueryBuilder
+- add Drupal GitlabCI
 
 ## [4.0.0] - 2022-11-18
 ### Added

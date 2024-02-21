@@ -5,11 +5,11 @@
  * Contains hook to make sure manage Template Whisperer fields access.
  */
 
+use Drupal\Core\Access\AccessResult;
 // Use statements to support hook_entity_field_access.
 use Drupal\Core\Field\FieldDefinitionInterface;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Implements hook_entity_field_access().
