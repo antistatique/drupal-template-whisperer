@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add call accessCheck on every QueryBuilder
 - add Drupal GitlabCI
 
+### Removed
+- drop tests support on Drupal < 9.4
+
 ## [4.0.0] - 2022-11-18
 ### Added
 - add official support of drupal 9.5 & 10.0
