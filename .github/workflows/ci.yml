@@ -17,7 +17,7 @@ jobs:
         experimental: [ false ]
         include:
           - drupal_version: '11.0'
-            module: 'bamboo_twig'
+            module: 'template_whisperer'
             experimental: true
 
     steps:
@@ -48,7 +48,7 @@ jobs:
         experimental: [ false ]
         include:
           - drupal_version: '11.0'
-            module: 'bamboo_twig'
+            module: 'template_whisperer'
             experimental: true
 
     steps:
