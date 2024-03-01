@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add coverage of Drupal 11.0-dev
 
 ### Removed
-- drop tests support on Drupal < 9.4
+- drop tests support on Drupal <= 9.4
 
 ## [4.0.0] - 2022-11-18
 ### Added
