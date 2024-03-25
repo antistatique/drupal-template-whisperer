@@ -43,10 +43,7 @@ class TwigExtension extends AbstractExtension {
    */
   public function getFunctions() {
     return [
-      new TwigFunction('tw_suggestion_entities', [
-        $this,
-        'getEntitiesFromSuggestion',
-      ]),
+      new TwigFunction('tw_suggestion_entities', $this->getEntitiesFromSuggestion(...)),
     ];
   }
 
