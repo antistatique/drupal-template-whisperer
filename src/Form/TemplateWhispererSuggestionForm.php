@@ -118,6 +118,8 @@ class TemplateWhispererSuggestionForm extends EntityForm {
         break;
     }
     $form_state->setRedirect('entity.template_whisperer_suggestion.collection');
+
+    return $entity->isNew() ? SAVED_NEW : SAVED_UPDATED;
   }
 
 }
