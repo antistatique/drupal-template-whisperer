@@ -3,7 +3,6 @@
 namespace Drupal\template_whisperer\Plugin\Condition;
 
 use Drupal\Core\Condition\ConditionPluginBase;
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\template_whisperer\TemplateWhispererManager;
@@ -32,7 +31,7 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
   /**
    * {@inheritdoc}
    */
-  public function __construct(EntityStorageInterface $entity_storage, array $configuration, $plugin_id, $plugin_definition, TemplateWhispererManager $template_whisperer_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, TemplateWhispererManager $template_whisperer_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->twManager = $template_whisperer_manager;
   }
@@ -42,7 +41,6 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
-      $container->get('entity_type.manager')->getStorage('node_type'),
       $configuration,
       $plugin_id,
       $plugin_definition,
