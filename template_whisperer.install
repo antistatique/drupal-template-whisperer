@@ -6,6 +6,8 @@
  */
 
 use Drupal\Core\Url;
+use Drupal\user\Entity\Role;
+use Drupal\user\RoleInterface;
 
 /**
  * Implements hook_install().
@@ -82,10 +84,19 @@ function template_whisperer_update_8001(&$sandbox) {
   $roleStorage = \Drupal::service('entity_type.manager')
     ->getStorage('user_role');
 
+  $roles = Role::loadMultiple();
+  unset($roles[RoleInterface::ANONYMOUS_ID]);
+
   // Get all roles with `administer template whisperer` permissions.
-  $roles_with_tw_administer = user_role_names(TRUE, 'administer template whisperer');
+  $roles_with_tw_administer = array_filter($roles, function ($role) {
+    return $role->hasPermission('administer template whisperer');
+  });
+  $roles_with_tw_administer = array_map(fn(RoleInterface $role) => $role->label(), $roles_with_tw_administer);
   // Get all roles with `administer template whisperer suggestion entities.
-  $roles_with_tw_suggestion = user_role_names(TRUE, 'administer template whisperer suggestion entities');
+  $roles_with_tw_suggestion = array_filter($roles, function ($role) {
+    return $role->hasPermission('administer template whisperer suggestion entities');
+  });
+  $roles_with_tw_suggestion = array_map(fn(RoleInterface $role) => $role->label(), $roles_with_tw_suggestion);
 
   $rids = array_merge($roles_with_tw_administer, $roles_with_tw_suggestion);
   $rids = array_keys($rids);

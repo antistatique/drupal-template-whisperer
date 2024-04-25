@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - add cpsell project words for Gitlab-CI
 
+### Changed
+- replace usage of user_role_names() deprecated in 10.2 and removed in 11.0
+
 ## [4.0.1] - 2024-03-01
 ### Changed
 - re-enable PHPUnit Symfony Deprecation notice
