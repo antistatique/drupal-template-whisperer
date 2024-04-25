@@ -45,6 +45,20 @@ use Drupal\Core\Entity\EntityStorageInterface;
 class TemplateWhispererSuggestionEntity extends ConfigEntityBase implements TemplateWhispererSuggestionEntityInterface {
 
   /**
+   * The name used in the Admin UI.
+   *
+   * @var string
+   */
+  public $name;
+
+  /**
+   * The suggestion used to generate alternatives tempaltes names.
+   *
+   * @var string
+   */
+  public $suggestion;
+
+  /**
    * {@inheritdoc}
    */
   public function getName() {
