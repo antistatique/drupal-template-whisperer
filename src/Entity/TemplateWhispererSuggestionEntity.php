@@ -52,7 +52,7 @@ class TemplateWhispererSuggestionEntity extends ConfigEntityBase implements Temp
   public $name;
 
   /**
-   * The suggestion used to generate alternatives tempaltes names.
+   * The suggestion used to generate alternatives templates names.
    *
    * @var string
    */
