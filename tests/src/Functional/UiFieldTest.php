@@ -116,8 +116,9 @@ class UiFieldTest extends TemplateWhispererTestBase {
       $this->fillField('Add a new field', 'template_whisperer');
     }
 
-    // Since Drupal 11.0 The field label and machine_name are on another page.
-    if (version_compare(\Drupal::VERSION, '11', '>=')) {
+    // Since Drupal 10.3 The field label and machine_name are on another page.
+    // @see https://www.drupal.org/project/drupal/issues/3346539
+    if (version_compare(\Drupal::VERSION, '10.3', '>=')) {
       $this->pressButton('Continue');
       $this->assertSession()->addressEquals('admin/structure/types/manage/article/fields/add-field');
     }
