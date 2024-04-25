@@ -120,6 +120,8 @@ class TemplateWhispererFieldItem extends FieldItemBase {
 
   /**
    * {@inheritdoc}
+   *
+   * Use the PostSave process to populate suggestions usage.
    */
   public function postSave($update) {
     $entity = $this->getEntity();
@@ -175,6 +177,8 @@ class TemplateWhispererFieldItem extends FieldItemBase {
         }
       }
     }
+
+    return FALSE;
   }
 
   /**
