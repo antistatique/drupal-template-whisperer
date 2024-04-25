@@ -276,15 +276,22 @@ class UiFieldTest extends TemplateWhispererTestBase {
     // Asserts the debug mode of twig is enabled.
     $this->assertTrue(strpos($output->getContent(), '<!-- THEME HOOK: \'node\' -->') !== FALSE);
 
+    // Since Drupal 10.3 the prefix has been changed for emojis.
+    // @see https://www.drupal.org/project/drupal/issues/3420709
+    $prefix = '* ';
+    if (version_compare(\Drupal::VERSION, '10.3', '>=')) {
+      $prefix = '▪️ ';
+    }
+
     // Asserts that all Page Template Whisperer based suggestions are present.
-    $this->assertTrue(strpos($output->getContent(), '* page--node--1--googlemap.html.twig') !== FALSE);
-    $this->assertTrue(strpos($output->getContent(), '* page--node--googlemap.html.twig') !== FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}page--node--1--googlemap.html.twig") !== FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}page--node--googlemap.html.twig") !== FALSE);
 
     // Asserts that all Entity Template Whisperer based suggestions are present.
-    $this->assertTrue(strpos($output->getContent(), '* node--article--googlemap.html.twig') !== FALSE);
-    $this->assertTrue(strpos($output->getContent(), '* node--1--article--googlemap.html.twig') !== FALSE);
-    $this->assertTrue(strpos($output->getContent(), '* node--article--full--googlemap.html.twig') !== FALSE);
-    $this->assertTrue(strpos($output->getContent(), '* node--1--article--full--googlemap.html.twig') !== FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}node--article--googlemap.html.twig") !== FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}node--1--article--googlemap.html.twig") !== FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}node--article--full--googlemap.html.twig") !== FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}node--1--article--full--googlemap.html.twig") !== FALSE);
   }
 
   /**
@@ -310,15 +317,22 @@ class UiFieldTest extends TemplateWhispererTestBase {
     // Asserts the debug mode of twig is enabled.
     $this->assertTrue(strpos($output->getContent(), '<!-- THEME HOOK: \'node\' -->') !== FALSE);
 
+    // Since Drupal 10.3 the prefix has been changed for emojis.
+    // @see https://www.drupal.org/project/drupal/issues/3420709
+    $prefix = '* ';
+    if (version_compare(\Drupal::VERSION, '10.3', '>=')) {
+      $prefix = '▪️ ';
+    }
+
     // Asserts that Page Template Whisperer based suggestions are not present.
-    $this->assertTrue(strpos($output->getContent(), '* page--node--1--googlemap.html.twig') === FALSE);
-    $this->assertTrue(strpos($output->getContent(), '* page--node--googlemap.html.twig') === FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}page--node--1--googlemap.html.twig") === FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}page--node--googlemap.html.twig") === FALSE);
 
     // Asserts that Entity Template Whisperer based suggestions are not present.
-    $this->assertTrue(strpos($output->getContent(), '* node--article--googlemap.html.twig') === FALSE);
-    $this->assertTrue(strpos($output->getContent(), '* node--1--article--googlemap.html.twig') === FALSE);
-    $this->assertTrue(strpos($output->getContent(), '* node--article--full--googlemap.html.twig') === FALSE);
-    $this->assertTrue(strpos($output->getContent(), '* node--1--article--full--googlemap.html.twig') === FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}node--article--googlemap.html.twig") === FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}node--1--article--googlemap.html.twig") === FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}node--article--full--googlemap.html.twig") === FALSE);
+    $this->assertTrue(strpos($output->getContent(), "{$prefix}node--1--article--full--googlemap.html.twig") === FALSE);
   }
 
 }

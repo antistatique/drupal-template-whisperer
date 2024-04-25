@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - replace usage of user_role_names() deprecated in 10.2 and removed in 11.0
+- fix tests for Drupal 10.3 since twig template debug indicator of overiden themes changed from ascii to emojis
 
 ## [4.0.1] - 2024-03-01
 ### Changed
