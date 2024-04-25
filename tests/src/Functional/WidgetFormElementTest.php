@@ -163,8 +163,8 @@ class WidgetFormElementTest extends TemplateWhispererTestBase {
     // Access the taxonomy term edit page.
     $this->drupalGet('taxonomy/term/' . $this->tag->id() . '/edit');
 
-    // Since Drupal 11.0 Taxonomy term form has been changed to support tabs.
-    if (version_compare(\Drupal::VERSION, '11', '>=')) {
+    // Since Drupal 10.3 Taxonomy term form has been changed to support tabs.
+    if (version_compare(\Drupal::VERSION, '10.3', '>=')) {
       // Asserts the field is located on the Advanced Group - when possible.
       $this->assertSession()->elementExists('css', 'div[data-vertical-tabs-panes] #edit-field-template-whisperer-2-0 select');
     }
