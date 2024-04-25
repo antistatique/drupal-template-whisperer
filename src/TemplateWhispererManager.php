@@ -120,7 +120,7 @@ class TemplateWhispererManager {
         $field_type = $definition->getType();
 
         // Check the field type against our list of fields.
-        if (isset($field_type) && in_array($field_type, $field_types)) {
+        if (in_array($field_type, $field_types)) {
           $field_list[$field_name] = $definition;
         }
       }
