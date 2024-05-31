@@ -153,7 +153,7 @@ class FieldTemplateWhispererTest extends FieldKernelTestBase {
    *   - Array of permissions for the user.
    *   - Scenarios with expected access results.
    */
-  public function providerTestTemaplteWhispererFieldAccess() {
+  public static function providerTestTemaplteWhispererFieldAccess(): iterable {
     return [
       [
         // Admin access.

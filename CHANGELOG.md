@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix tests for Drupal 10.3 since twig template debug indicator of overiden themes changed from ascii to emojis
 - fix tests for Drupal 10.3 since changes on field creation experience
 - fix tests for Drupal 10.3 since changes on taxonomy form supporting vertical tabs
+- fix deprecation by passing @dataprovider as static function
 
 ## [4.0.1] - 2024-03-01
 ### Changed
