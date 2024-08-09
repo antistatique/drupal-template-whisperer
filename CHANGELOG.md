@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix deprecation by passing @dataprovider as static function
 - fix obsolete docker-compose command in CIs
 
+### Removed
+- remove legacy version annotation on docker-compose.yml
+
 ## [4.0.1] - 2024-03-01
 ### Changed
 - re-enable PHPUnit Symfony Deprecation notice
