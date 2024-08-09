@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - add cpsell project words for Gitlab-CI
+- add official support of drupal 11.0
 
 ### Changed
 - replace usage of user_role_names() deprecated in 10.2 and removed in 11.0
