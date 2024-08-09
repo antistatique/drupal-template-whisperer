@@ -27,7 +27,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
    *
    * @var string
    */
-  protected $profile = 'minimal';
+  protected $profile = 'standard';
 
   /**
    * The article Node for the test.
@@ -69,15 +69,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
     $this->template->save();
 
     // Create an article content type that we will use for testing.
-    $this->drupalCreateContentType(['type' => 'article', 'name' => 'Article']);
-
-    $this->article = $this->container->get('entity_type.manager')->getStorage('node')
-      ->create([
-        'type'  => 'article',
-        'title' => 'Article',
-      ]);
-    $this->article->save();
-    $this->container->get('router.builder')->rebuild();
+    $this->article = $this->drupalCreateNode(['type' => 'article']);
   }
 
   /**
@@ -100,9 +92,11 @@ class UiFieldTest extends TemplateWhispererTestBase {
     // Since Drupal 10.1 the button "add field" text has been changed.
     if (version_compare(\Drupal::VERSION, '10.1', '>=')) {
       $this->clickLink('Create a new field');
+      $this->assertSession()->statusCodeEquals(200);
     }
     else {
       $this->clickLink('Add field');
+      $this->assertSession()->statusCodeEquals(200);
     }
     $this->assertSession()->addressEquals('admin/structure/types/manage/article/fields/add-field');
 

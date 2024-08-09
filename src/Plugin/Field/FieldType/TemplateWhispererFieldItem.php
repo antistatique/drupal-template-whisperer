@@ -15,7 +15,6 @@ use Drupal\Core\TypedData\DataDefinition;
  *   id = "template_whisperer",
  *   label = @Translation("Template Whisperer"),
  *   description = @Translation("This field stores a Template Whisperer entity reference."),
- *   category = @Translation("General"),
  *   default_widget = "template_whisperer",
  *   default_formatter = "template_whisperer",
  * )
