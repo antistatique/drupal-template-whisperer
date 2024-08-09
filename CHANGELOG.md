@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix tests for Drupal 10.3 since changes on taxonomy form supporting vertical tabs
 - fix deprecation by passing @dataprovider as static function
 - fix obsolete docker-compose command in CIs
+- run Upgrade Status CI with Drupal 10.3
 
 ### Removed
 - remove legacy version annotation on docker-compose.yml
