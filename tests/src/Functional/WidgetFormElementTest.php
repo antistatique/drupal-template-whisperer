@@ -5,11 +5,13 @@ namespace Drupal\Tests\template_whisperer\Functional;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 
 /**
- * @coversDefaultClass \Drupal\template_whisperer\Plugin\Field\FieldWidget\TemplateWhispererWidget
+ * Assert fields placed in the advanced tabs.
  *
  * Will assert the fields Template Whisperer will be placed in the advanced tabs
  * when possible. Otherwise will stay in place.
  * Eg. when used on taxonomy form or when embeed into an inline-edit-form.
+ *
+ * @coversDefaultClass \Drupal\template_whisperer\Plugin\Field\FieldWidget\TemplateWhispererWidget
  *
  * @group template_whisperer_functional_field
  * @group template_whisperer_functional

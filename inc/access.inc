@@ -16,7 +16,7 @@ use Drupal\Core\Session\AccountInterface;
  *
  * Asserts that Template Whisperer fields aren't edited by those who shouldn't.
  */
-function template_whisperer_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) {
+function template_whisperer_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, ?FieldItemListInterface $items = NULL) {
   // Check access only for Template Whisperer field.
   if ($field_definition->getType() != 'template_whisperer') {
     return AccessResult::neutral();
