@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - add official support of drupal 11.1
 
+### Changed
+- remove scanning CSS/JS with phpcs (deprecated and support will be removed in PHP_CodeSniffer 4.0)
+
 ## [4.0.2] - 2024-08-09
 ### Added
 - add cpsell project words for Gitlab-CI
