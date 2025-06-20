@@ -101,20 +101,27 @@ class UiFieldTest extends TemplateWhispererTestBase {
     $this->assertSession()->addressEquals('admin/structure/types/manage/article/fields/add-field');
 
     // Add the Template Whisperer field.
-    // Since Drupal 10.2 the field type has been changed from select to radio.
-    if (version_compare(\Drupal::VERSION, '10.2', '>=')) {
+    // Since Drupal 11.2 the field type has been changed from radio to ajax.
+    if (version_compare(\Drupal::VERSION, '11.2-dev', '>=')) {
+      $this->assertSession()->elementExists('css', '.field-option__label:contains("Template Whisperer")');
+      $this->clickLink('Template Whisperer');
+      $this->assertSession()->addressEquals('/admin/structure/types/manage/article/fields/add-field/template_whisperer/false');
+    }
+    elseif (version_compare(\Drupal::VERSION, '10.3', '>=')) {
+      // Since Drupal 10.3 The field label and machine_name are on another page.
+      // @see https://www.drupal.org/project/drupal/issues/3346539
+      $this->assertSession()->elementExists('css', "[name='new_storage_type'][value='template_whisperer']");
+      $this->getSession()->getPage()->selectFieldOption('new_storage_type', 'template_whisperer');
+      $this->pressButton('Continue');
+      $this->assertSession()->addressEquals('admin/structure/types/manage/article/fields/add-field');
+    }
+    elseif (version_compare(\Drupal::VERSION, '10.2', '>=')) {
+      // Since Drupal 10.2 the field type has been changed from select to radio.
       $this->assertSession()->elementExists('css', "[name='new_storage_type'][value='template_whisperer']");
       $this->getSession()->getPage()->selectFieldOption('new_storage_type', 'template_whisperer');
     }
     else {
       $this->fillField('Add a new field', 'template_whisperer');
-    }
-
-    // Since Drupal 10.3 The field label and machine_name are on another page.
-    // @see https://www.drupal.org/project/drupal/issues/3346539
-    if (version_compare(\Drupal::VERSION, '10.3', '>=')) {
-      $this->pressButton('Continue');
-      $this->assertSession()->addressEquals('admin/structure/types/manage/article/fields/add-field');
     }
 
     $this->fillField('label', 'Template Whisperer');
@@ -132,8 +139,14 @@ class UiFieldTest extends TemplateWhispererTestBase {
     // Check the cardinality.
     $this->assertSession()->pageTextContains("These settings apply to the Template Whisperer field everywhere it is used.");
 
-    // Since Drupal 10.2 the storage page has been removed.
+    // Since Drupal 11.2 Settings button has be renamed.
     if (version_compare(\Drupal::VERSION, '10.2', '>=')) {
+      $this->pressButton('Save');
+      $this->assertSession()->statusCodeEquals(200);
+      $this->assertSession()->pageTextContains('Saved Template Whisperer configuration.');
+    }
+    elseif (version_compare(\Drupal::VERSION, '10.2', '>=')) {
+      // Since Drupal 10.2 the storage page has been removed.
       $this->pressButton('Save settings');
       $this->assertSession()->statusCodeEquals(200);
       $this->assertSession()->pageTextContains('Saved Template Whisperer configuration.');
