@@ -89,15 +89,8 @@ class UiFieldTest extends TemplateWhispererTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Add the Template Whisperer field.
-    // Since Drupal 10.1 the button "add field" text has been changed.
-    if (version_compare(\Drupal::VERSION, '10.1', '>=')) {
-      $this->clickLink('Create a new field');
-      $this->assertSession()->statusCodeEquals(200);
-    }
-    else {
-      $this->clickLink('Add field');
-      $this->assertSession()->statusCodeEquals(200);
-    }
+    $this->clickLink('Create a new field');
+    $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->addressEquals('admin/structure/types/manage/article/fields/add-field');
 
     // Add the Template Whisperer field.
@@ -107,7 +100,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
       $this->clickLink('Template Whisperer');
       $this->assertSession()->addressEquals('/admin/structure/types/manage/article/fields/add-field/template_whisperer/false');
     }
-    elseif (version_compare(\Drupal::VERSION, '10.3', '>=')) {
+    else {
       // Since Drupal 10.3 The field label and machine_name are on another page.
       // @see https://www.drupal.org/project/drupal/issues/3346539
       $this->assertSession()->elementExists('css', "[name='new_storage_type'][value='template_whisperer']");
@@ -115,51 +108,19 @@ class UiFieldTest extends TemplateWhispererTestBase {
       $this->pressButton('Continue');
       $this->assertSession()->addressEquals('admin/structure/types/manage/article/fields/add-field');
     }
-    elseif (version_compare(\Drupal::VERSION, '10.2', '>=')) {
-      // Since Drupal 10.2 the field type has been changed from select to radio.
-      $this->assertSession()->elementExists('css', "[name='new_storage_type'][value='template_whisperer']");
-      $this->getSession()->getPage()->selectFieldOption('new_storage_type', 'template_whisperer');
-    }
-    else {
-      $this->fillField('Add a new field', 'template_whisperer');
-    }
 
     $this->fillField('label', 'Template Whisperer');
     $this->fillField('Machine-readable name', 'template_whisperer');
 
-    // Since Drupal 10.2 the submit button text changed.
-    if (version_compare(\Drupal::VERSION, '10.2', '>=')) {
-      $this->pressButton('Continue');
-    }
-    else {
-      $this->pressButton('Save and continue');
-    }
+    $this->pressButton('Continue');
     $this->assertSession()->statusCodeEquals(200);
 
     // Check the cardinality.
     $this->assertSession()->pageTextContains("These settings apply to the Template Whisperer field everywhere it is used.");
 
-    // Since Drupal 11.2 Settings button has be renamed.
-    if (version_compare(\Drupal::VERSION, '10.2', '>=')) {
-      $this->pressButton('Save');
-      $this->assertSession()->statusCodeEquals(200);
-      $this->assertSession()->pageTextContains('Saved Template Whisperer configuration.');
-    }
-    elseif (version_compare(\Drupal::VERSION, '10.2', '>=')) {
-      // Since Drupal 10.2 the storage page has been removed.
-      $this->pressButton('Save settings');
-      $this->assertSession()->statusCodeEquals(200);
-      $this->assertSession()->pageTextContains('Saved Template Whisperer configuration.');
-    }
-    else {
-      $this->pressButton('Save field settings');
-      $this->assertSession()->statusCodeEquals(200);
-      // Finalize the field configuration.
-      $this->assertSession()->pageTextContains('Updated field Template Whisperer field settings.');
-      $this->pressButton('Save settings');
-      $this->assertSession()->statusCodeEquals(200);
-      $this->assertSession()->pageTextContains('Saved Template Whisperer configuration.');
-    }
+    $this->pressButton('Save');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->pageTextContains('Saved Template Whisperer configuration.');
   }
 
   /**
@@ -284,13 +245,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
     // Asserts the debug mode of twig is enabled.
     $this->assertTrue(strpos($output->getContent(), '<!-- THEME HOOK: \'node\' -->') !== FALSE);
 
-    // Since Drupal 10.3 the prefix has been changed for emojis.
-    // @see https://www.drupal.org/project/drupal/issues/3420709
-    $prefix = '* ';
-    if (version_compare(\Drupal::VERSION, '10.3', '>=')) {
-      $prefix = '▪️ ';
-    }
-
+    $prefix = '▪️ ';
     // Asserts that all Page Template Whisperer based suggestions are present.
     $this->assertTrue(strpos($output->getContent(), "{$prefix}page--node--1--googlemap.html.twig") !== FALSE);
     $this->assertTrue(strpos($output->getContent(), "{$prefix}page--node--googlemap.html.twig") !== FALSE);
@@ -325,13 +280,7 @@ class UiFieldTest extends TemplateWhispererTestBase {
     // Asserts the debug mode of twig is enabled.
     $this->assertTrue(strpos($output->getContent(), '<!-- THEME HOOK: \'node\' -->') !== FALSE);
 
-    // Since Drupal 10.3 the prefix has been changed for emojis.
-    // @see https://www.drupal.org/project/drupal/issues/3420709
-    $prefix = '* ';
-    if (version_compare(\Drupal::VERSION, '10.3', '>=')) {
-      $prefix = '▪️ ';
-    }
-
+    $prefix = '▪️ ';
     // Asserts that Page Template Whisperer based suggestions are not present.
     $this->assertTrue(strpos($output->getContent(), "{$prefix}page--node--1--googlemap.html.twig") === FALSE);
     $this->assertTrue(strpos($output->getContent(), "{$prefix}page--node--googlemap.html.twig") === FALSE);
