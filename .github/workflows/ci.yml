@@ -16,6 +16,9 @@ jobs:
         module: ['template_whisperer']
         experimental: [ false ]
         include:
+          - drupal_version: '10.6'
+            module: 'template_whisperer'
+            experimental: true
           - drupal_version: '11.3'
             module: 'template_whisperer'
             experimental: true
@@ -47,6 +50,9 @@ jobs:
         module: ['template_whisperer']
         experimental: [ false ]
         include:
+          - drupal_version: '10.6'
+            module: 'template_whisperer'
+            experimental: true
           - drupal_version: '11.3'
             module: 'template_whisperer'
             experimental: true
