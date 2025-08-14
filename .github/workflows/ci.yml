@@ -12,11 +12,11 @@ jobs:
 
     strategy:
       matrix:
-        drupal_version: ['10.0', '10.1', '10.2', '10.3', '10.4', '11.0', '11.1']
+        drupal_version: ['10.5', '11.0', '11.1', '11.2']
         module: ['template_whisperer']
         experimental: [ false ]
         include:
-          - drupal_version: '11.2'
+          - drupal_version: '11.3'
             module: 'template_whisperer'
             experimental: true
 
@@ -43,11 +43,11 @@ jobs:
 
     strategy:
       matrix:
-        drupal_version: ['10.0', '10.1', '10.2', '10.3', '10.4', '11.0', '11.1']
+        drupal_version: ['10.5', '11.0', '11.1', '11.2']
         module: ['template_whisperer']
         experimental: [ false ]
         include:
-          - drupal_version: '11.2'
+          - drupal_version: '11.3'
             module: 'template_whisperer'
             experimental: true
 
@@ -76,7 +76,7 @@ jobs:
 
     strategy:
       matrix:
-        drupal_version: ['10.4']
+        drupal_version: ['10.5']
         module: ['template_whisperer']
 
     steps:

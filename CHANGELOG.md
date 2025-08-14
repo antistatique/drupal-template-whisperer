@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - update tests add-field since Drupal 11.2 UI changes
 
+### Added
+- add official support of drupal 10.5
+- add official support of drupal 11.2
+
+### Removed
+- drop coverage of Drupal 10.0.x
+- drop coverage of Drupal 10.1.x
+- drop coverage of Drupal 10.2.x
+- drop coverage of Drupal 10.3.x
+- drop coverage of Drupal 10.4.x
+
 ## [4.0.4] - 2025-05-15
 ### Removed
 - drop support of Drupal 9.x
