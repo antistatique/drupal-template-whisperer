@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.0.5] - 2025-08-25
 ### Fixed
 - update tests add-field since Drupal 11.2 UI changes
 
@@ -160,7 +162,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add BrowserTestBase to test web-based behaviors and interactions.
 - First draft.
 
-[Unreleased]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.4...HEAD
+[Unreleased]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.5...HEAD
+[4.0.5]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.4...4.0.5
 [4.0.4]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.3...4.0.4
 [4.0.3]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.2...4.0.3
 [4.0.2]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.1...4.0.2
