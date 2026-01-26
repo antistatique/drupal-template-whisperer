@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.0.6] - 2026-01-26
 ### Added
 - add official support of drupal 10.6
 - add official support of drupal 11.3
@@ -165,7 +167,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add BrowserTestBase to test web-based behaviors and interactions.
 - First draft.
 
-[Unreleased]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.5...HEAD
+[Unreleased]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.6...HEAD
+[4.0.6]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.4...4.0.6
 [4.0.5]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.4...4.0.5
 [4.0.4]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.3...4.0.4
 [4.0.3]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.2...4.0.3
