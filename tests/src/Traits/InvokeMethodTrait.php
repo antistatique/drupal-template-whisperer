@@ -29,12 +29,10 @@ trait InvokeMethodTrait {
 
     foreach ($protected_properties as $property => $value) {
       $property = $reflection->getProperty($property);
-      $property->setAccessible(TRUE);
       $property->setValue($object, $value);
     }
 
     $method = $reflection->getMethod($method_name);
-    $method->setAccessible(TRUE);
 
     return $method->invokeArgs($object, $parameters);
   }
