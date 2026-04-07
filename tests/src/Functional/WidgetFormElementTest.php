@@ -3,6 +3,11 @@
 namespace Drupal\Tests\template_whisperer\Functional;
 
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\template_whisperer\Plugin\Field\FieldWidget\TemplateWhispererWidget;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Assert fields placed in the advanced tabs.
@@ -11,13 +16,16 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
  * when possible. Otherwise will stay in place.
  * Eg. when used on taxonomy form or when embeed into an inline-edit-form.
  *
- * @coversDefaultClass \Drupal\template_whisperer\Plugin\Field\FieldWidget\TemplateWhispererWidget
- *
- * @group template_whisperer_functional_field
  * @group template_whisperer_functional
- * @group template_whisperer_ui
  * @group template_whisperer
  */
+#[CoversClass(TemplateWhispererWidget::class)]
+#[CoversMethod(TemplateWhispererWidget::class, 'formElement')]
+#[Group('template_whisperer_functional_field')]
+#[Group('template_whisperer_functional')]
+#[Group('template_whisperer_ui')]
+#[Group('template_whisperer')]
+#[RunTestsInSeparateProcesses]
 class WidgetFormElementTest extends TemplateWhispererTestBase {
 
   /**
@@ -148,7 +156,7 @@ class WidgetFormElementTest extends TemplateWhispererTestBase {
   }
 
   /**
-   * @covers ::formElement
+   * Tests that the field is moved to the Advanced group on node forms.
    */
   public function testMoveFieldToAdvancedGroup() {
     // Access the node edit page.
@@ -159,7 +167,7 @@ class WidgetFormElementTest extends TemplateWhispererTestBase {
   }
 
   /**
-   * @covers ::formElement
+   * Tests that the field stays in place when advanced tabs are unavailable.
    */
   public function testWhenNotPossibleStayInPlace() {
     // Access the taxonomy term edit page.

@@ -6,6 +6,9 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Tests\field\Kernel\FieldKernelTestBase;
 use Drupal\Tests\user\Traits\UserCreationTrait;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests the Template Whisperer field type.
@@ -16,10 +19,12 @@ use Drupal\Tests\user\Traits\UserCreationTrait;
  *
  * @see \Drupal\KernelTests\KernelTestBase
  *
- * @group template_whisperer_kernel_page
- * @group template_whisperer_kernel
  * @group template_whisperer
  */
+#[Group('template_whisperer_kernel_page')]
+#[Group('template_whisperer_kernel')]
+#[Group('template_whisperer')]
+#[RunTestsInSeparateProcesses]
 class FieldTemplateWhispererTest extends FieldKernelTestBase {
 
   use UserCreationTrait;
@@ -129,6 +134,7 @@ class FieldTemplateWhispererTest extends FieldKernelTestBase {
    *
    * @dataProvider providerTestTemaplteWhispererFieldAccess
    */
+  #[DataProvider('providerTestTemaplteWhispererFieldAccess')]
   public function testTemaplteWhispererFieldAccess($permissions, $scenarios) {
     // Create and entity with a template whisperer value.
     $type_manager = $this->container->get('entity_type.manager');

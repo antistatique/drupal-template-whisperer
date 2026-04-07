@@ -3,6 +3,8 @@
 namespace Drupal\Tests\template_whisperer\Functional;
 
 use Drupal\Tests\BrowserTestBase;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Ensure the Template Whisperer help page works.
@@ -10,11 +12,14 @@ use Drupal\Tests\BrowserTestBase;
  * Verifies that the module help page from hook_help() exists and can be
  * displayed.
  *
- * @group template_whisperer_functional_help
  * @group template_whisperer_functional
- * @group template_whisperer_ui
  * @group template_whisperer
  */
+#[Group('template_whisperer_functional_help')]
+#[Group('template_whisperer_functional')]
+#[Group('template_whisperer_ui')]
+#[Group('template_whisperer')]
+#[RunTestsInSeparateProcesses]
 class HelpPageTest extends BrowserTestBase {
 
   /**

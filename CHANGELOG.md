@@ -11,9 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - remove deprecated setAccessible() calls deprecated since PHP 8.5
 - annotate unsafe new static() usages per Drupal PHPStan guidelines
+- add PHPUnit 10 PHP attributes (`#[Group]`, `#[RunTestsInSeparateProcesses]`, `#[CoversClass]`, `#[CoversMethod]`, `#[CoversFunction]`, `#[DataProvider]`) to all test classes
 
 ### Fixed
 - guard against null original entity before calling hasTranslation()
+- add `phpstan (previous major)` CI job that strips PHPUnit attribute lines before analysis against Drupal 10.
 
 ## [4.0.6] - 2026-01-26
 ### Added

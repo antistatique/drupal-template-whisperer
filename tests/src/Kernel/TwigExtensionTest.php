@@ -4,13 +4,22 @@ namespace Drupal\Tests\template_whisperer\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface;
+use Drupal\template_whisperer\TwigExtension\TwigExtension;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests the Template Whisperer twig extensions.
  *
- * @group template_whisperer_twig
  * @group template_whisperer
  */
+#[CoversClass(TwigExtension::class)]
+#[CoversMethod(TwigExtension::class, 'getEntitiesFromSuggestion')]
+#[Group('template_whisperer_twig')]
+#[Group('template_whisperer')]
+#[RunTestsInSeparateProcesses]
 class TwigExtensionTest extends KernelTestBase {
 
   /**
@@ -98,7 +107,7 @@ class TwigExtensionTest extends KernelTestBase {
   }
 
   /**
-   * @covers Drupal\template_whisperer\TwigExtension\TwigExtension::getEntitiesFromSuggestion
+   * Tests getEntitiesFromSuggestion() may returns one entity by suggestion.
    */
   public function testsGetOneEntityFromSuggestion() {
     /** @var \Drupal\template_whisperer\TwigExtension\TwigExtension $extension */
@@ -111,7 +120,7 @@ class TwigExtensionTest extends KernelTestBase {
   }
 
   /**
-   * @covers Drupal\template_whisperer\TwigExtension\TwigExtension::getEntitiesFromSuggestion
+   * Tests getEntitiesFromSuggestion() returns multiple entities by suggestion.
    */
   public function testsGetEntitiesFromSuggestion() {
     /** @var \Drupal\template_whisperer\TwigExtension\TwigExtension $extension */
@@ -123,7 +132,7 @@ class TwigExtensionTest extends KernelTestBase {
   }
 
   /**
-   * @covers Drupal\template_whisperer\TwigExtension\TwigExtension::getEntitiesFromSuggestion
+   * Tests getEntitiesFromSuggestion() returns empty for an unknown suggestion.
    */
   public function testsGetNoneEntitiesBySuggestion() {
     /** @var \Drupal\template_whisperer\TwigExtension\TwigExtension $extension */

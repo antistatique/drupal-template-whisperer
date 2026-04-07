@@ -3,14 +3,23 @@
 namespace Drupal\Tests\template_whisperer\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\template_whisperer\TemplateWhispererManager;
 use Drupal\Tests\template_whisperer\Traits\InvokeMethodTrait;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests the Template Whisperer Manager.
  *
- * @group template_whisperer_kernel
  * @group template_whisperer
  */
+#[CoversClass(TemplateWhispererManager::class)]
+#[CoversMethod(TemplateWhispererManager::class, 'getFieldSuggestions')]
+#[Group('template_whisperer_kernel')]
+#[Group('template_whisperer')]
+#[RunTestsInSeparateProcesses]
 class TemplateWhispererManagerTest extends KernelTestBase {
   use InvokeMethodTrait;
 
@@ -94,7 +103,7 @@ class TemplateWhispererManagerTest extends KernelTestBase {
   }
 
   /**
-   * @covers \Drupal\template_whisperer\TemplateWhispererManager::getFieldSuggestions
+   * Tests getFieldSuggestions() returns the correct suggestion for an entity.
    */
   public function testGetFieldSuggestions() {
     /** @var \Drupal\template_whisperer\TemplateWhispererManager $tw_manager */

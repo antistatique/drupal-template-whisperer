@@ -2,14 +2,20 @@
 
 namespace Drupal\Tests\template_whisperer\Functional;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+
 /**
  * Tests event info pages and links.
  *
- * @group template_whisperer_functional_field
  * @group template_whisperer_functional
- * @group template_whisperer_ui
  * @group template_whisperer
  */
+#[Group('template_whisperer_functional_field')]
+#[Group('template_whisperer_functional')]
+#[Group('template_whisperer_ui')]
+#[Group('template_whisperer')]
+#[RunTestsInSeparateProcesses]
 class UiFieldTest extends TemplateWhispererTestBase {
 
   /**

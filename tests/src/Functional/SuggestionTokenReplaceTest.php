@@ -2,16 +2,22 @@
 
 namespace Drupal\Tests\template_whisperer\Functional;
 
+use PHPUnit\Framework\Attributes\CoversFunction;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+
 /**
  * Check suggestion tokens replacement.
  *
- * @covers ::template_whisperer_token_info
- * @covers ::template_whisperer_tokens
- *
- * @group template_whisperer_functional_token
  * @group template_whisperer_functional
  * @group template_whisperer
  */
+#[CoversFunction('template_whisperer_token_info')]
+#[CoversFunction('template_whisperer_tokens')]
+#[Group('template_whisperer_functional_token')]
+#[Group('template_whisperer_functional')]
+#[Group('template_whisperer')]
+#[RunTestsInSeparateProcesses]
 class SuggestionTokenReplaceTest extends TemplateWhispererTestBase {
 
   /**

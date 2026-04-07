@@ -3,15 +3,20 @@
 namespace Drupal\Tests\template_whisperer\Functional;
 
 use Drupal\block\BlockInterface;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Ensures that Template Whisperer suggestions conditions' block work correctly.
  *
- * @group template_whisperer_functional_block
  * @group template_whisperer_functional
- * @group template_whisperer_ui
  * @group template_whisperer
  */
+#[Group('template_whisperer_functional_block')]
+#[Group('template_whisperer_functional')]
+#[Group('template_whisperer_ui')]
+#[Group('template_whisperer')]
+#[RunTestsInSeparateProcesses]
 class ConditionalBlockTest extends TemplateWhispererTestBase {
 
   /**
