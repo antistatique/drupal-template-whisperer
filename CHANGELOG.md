@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - remove deprecated setAccessible() calls deprecated since PHP 8.5
 - annotate unsafe new static() usages per Drupal PHPStan guidelines
 - add PHPUnit 10 PHP attributes (`#[Group]`, `#[RunTestsInSeparateProcesses]`, `#[CoversClass]`, `#[CoversMethod]`, `#[CoversFunction]`, `#[DataProvider]`) to all test classes
+- run upgrade-status against Drupal 11.3
 
 ### Fixed
 - guard against null original entity before calling hasTranslation()
