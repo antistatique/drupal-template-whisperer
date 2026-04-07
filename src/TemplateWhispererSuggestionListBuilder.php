@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @see \Drupal\template_whisperer\Entity\TemplateWhisperer
  */
-class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
+final class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
 
   /**
    * The url generator service.
@@ -52,7 +52,7 @@ class TemplateWhispererSuggestionListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
-    return new static(
+    return new self(
       $entity_type,
       $container->get('entity_type.manager')->getStorage($entity_type->id()),
       $container->get('url_generator'),

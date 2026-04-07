@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPluginInterface {
+final class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPluginInterface {
 
   /**
    * Template Whisperer Manager.
@@ -42,7 +42,7 @@ class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPlug
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
+    return new self(
     $plugin_id,
     $plugin_definition,
     $configuration['field_definition'],

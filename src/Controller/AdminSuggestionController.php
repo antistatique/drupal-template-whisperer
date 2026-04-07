@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Listing of Template Whisperer suggestions.
  */
-class AdminSuggestionController extends ControllerBase {
+final class AdminSuggestionController extends ControllerBase {
 
   /**
    * Retrieves the entity type manager.
@@ -58,7 +58,7 @@ class AdminSuggestionController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     // Instantiates this form class.
-    return new static(
+    return new self(
       // Load the service required to construct this class.
       $container->get('entity_type.manager'),
       $container->get('template_whisperer.suggestion.usage'),

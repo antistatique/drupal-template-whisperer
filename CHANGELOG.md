@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - remove deprecated setAccessible() calls deprecated since PHP 8.5
+- annotate unsafe new static() usages per Drupal PHPStan guidelines
 
 ### Fixed
 - guard against null original entity before calling hasTranslation()

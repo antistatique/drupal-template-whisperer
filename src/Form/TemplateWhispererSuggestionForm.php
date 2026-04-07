@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ingroup template_whisperer
  */
-class TemplateWhispererSuggestionForm extends EntityForm {
+final class TemplateWhispererSuggestionForm extends EntityForm {
 
   /**
    * Template Whisperer Manager.
@@ -33,7 +33,7 @@ class TemplateWhispererSuggestionForm extends EntityForm {
    */
   public static function create(ContainerInterface $container) {
     // Instantiates this form class.
-    return new static(
+    return new self(
     // Load the service required to construct this class.
     $container->get('plugin.manager.template_whisperer')
     );

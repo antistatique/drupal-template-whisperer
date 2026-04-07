@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryPluginInterface {
+final class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryPluginInterface {
 
   /**
    * The Template Manager.
@@ -40,7 +40,7 @@ class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
+    return new self(
       $configuration,
       $plugin_id,
       $plugin_definition,
