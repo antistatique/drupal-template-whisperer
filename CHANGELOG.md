@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - remove deprecated setAccessible() calls deprecated since PHP 8.5
 
+### Fixed
+- guard against null original entity before calling hasTranslation()
+
 ## [4.0.6] - 2026-01-26
 ### Added
 - add official support of drupal 10.6
