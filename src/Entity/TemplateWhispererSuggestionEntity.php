@@ -3,45 +3,50 @@
 namespace Drupal\template_whisperer\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
+use Drupal\Core\Entity\Attribute\ConfigEntityType;
 use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Entity\EntityViewBuilder;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\template_whisperer\Form\TemplateWhispererSuggestionDeleteForm;
+use Drupal\template_whisperer\Form\TemplateWhispererSuggestionForm;
+use Drupal\template_whisperer\TemplateWhispererSuggestionListBuilder;
 
 /**
  * Defines the Template Whisperer Suggestion entity.
  *
  * @ingroup template_whisperer
- *
- * @ConfigEntityType(
- *   id = "template_whisperer_suggestion",
- *   label = @Translation("Template Whisperer Suggestion Entity"),
- *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\template_whisperer\TemplateWhispererSuggestionListBuilder",
- *     "form" = {
- *       "add" = "Drupal\template_whisperer\Form\TemplateWhispererSuggestionForm",
- *       "edit" = "Drupal\template_whisperer\Form\TemplateWhispererSuggestionForm",
- *       "delete" = "Drupal\template_whisperer\Form\TemplateWhispererSuggestionDeleteForm",
- *     },
- *   },
- *   config_prefix = "template_whisperer_suggestion",
- *   admin_permission = "administer template whisperer suggestion entities",
- *   entity_keys = {
- *     "id" = "id",
- *   },
- *   links = {
- *     "canonical" = "/admin/structure/template-whisperer/{template_whisperer_suggestion}",
- *     "add-form" = "/admin/structure/template-whisperer/add",
- *     "edit-form" = "/admin/structure/template-whisperer/{template_whisperer_suggestion}/edit",
- *     "delete-form" = "/admin/structure/template-whisperer/{template_whisperer_suggestion}/delete",
- *     "collection" = "/admin/structure/template-whisperer",
- *     "usage" = "/admin/structure/template-whisperer/{template_whisperer_suggestion}/usage",
- *   },
- *   config_export = {
- *     "id",
- *     "name",
- *     "suggestion",
- *   }
- * )
  */
+#[ConfigEntityType(
+  id: "template_whisperer_suggestion",
+  label: new TranslatableMarkup("Template Whisperer Suggestion Entity"),
+  handlers: [
+    "view_builder" => EntityViewBuilder::class,
+    "list_builder" => TemplateWhispererSuggestionListBuilder::class,
+    "form" => [
+      "add" => TemplateWhispererSuggestionForm::class,
+      "edit" => TemplateWhispererSuggestionForm::class,
+      "delete" => TemplateWhispererSuggestionDeleteForm::class,
+    ],
+  ],
+  config_prefix: "template_whisperer_suggestion",
+  admin_permission: "administer template whisperer suggestion entities",
+  entity_keys: [
+    "id" => "id",
+  ],
+  links: [
+    "canonical" => "/admin/structure/template-whisperer/{template_whisperer_suggestion}",
+    "add-form" => "/admin/structure/template-whisperer/add",
+    "edit-form" => "/admin/structure/template-whisperer/{template_whisperer_suggestion}/edit",
+    "delete-form" => "/admin/structure/template-whisperer/{template_whisperer_suggestion}/delete",
+    "collection" => "/admin/structure/template-whisperer",
+    "usage" => "/admin/structure/template-whisperer/{template_whisperer_suggestion}/usage",
+  ],
+  config_export: [
+    "id",
+    "name",
+    "suggestion",
+  ],
+)]
 class TemplateWhispererSuggestionEntity extends ConfigEntityBase implements TemplateWhispererSuggestionEntityInterface {
 
   /**

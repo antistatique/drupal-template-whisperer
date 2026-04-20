@@ -2,6 +2,7 @@
 
 namespace Drupal\template_whisperer\Plugin\Field\FieldType;
 
+use Drupal\Core\Field\Attribute\FieldType;
 use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -10,15 +11,14 @@ use Drupal\Core\TypedData\DataDefinition;
 
 /**
  * Plugin implementation of the 'template_whisperer' field type.
- *
- * @FieldType(
- *   id = "template_whisperer",
- *   label = @Translation("Template Whisperer"),
- *   description = @Translation("This field stores a Template Whisperer entity reference."),
- *   default_widget = "template_whisperer",
- *   default_formatter = "template_whisperer",
- * )
  */
+#[FieldType(
+  id: "template_whisperer",
+  label: new TranslatableMarkup("Template Whisperer"),
+  description: new TranslatableMarkup("This field stores a Template Whisperer entity reference."),
+  default_widget: "template_whisperer",
+  default_formatter: "template_whisperer",
+)]
 class TemplateWhispererFieldItem extends FieldItemBase {
 
   /**

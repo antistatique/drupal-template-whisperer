@@ -2,23 +2,25 @@
 
 namespace Drupal\template_whisperer\Plugin\Condition;
 
+use Drupal\Core\Condition\Attribute\Condition;
 use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Plugin\Context\ContextDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\template_whisperer\TemplateWhispererManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a 'Template Whisperer' condition.
- *
- * @Condition(
- *   id = "template_whisperer",
- *   label = @Translation("Template Whisperer"),
- *   context_definitions = {
- *     "node" = @ContextDefinition("entity:node", label = @Translation("Node"))
- *   }
- * )
  */
+#[Condition(
+  id: "template_whisperer",
+  label: new TranslatableMarkup("Template Whisperer"),
+  context_definitions: [
+    "node" => new ContextDefinition("entity:node", label: new TranslatableMarkup("Node")),
+  ],
+)]
 final class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryPluginInterface {
 
   /**

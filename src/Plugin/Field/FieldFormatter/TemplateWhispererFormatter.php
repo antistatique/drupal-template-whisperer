@@ -2,21 +2,19 @@
 
 namespace Drupal\template_whisperer\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Field\Attribute\FieldFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Plugin implementation of the 'template_whisperer' formatter.
- *
- * @FieldFormatter(
- *   id = "template_whisperer",
- *   module = "template_whisperer",
- *   label = @Translation("Template Whisperer Formatter"),
- *   field_types = {
- *     "template_whisperer"
- *   }
- * )
  */
+#[FieldFormatter(
+  id: "template_whisperer",
+  label: new TranslatableMarkup("Template Whisperer Formatter"),
+  field_types: ["template_whisperer"],
+)]
 class TemplateWhispererFormatter extends FormatterBase {
 
   /**

@@ -2,25 +2,24 @@
 
 namespace Drupal\template_whisperer\Plugin\Field\FieldWidget;
 
+use Drupal\Core\Field\Attribute\FieldWidget;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\template_whisperer\TemplateWhispererManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Plugin implementation of the 'template_whisperer' widget.
- *
- * @FieldWidget(
- *   id = "template_whisperer",
- *   label = @Translation("Advanced Template Whisperer"),
- *   field_types = {
- *     "template_whisperer"
- *   }
- * )
  */
+#[FieldWidget(
+  id: "template_whisperer",
+  label: new TranslatableMarkup("Advanced Template Whisperer"),
+  field_types: ["template_whisperer"],
+)]
 final class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPluginInterface {
 
   /**
