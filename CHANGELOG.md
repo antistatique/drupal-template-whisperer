@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - add experimental coverage of Drupal 11.4
+- add array return type to TwigExtension::getFunctions()
 
 ### Changed
 - remove deprecated setAccessible() calls deprecated since PHP 8.5
