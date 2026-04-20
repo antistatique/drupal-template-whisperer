@@ -6,7 +6,7 @@ use Drupal\Core\Condition\Attribute\Condition;
 use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Plugin\Context\ContextDefinition;
+use Drupal\Core\Plugin\Context\EntityContextDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\template_whisperer\TemplateWhispererManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
   id: "template_whisperer",
   label: new TranslatableMarkup("Template Whisperer"),
   context_definitions: [
-    "node" => new ContextDefinition("entity:node", label: new TranslatableMarkup("Node")),
+    'node' => new EntityContextDefinition('entity:node', new TranslatableMarkup("Node")),
   ],
 )]
 final class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryPluginInterface {

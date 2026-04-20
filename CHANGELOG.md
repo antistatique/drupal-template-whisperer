@@ -24,6 +24,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - guard against null original entity before calling hasTranslation()
 - add `phpstan (previous major)` CI job that strips PHPUnit attribute lines before analysis against Drupal 10.
 
+### Removed
+- drop support of 10.x
+- drop support of 11.0.x
+
 ## [4.0.6] - 2026-01-26
 ### Added
 - add official support of drupal 10.6
