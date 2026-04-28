@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.1.0] - 2026-04-28
 ### Added
 - add experimental coverage of Drupal 11.4
 - add array return type to TwigExtension::getFunctions()
@@ -189,7 +191,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add BrowserTestBase to test web-based behaviors and interactions.
 - First draft.
 
-[Unreleased]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.6...HEAD
+[Unreleased]: https://github.com/antistatique/drupal-template-whisperer/compare/4.1.0...HEAD
+[4.1.0]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.6...4.1.0
 [4.0.6]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.4...4.0.6
 [4.0.5]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.4...4.0.5
 [4.0.4]: https://github.com/antistatique/drupal-template-whisperer/compare/4.0.3...4.0.4
