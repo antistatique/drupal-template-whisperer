@@ -74,6 +74,13 @@ class UiFieldTest extends TemplateWhispererTestBase {
       ]);
     $this->template->save();
 
+    // Since Drupal 11.4 the standard profile does not ship the Article content
+    // type anymore, it has to be created by the test itself.
+    // @see https://www.drupal.org/project/drupal/issues/3587118
+    if (!$this->container->get('entity_type.manager')->getStorage('node_type')->load('article')) {
+      $this->drupalCreateContentType(['type' => 'article', 'name' => 'Article']);
+    }
+
     // Create an article content type that we will use for testing.
     $this->article = $this->drupalCreateNode(['type' => 'article']);
   }

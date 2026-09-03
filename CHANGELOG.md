@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Fixed
 - fix(ci): add `codesniffer` to the cspell project dictionary
+- fix(test): create the Article content type in UiFieldTest, removed from the standard profile in Drupal 11.4
 
 ## [4.1.1] - 2026-07-02
 ### Added
