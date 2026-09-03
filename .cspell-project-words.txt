@@ -3,6 +3,7 @@ antistatique
 Bambo
 cleancode
 codesize
+codesniffer
 Colect
 Cyclomatic
 embeed
