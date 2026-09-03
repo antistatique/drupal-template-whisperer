@@ -11,20 +11,20 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 class TemplateWhispererManager {
 
   /**
-   * EntityTypeManagerInterface to manage Template Whisperer Suggestion.
+   * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  private $suggestionStorage;
+  private $entityTypeManager;
 
   /**
    * Class constructor.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The interface for entity type managers.
    */
-  public function __construct(EntityTypeManagerInterface $entity) {
-    $this->suggestionStorage = $entity->getStorage('template_whisperer_suggestion');
+  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+    $this->entityTypeManager = $entity_type_manager;
   }
 
   /**
@@ -37,12 +37,14 @@ class TemplateWhispererManager {
   public function getList() {
     $list = [];
 
-    $ids = $this->suggestionStorage->getQuery()
+    $storage = $this->entityTypeManager->getStorage('template_whisperer_suggestion');
+
+    $ids = $storage->getQuery()
       ->accessCheck()
       ->execute();
 
     if (!empty($ids)) {
-      $entities = $this->suggestionStorage->loadMultiple($ids);
+      $entities = $storage->loadMultiple($ids);
 
       foreach ($entities as $entity) {
         $list[$entity->id()] = $entity->getName();
@@ -62,13 +64,15 @@ class TemplateWhispererManager {
    *   Return the Entity corresponding of the given suggestion or Null.
    */
   public function getOneBySuggestion($suggestion) {
-    $id = $this->suggestionStorage->getQuery()
+    $storage = $this->entityTypeManager->getStorage('template_whisperer_suggestion');
+
+    $id = $storage->getQuery()
       ->accessCheck()
       ->condition('suggestion', $suggestion)
       ->range(0, 1)
       ->execute();
 
-    return $id ? $this->suggestionStorage->load(current($id)) : NULL;
+    return $id ? $storage->load(current($id)) : NULL;
   }
 
   /**
@@ -146,7 +150,7 @@ class TemplateWhispererManager {
       // Get value and break it into an array of suggestions with values.
       $target_id = $item->get('target_id')->getValue();
       if (!empty($target_id)) {
-        $whisperer = $this->suggestionStorage->load($target_id);
+        $whisperer = $this->entityTypeManager->getStorage('template_whisperer_suggestion')->load($target_id);
         if ($whisperer) {
           $suggestion = $whisperer->getSuggestion();
         }
