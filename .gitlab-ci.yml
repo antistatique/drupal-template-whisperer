@@ -30,15 +30,21 @@ include:
 ################
 variables:
   SKIP_ESLINT: '1'
-  # Opt in to testing current minor against max supported PHP version (8.4).
+  # The Drupal versions below are the semantic labels resolved by
+  # gitlab_templates; the values in parentheses are what they pointed to when
+  # this file was last reviewed and follow upstream automatically.
+  # See https://git.drupalcode.org/project/gitlab_templates/-/blob/main/includes/include.drupalci.hidden-variables.yml
+  #
+  # Opt in to testing $CORE_STABLE (Drupal 11.4.5) against the max supported
+  # PHP version $CORE_PHP_MAX (PHP 8.5).
   OPT_IN_TEST_MAX_PHP: '1'
-  # Opt in to testing previous minor (Drupal 11.2.x)
+  # Opt in to testing $CORE_PREVIOUS_MINOR (Drupal 11.3.16).
   OPT_IN_TEST_PREVIOUS_MINOR: '1'
-  # Opt in to testing next minor (Drupal 11.x-dev // 11.4-dev)
+  # Opt in to testing $CORE_NEXT_MINOR (Drupal 11.x-dev).
   OPT_IN_TEST_NEXT_MINOR: '1'
-  # Opt out to testing $CORE_PREVIOUS_MAJOR (Drupal 10.6.x).
+  # Opt out of testing $CORE_PREVIOUS_STABLE (Drupal 10.6.15 on PHP 8.1).
   OPT_IN_TEST_PREVIOUS_MAJOR: '0'
-  # Opt in to testing $CORE_MAJOR_DEVELOPMENT (Drupal 12.0-dev).
+  # Opt in to testing $CORE_MAJOR_DEVELOPMENT (Drupal main-dev on PHP 8.5).
   OPT_IN_TEST_NEXT_MAJOR: '1'
 
 # This module wants to strictly comply with Drupal's coding standards.
