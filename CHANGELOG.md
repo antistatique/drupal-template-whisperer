@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Fixed
 - fix(ci): use the PHPMD 3 `analyze` command
-- fix(phpcs): add missing blank line before the TwigExtension constructor
 
 ### Changed
 - refactor(php): use constructor property promotion
@@ -21,7 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix(phpstan): use property injection in TemplateWhispererSuggestionListBuilder instead of injecting the entity storage
 - fix(ci): add `codesniffer` to the cspell project dictionary
 - fix(test): create the Article content type in UiFieldTest, removed from the standard profile in Drupal 11.4
-- ci(phpcs): exclude generated gitlab_templates_version.txt
 
 ## [4.1.1] - 2026-07-02
 ### Added
