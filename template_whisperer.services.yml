@@ -15,11 +15,16 @@ services:
     tags:
       - { name: twig.extension }
 
-  Drupal\template_whisperer\Hook\TemplateWhispererHooks:
-    class: Drupal\template_whisperer\Hook\TemplateWhispererHooks
+  Drupal\template_whisperer\Hook\SuggestionsHook:
+    class: Drupal\template_whisperer\Hook\SuggestionsHook
+    arguments:
+      - '@plugin.manager.template_whisperer'
+      - '@current_route_match'
+
+  Drupal\template_whisperer\Hook\TokenHook:
+    class: Drupal\template_whisperer\Hook\TokenHook
     arguments:
       - '@plugin.manager.template_whisperer'
       - '@template_whisperer.suggestion.usage'
       - '@entity_type.manager'
-      - '@current_route_match'
       - '@token'
