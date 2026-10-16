@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 /**
  * Template Whisperer manager.
  */
-class TemplateWhispererManager {
+final class TemplateWhispererManager {
 
   /**
    * The entity type manager.

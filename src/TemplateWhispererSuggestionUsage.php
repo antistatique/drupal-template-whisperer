@@ -8,7 +8,7 @@ use Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface;
 /**
  * Defines the class for database Template Whisperer Suggestion usage backend.
  */
-class TemplateWhispererSuggestionUsage {
+final class TemplateWhispererSuggestionUsage {
 
   /**
    * The database connection used to store usage information(s).

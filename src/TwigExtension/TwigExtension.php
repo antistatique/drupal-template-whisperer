@@ -10,7 +10,7 @@ use Twig\TwigFunction;
 /**
  * Template Whisperer Twig extensions.
  */
-class TwigExtension extends AbstractExtension {
+final class TwigExtension extends AbstractExtension {
   /**
    * Template Whisperer Manager.
    *

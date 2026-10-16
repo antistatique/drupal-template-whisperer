@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
+- refactor(php): mark internal classes as final
 - ci(phpcs): exclude generated gitlab_templates_version.txt
 
 ## [4.1.2] - 2026-09-03
