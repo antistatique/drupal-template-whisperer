@@ -11,6 +11,7 @@ use Twig\TwigFunction;
  * Template Whisperer Twig extensions.
  */
 final class TwigExtension extends AbstractExtension {
+
   /**
    * Constructs \Drupal\template_whisperer\TwigExtension\TwigExtension.
    *
