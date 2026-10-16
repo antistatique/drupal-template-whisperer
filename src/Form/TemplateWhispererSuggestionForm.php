@@ -15,17 +15,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class TemplateWhispererSuggestionForm extends EntityForm {
 
   /**
-   * Template Whisperer Manager.
-   *
-   * @var Drupal\template_whisperer\TemplateWhispererManager
-   */
-  protected $twManager;
-
-  /**
    * Class constructor.
    */
-  public function __construct(TemplateWhispererManager $twManager) {
-    $this->twManager = $twManager;
+  public function __construct(protected TemplateWhispererManager $twManager) {
   }
 
   /**

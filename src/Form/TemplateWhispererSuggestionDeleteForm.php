@@ -14,17 +14,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class TemplateWhispererSuggestionDeleteForm extends EntityConfirmFormBase {
 
   /**
-   * Template Whisperer Suggestion Usage.
-   *
-   * @var \Drupal\template_whisperer\TemplateWhispererSuggestionUsage
-   */
-  protected $twSuggestionUsage;
-
-  /**
    * Class constructor.
    */
-  public function __construct(TemplateWhispererSuggestionUsage $tw_suggestion_usage) {
-    $this->twSuggestionUsage = $tw_suggestion_usage;
+  public function __construct(protected TemplateWhispererSuggestionUsage $twSuggestionUsage) {
   }
 
   /**

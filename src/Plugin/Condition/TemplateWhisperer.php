@@ -24,18 +24,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class TemplateWhisperer extends ConditionPluginBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The Template Manager.
-   *
-   * @var \Drupal\template_whisperer\TemplateWhispererManager
-   */
-  protected $twManager;
-
-  /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TemplateWhispererManager $template_whisperer_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, protected TemplateWhispererManager $twManager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->twManager = $template_whisperer_manager;
   }
 
   /**

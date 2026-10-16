@@ -23,18 +23,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class TemplateWhispererWidget extends WidgetBase implements ContainerFactoryPluginInterface {
 
   /**
-   * Template Whisperer Manager.
-   *
-   * @var Drupal\template_whisperer\TemplateWhispererManager
-   */
-  protected $twManager;
-
-  /**
    * {@inheritdoc}
    */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, array $third_party_settings, TemplateWhispererManager $twManager) {
+  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, array $third_party_settings, protected TemplateWhispererManager $twManager) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $third_party_settings);
-    $this->twManager = $twManager;
   }
 
   /**

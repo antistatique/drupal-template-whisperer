@@ -11,33 +11,16 @@ use Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface;
 final class TemplateWhispererSuggestionUsage {
 
   /**
-   * The database connection used to store usage information(s).
-   *
-   * @var \Drupal\Core\Database\Connection
-   */
-  protected $connection;
-
-  /**
-   * The name of the SQL table used to store file usage information.
-   *
-   * @var string
-   */
-  protected $tableName;
-
-  /**
    * Construct the TemplateWhispererSuggestionUsage.
    *
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection which will be used to store
    *   the Template Whisperer Suggestion usage information.
-   * @param string $table
+   * @param string $tableName
    *   (optional) The table to store Template Whisperer Suggestion usage info.
    *   Defaults to 'template_whisperer.suggestion.usage'.
    */
-  public function __construct(Connection $connection, $table = 'template_whisperer_suggestion_usage') {
-    $this->connection = $connection;
-
-    $this->tableName = $table;
+  public function __construct(protected Connection $connection, protected string $tableName = 'template_whisperer_suggestion_usage') {
   }
 
   /**

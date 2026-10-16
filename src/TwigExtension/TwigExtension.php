@@ -12,30 +12,14 @@ use Twig\TwigFunction;
  */
 final class TwigExtension extends AbstractExtension {
   /**
-   * Template Whisperer Manager.
-   *
-   * @var \Drupal\template_whisperer\TemplateWhispererManager
-   */
-  protected $twManager;
-
-  /**
-   * Template Whisperer Suggestion Usage.
-   *
-   * @var \Drupal\template_whisperer\TemplateWhispererSuggestionUsage
-   */
-  protected $twSuggestionUsage;
-
-  /**
    * Constructs \Drupal\template_whisperer\TwigExtension\TwigExtension.
    *
-   * @param \Drupal\template_whisperer\TemplateWhispererManager $tw_manager
+   * @param \Drupal\template_whisperer\TemplateWhispererManager $twManager
    *   The template whisperer manager.
-   * @param \Drupal\template_whisperer\TemplateWhispererSuggestionUsage $tw_suggestion_usage
+   * @param \Drupal\template_whisperer\TemplateWhispererSuggestionUsage $twSuggestionUsage
    *   The template whisperer suggestion usage service.
    */
-  public function __construct(TemplateWhispererManager $tw_manager, TemplateWhispererSuggestionUsage $tw_suggestion_usage) {
-    $this->twManager = $tw_manager;
-    $this->twSuggestionUsage = $tw_suggestion_usage;
+  public function __construct(protected TemplateWhispererManager $twManager, protected TemplateWhispererSuggestionUsage $twSuggestionUsage) {
   }
 
   /**
