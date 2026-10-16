@@ -14,3 +14,12 @@ services:
     arguments: ['@plugin.manager.template_whisperer', '@template_whisperer.suggestion.usage']
     tags:
       - { name: twig.extension }
+
+  Drupal\template_whisperer\Hook\TemplateWhispererHooks:
+    class: Drupal\template_whisperer\Hook\TemplateWhispererHooks
+    arguments:
+      - '@plugin.manager.template_whisperer'
+      - '@template_whisperer.suggestion.usage'
+      - '@entity_type.manager'
+      - '@current_route_match'
+      - '@token'
