@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - refactor(php): mark internal classes as final
 - ci(phpcs): exclude generated gitlab_templates_version.txt
 - refactor(hooks): migrate to attribute-based OOP hooks
+- docs(readme): update the supported Drupal versions
 
 ## [4.1.2] - 2026-09-03
 ### Fixed
