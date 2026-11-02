@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ci: test Drupal 11.4 as a stable version
 - build(docker): use Drupal 11.4 as default base image
 - ci: run Upgrade Status on Drupal 11.4
+- docs(gitlab-ci): refresh outdated Drupal versions in comments
 
 ### Removed
 - ci: remove PhpDeprecationDetector (phpdd) job, tool and docs

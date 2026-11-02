@@ -35,14 +35,14 @@ variables:
   # this file was last reviewed and follow upstream automatically.
   # See https://git.drupalcode.org/project/gitlab_templates/-/blob/main/includes/include.drupalci.hidden-variables.yml
   #
-  # Opt in to testing $CORE_STABLE (Drupal 11.4.5) against the max supported
+  # Opt in to testing $CORE_STABLE (Drupal 11.4.11) against the max supported
   # PHP version $CORE_PHP_MAX (PHP 8.5).
   OPT_IN_TEST_MAX_PHP: '1'
-  # Opt in to testing $CORE_PREVIOUS_MINOR (Drupal 11.3.16).
+  # Opt in to testing $CORE_PREVIOUS_MINOR (Drupal 11.3.20).
   OPT_IN_TEST_PREVIOUS_MINOR: '1'
-  # Opt in to testing $CORE_NEXT_MINOR (Drupal 11.x-dev).
+  # Opt in to testing $CORE_NEXT_MINOR (Drupal 11.5.x-dev).
   OPT_IN_TEST_NEXT_MINOR: '1'
-  # Opt out of testing $CORE_PREVIOUS_STABLE (Drupal 10.6.15 on PHP 8.1).
+  # Opt out of testing $CORE_PREVIOUS_STABLE (Drupal 10.6.20 on PHP 8.1).
   OPT_IN_TEST_PREVIOUS_MAJOR: '0'
   # Opt in to testing $CORE_MAJOR_DEVELOPMENT (Drupal main-dev on PHP 8.5).
   OPT_IN_TEST_NEXT_MAJOR: '1'
