@@ -67,17 +67,18 @@ but those are some of the obvious uses of Template Whisperer.
 
 ## Which version should I use?
 
-Template Whisperer is available for Drupal 8, Drupal 9, Drupal 10 and Drupal 11 !
+Template Whisperer is available for Drupal 10.5+, Drupal 11 and Drupal 12 !
+
+- if you are running Drupal `10.5+`, use Template Whisperer `4.0.x`.
+- if you are running Drupal `11.1+` or `12.x`, use Template Whisperer `4.x`.
 
 | Drupal Core | Template Whisperer |
 |:-----------:|:------------------:|
-|    8.0.x    |        1.x         |
-|    8.4.x    |        2.x         |
-|    8.8.x    |        3.0         |
-|    8.9.x    |        3.0         |
+|     8.x     |        3.0         |
 |     9.x     |        3.x         |
 |    10.x     |       4.0.x        |
-|    11.x     |       4.0.x        |
+|    11.x     |        4.x         |
+|    12.x     |        4.x         |
 
 ## Dependencies
 
