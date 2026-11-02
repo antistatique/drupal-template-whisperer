@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - fix(ci): use the PHPMD 3 `analyze` command
+- fix: replace the obsolete docker-compose command by docker compose
 
 ## [4.1.2] - 2026-09-03
 ### Fixed
