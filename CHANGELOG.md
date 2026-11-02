@@ -8,18 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - build(deps): allow drupal/coder ^9
 
-### Removed
-- ci: remove PhpDeprecationDetector (phpdd) job, tool and docs
-
-### Fixed
-- fix(ci): use the PHPMD 3 `analyze` command
-
 ### Changed
 - refactor(php): use constructor property promotion
 - refactor(php): mark internal classes as final
 - ci(phpcs): exclude generated gitlab_templates_version.txt
 - refactor(hooks): migrate to attribute-based OOP hooks
 - docs(readme): update the supported Drupal versions
+- refactor: use constructor property promotion in the AdminSuggestionController
+
+### Removed
+- ci: remove PhpDeprecationDetector (phpdd) job, tool and docs
+
+### Fixed
+- fix(ci): use the PHPMD 3 `analyze` command
 
 ## [4.1.2] - 2026-09-03
 ### Fixed

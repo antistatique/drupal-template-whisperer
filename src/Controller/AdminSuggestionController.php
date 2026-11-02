@@ -16,41 +16,24 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class AdminSuggestionController extends ControllerBase {
 
   /**
-   * Retrieves the entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  protected $entityTypeManager;
-
-  /**
-   * Template Whisperer Suggestion Usage.
-   *
-   * @var \Drupal\template_whisperer\TemplateWhispererSuggestionUsage
-   */
-  protected $twSuggestionUsage;
-
-  /**
-   * The url generator service.
-   *
-   * @var \Drupal\Core\Routing\UrlGeneratorInterface
-   */
-  protected $urlGenerator;
-
-  /**
-   * The pager manager.
-   *
-   * @var \Drupal\Core\Pager\PagerManagerInterface
-   */
-  protected $pagerManager;
-
-  /**
    * Class constructor.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \Drupal\template_whisperer\TemplateWhispererSuggestionUsage $twSuggestionUsage
+   *   Template Whisperer Suggestion Usage.
+   * @param \Drupal\Core\Routing\UrlGeneratorInterface $urlGenerator
+   *   The url generator service.
+   * @param \Drupal\Core\Pager\PagerManagerInterface $pagerManager
+   *   The pager manager.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, TemplateWhispererSuggestionUsage $tw_suggestion_usage, UrlGeneratorInterface $url_generator, PagerManagerInterface $pager_manager) {
+  public function __construct(
+    EntityTypeManagerInterface $entity_type_manager,
+    protected TemplateWhispererSuggestionUsage $twSuggestionUsage,
+    protected UrlGeneratorInterface $urlGenerator,
+    protected PagerManagerInterface $pagerManager,
+  ) {
     $this->entityTypeManager = $entity_type_manager;
-    $this->twSuggestionUsage = $tw_suggestion_usage;
-    $this->urlGenerator      = $url_generator;
-    $this->pagerManager      = $pager_manager;
   }
 
   /**
