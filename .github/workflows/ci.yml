@@ -12,16 +12,17 @@ jobs:
 
     strategy:
       matrix:
-        drupal_version: ['11.1', '11.2', '11.3']
+        drupal_version: ['11.1', '11.2', '11.3', '11.4']
         module: ['template_whisperer']
         experimental: [ false ]
-        include:
+        # Enable once the wengerk/drupal-for-contrib:11.5 image is published.
+#         include:
+#           - drupal_version: '11.5'
+#             module: 'template_whisperer'
+#             experimental: true
 #           - drupal_version: '10.6'
 #             module: 'template_whisperer'
 #             experimental: true
-          - drupal_version: '11.4'
-            module: 'template_whisperer'
-            experimental: true
 
     steps:
       - uses: actions/checkout@v7
@@ -46,16 +47,17 @@ jobs:
 
     strategy:
       matrix:
-        drupal_version: ['11.1', '11.2', '11.3']
+        drupal_version: ['11.1', '11.2', '11.3', '11.4']
         module: ['template_whisperer']
         experimental: [ false ]
-        include:
+        # Enable once the wengerk/drupal-for-contrib:11.5 image is published.
+#         include:
+#           - drupal_version: '11.5'
+#             module: 'template_whisperer'
+#             experimental: true
 #           - drupal_version: '10.6'
 #             module: 'template_whisperer'
 #             experimental: true
-          - drupal_version: '11.4'
-            module: 'template_whisperer'
-            experimental: true
 
     steps:
       - uses: actions/checkout@v7
@@ -82,7 +84,7 @@ jobs:
 
     strategy:
       matrix:
-        drupal_version: ['11.3']
+        drupal_version: ['11.4']
         module: ['template_whisperer']
 
     steps:
