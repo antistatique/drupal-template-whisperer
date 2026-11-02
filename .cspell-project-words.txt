@@ -17,10 +17,8 @@ interesed
 invalide
 libbz
 passowrd
-phpcf
 PHPCPD
 phpcpd
-phpdd
 reseting
 rulesets
 setted
@@ -29,7 +27,6 @@ Unexisting
 unexisting
 unusedcode
 vals
-wapmorgan
 wengerk
 Whispere
 worflow
