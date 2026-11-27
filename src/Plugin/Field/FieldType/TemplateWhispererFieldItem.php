@@ -18,6 +18,7 @@ use Drupal\Core\TypedData\DataDefinition;
   description: new TranslatableMarkup("This field stores a Template Whisperer entity reference."),
   default_widget: "template_whisperer",
   default_formatter: "template_whisperer",
+  list_class: TemplateWhispererFieldItemList::class,
 )]
 class TemplateWhispererFieldItem extends FieldItemBase {
 
