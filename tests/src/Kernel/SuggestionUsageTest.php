@@ -139,4 +139,32 @@ class SuggestionUsageTest extends KernelTestBase {
     $this->assertSame(0, $usage->countUsage($storage->load('bar')), 'Usage of the "bar" suggestion.');
   }
 
+  /**
+   * Tests the usage is released when the suggestion ID is not its suggestion.
+   */
+  public function testUsageIsReleasedWhenTheIdDiffersFromTheSuggestion(): void {
+    $storage = $this->container->get('entity_type.manager')->getStorage('template_whisperer_suggestion');
+    $usage = $this->container->get('template_whisperer.suggestion.usage');
+
+    // The field references the suggestion entity by its ID.
+    $storage->create([
+      'id'         => 'donation',
+      'name'       => 'Donation',
+      'suggestion' => 'donation_page',
+    ])->save();
+
+    // Emptying the field.
+    $entity = $this->createEntityUsing('donation');
+    $this->assertSame(1, $usage->countUsage($storage->load('donation')), 'Usage of the "donation" suggestion.');
+    $entity->set('field_template_whisperer', NULL)->save();
+    $this->assertSame(0, $usage->countUsage($storage->load('donation')), 'Usage of the "donation" suggestion.');
+
+    // Switching to another suggestion.
+    $entity->set('field_template_whisperer', 'donation')->save();
+    $this->assertSame(1, $usage->countUsage($storage->load('donation')), 'Usage of the "donation" suggestion.');
+    $entity->set('field_template_whisperer', 'foo')->save();
+    $this->assertSame(0, $usage->countUsage($storage->load('donation')), 'Usage of the "donation" suggestion.');
+    $this->assertSame(1, $usage->countUsage($storage->load('foo')), 'Usage of the "foo" suggestion.');
+  }
+
 }

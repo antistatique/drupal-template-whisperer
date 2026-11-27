@@ -160,8 +160,9 @@ class TemplateWhispererFieldItem extends FieldItemBase {
       $removed_ids = array_filter(array_diff($original_ids, $ids));
       if (!empty($removed_ids)) {
         foreach ($removed_ids as $removed_id) {
-          $removed_suggestions = \Drupal::service('entity_type.manager')->getStorage('template_whisperer_suggestion')->loadByProperties(['suggestion' => $removed_id]);
-          $removed_suggestion = reset($removed_suggestions);
+          // The field stores the ID of the suggestion entity, which may
+          // differ from its suggestion.
+          $removed_suggestion = \Drupal::service('entity_type.manager')->getStorage('template_whisperer_suggestion')->load($removed_id);
 
           if ($removed_suggestion) {
             $twSuggestionUsage->delete($removed_suggestion, 'template_whisperer', $entity->getEntityTypeId(), $entity->id());
