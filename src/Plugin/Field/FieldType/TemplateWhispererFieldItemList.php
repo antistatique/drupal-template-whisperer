@@ -30,11 +30,13 @@ class TemplateWhispererFieldItemList extends FieldItemList {
       return $result;
     }
 
-    $twManager = \Drupal::service('plugin.manager.template_whisperer');
+    // The field stores the ID of the suggestion entity, which may differ from
+    // its suggestion.
+    $twSuggestionStorage = \Drupal::service('entity_type.manager')->getStorage('template_whisperer_suggestion');
     $twSuggestionUsage = \Drupal::service('template_whisperer.suggestion.usage');
 
     foreach ($original->getTranslation($langcode)->get($this->getName()) as $item) {
-      $suggestion = $item->target_id ? $twManager->getOneBySuggestion($item->target_id) : NULL;
+      $suggestion = $item->target_id ? $twSuggestionStorage->load($item->target_id) : NULL;
       if ($suggestion) {
         $twSuggestionUsage->delete($suggestion, 'template_whisperer', $entity->getEntityTypeId(), $entity->id());
       }
