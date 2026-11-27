@@ -137,6 +137,7 @@ final class TokenHook {
       /** @var \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntity */
       $suggestion = $data['suggestion'];
       $usages = $this->twSuggestionUsage->listUsage($suggestion);
+      $bubbleable_metadata->addCacheableDependency($this->twSuggestionUsage->getUsageCacheability($suggestion, $usages));
       $usage = reset($usages);
 
       // Prevent lookup when the suggestion is never used.

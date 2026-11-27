@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- feat(cache): add the `template_whisperer_suggestion_usage:<suggestion>` cache tag, invalidated when an entity starts or stops using a suggestion
+- feat(cache): bubble the suggestion usage cacheability from the `tw_suggestion_entities()` Twig function and the `suggestion-lookup` tokens
+- feat(cache): expose the suggestion usage cacheability to PHP callers with `TemplateWhispererSuggestionUsage::getUsageCacheability()`
+
 ### Fixed
 - fix(field): release the suggestion usage when the Template Whisperer field of an entity is emptied
 

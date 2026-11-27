@@ -2,6 +2,8 @@
 
 namespace Drupal\template_whisperer;
 
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface;
 
@@ -11,16 +13,83 @@ use Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface;
 final class TemplateWhispererSuggestionUsage {
 
   /**
+   * The prefix of the cache tag invalidated when a suggestion usage changes.
+   *
+   * The complete tag is suffixed by the suggestion, e.g.
+   * "template_whisperer_suggestion_usage:donation_page".
+   */
+  public const CACHE_TAG_PREFIX = 'template_whisperer_suggestion_usage:';
+
+  /**
    * Construct the TemplateWhispererSuggestionUsage.
    *
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection which will be used to store
    *   the Template Whisperer Suggestion usage information.
+   * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cacheTagsInvalidator
+   *   The cache tags invalidator.
    * @param string $tableName
    *   (optional) The table to store Template Whisperer Suggestion usage info.
    *   Defaults to 'template_whisperer.suggestion.usage'.
    */
-  public function __construct(protected Connection $connection, protected string $tableName = 'template_whisperer_suggestion_usage') {
+  public function __construct(protected Connection $connection, protected CacheTagsInvalidatorInterface $cacheTagsInvalidator, protected string $tableName = 'template_whisperer_suggestion_usage') {
+  }
+
+  /**
+   * Gets the cache tags invalidated when the usage of a suggestion changes.
+   *
+   * The tags are keyed by the suggestion and not by the suggestion entity, so
+   * a render can depend on a suggestion nothing declares or uses yet.
+   *
+   * @param string $suggestion
+   *   The suggestion, e.g. "donation_page".
+   *
+   * @return string[]
+   *   The cache tags.
+   */
+  public function getCacheTags(string $suggestion): array {
+    return [self::CACHE_TAG_PREFIX . $suggestion];
+  }
+
+  /**
+   * Gets the cacheability of the usage of a suggestion.
+   *
+   * Anything built from ::listUsage() or ::countUsage() must carry this
+   * cacheability, made of:
+   * - the suggestion usage cache tag, invalidated when an entity starts or
+   *   stops using the suggestion;
+   * - the suggestion entity, for the changes of the suggestion itself;
+   * - the cache tag of every entity using the suggestion, for their updates.
+   *
+   * @param \Drupal\template_whisperer\Entity\TemplateWhispererSuggestionEntityInterface $suggestion
+   *   A suggestion entity.
+   * @param object[]|null $usages
+   *   (optional) The usages as returned by ::listUsage(), to avoid listing
+   *   them again. Defaults to NULL.
+   *
+   * @return \Drupal\Core\Cache\CacheableMetadata
+   *   The cacheability of the suggestion usage.
+   */
+  public function getUsageCacheability(TemplateWhispererSuggestionEntityInterface $suggestion, ?array $usages = NULL): CacheableMetadata {
+    $cacheability = (new CacheableMetadata())
+      ->addCacheableDependency($suggestion)
+      ->addCacheTags($this->getCacheTags((string) $suggestion->getSuggestion()));
+
+    foreach ($usages ?? $this->listUsage($suggestion) as $usage) {
+      $cacheability->addCacheTags([$usage->type . ':' . $usage->id]);
+    }
+
+    return $cacheability;
+  }
+
+  /**
+   * Invalidates everything depending on the usage of a suggestion.
+   *
+   * @param string $suggestion
+   *   The suggestion, e.g. "donation_page".
+   */
+  public function invalidateUsage(string $suggestion): void {
+    $this->cacheTagsInvalidator->invalidateTags($this->getCacheTags($suggestion));
   }
 
   /**
@@ -54,6 +123,8 @@ final class TemplateWhispererSuggestionUsage {
       ->fields(['count' => $count])
       ->expression('count', 'count + :count', [':count' => $count])
       ->execute();
+
+    $this->invalidateUsage((string) $suggestion->getSuggestion());
   }
 
   /**
@@ -104,6 +175,8 @@ final class TemplateWhispererSuggestionUsage {
       $query->expression('count', 'count - :count', [':count' => $count]);
       $query->execute();
     }
+
+    $this->invalidateUsage((string) $suggestion->getSuggestion());
   }
 
   /**
