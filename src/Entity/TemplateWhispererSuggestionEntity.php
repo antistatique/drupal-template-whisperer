@@ -96,6 +96,18 @@ class TemplateWhispererSuggestionEntity extends ConfigEntityBase implements Temp
   /**
    * {@inheritdoc}
    */
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
+    parent::postSave($storage, $update);
+
+    // The usages follow the entity when its suggestion changes: anything that
+    // looked up the new suggestion before must be invalidated. Renders of the
+    // previous suggestion depend on this entity, which has just been saved.
+    \Drupal::service('template_whisperer.suggestion.usage')->invalidateUsage((string) $this->getSuggestion());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function preDelete(EntityStorageInterface $storage, array $entities) {
     parent::preDelete($storage, $entities);
 
